@@ -16,7 +16,7 @@ $cos-dashboard-primary: mat.define-palette(mat.$red-palette);
 $cos-dashboard-accent: mat.define-palette(mat.$blue-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$cos-dashboard-warn: mat.define-palette(mat.$red-palette);
+$cos-dashboard-warn: mat.define-palette(mat.$yellow-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
