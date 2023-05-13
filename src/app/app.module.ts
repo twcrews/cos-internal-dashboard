@@ -19,6 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatRadioModule,
     ReactiveFormsModule,
     MatDialogModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,3 +1,10 @@
 <div>
-  <app-dashboard />
+  <mat-toolbar>
+    <img
+      src="/assets/cos-base.png"
+      alt="cos dashboard logo"
+      class="toolbar-logo"
+    />
+  </mat-toolbar>
+  <app-dashboard *ngIf="secretExists" />
 </div>
