@@ -25,7 +25,8 @@ $cos-dashboard-theme: mat.define-dark-theme((
     primary: $cos-dashboard-primary,
     accent: $cos-dashboard-accent,
     warn: $cos-dashboard-warn,
-  )
+  ),
+  typography: mat.define-typography-config(),
 ));
 
 // Include theme styles for core and each component used in your app.
