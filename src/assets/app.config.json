@@ -1,0 +1,20 @@
+{
+	"planningCenter": {
+		"api": {
+			"products": [
+				{
+					"name": "People",
+					"baseUrl": "https://api.planningcenteronline.com/people/v2"
+				},
+				{
+					"name": "Giving",
+					"baseUrl": "https://api.planningcenteronline.com/giving/v2"
+				}
+			],
+			"auth": {
+				"appId": "d1cbb1701a9798ef9490b9f9ff42805fefc29dbb9a6a07aaac19981196ff47ae",
+				"secretKey": "planning-center-api-secret"
+			}
+		}
+	}
+}

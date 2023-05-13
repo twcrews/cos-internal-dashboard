@@ -9,6 +9,10 @@ export type Address = {
   updated_at?: Date;
 };
 
+export type AnniversaryCouples = {
+  couples?: Person[][];
+};
+
 export type App = {
   name?: string;
   url?: string;
@@ -22,6 +26,10 @@ export type BackgroundCheck = {
   expires_on?: Date;
   result?: string;
   completed_at?: Date;
+};
+
+export type BirthdayPeople = {
+  people?: Person[];
 };
 
 export type Campus = {
@@ -295,6 +303,21 @@ export type Organization = {
   contact_website?: string;
   created_at?: Date;
   avatar_url?: string;
+};
+
+export type OrganizationStatistics = {
+  age?: Record<string, AgeRangeStatistics>;
+  campuses?: GenericStatistics[];
+  created_last_30_days?: number;
+  elasticsearch?: boolean;
+  gender?: {
+    male?: number;
+    female?: number;
+    unassigned?: number;
+  };
+  gender_ids?: Record<string, number>;
+  membership?: GenericStatistics[];
+  total?: number;
 };
 
 export type PeopleImport = {
@@ -585,3 +608,20 @@ export enum WorkflowStepSnoozeInterval {
   Week = 'week',
   Month = 'month',
 }
+
+export enum Gender {
+  Male = 'Male',
+  Female = 'Female',
+}
+
+type AgeRangeStatistics = {
+  male?: number;
+  female?: number;
+  unassigned?: number;
+};
+
+type GenericStatistics = {
+  id?: string;
+  name?: string;
+  count?: number;
+};
