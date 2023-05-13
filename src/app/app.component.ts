@@ -26,6 +26,7 @@ export class AppComponent {
   openDialog() {
     const dialogRef = this.dialog.open(SecretDialogComponent, {
       disableClose: true,
+      width: '728px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
