@@ -1,19 +1,15 @@
 .grid-container {
-  margin: 20px;
+  padding: 16px;
+  box-sizing: border-box;
+  height: 100%;
+  display: grid;
+  gap: 16px;
+  grid-template-rows: repeat(3, 33%);
+  grid-template-columns: repeat(4, 25%);
 }
 
 .dashboard-card {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  right: 8px;
-  bottom: 8px;
-}
-
-.more-button {
-  position: absolute;
-  top: 5px;
-  right: 10px;
+  width: 100%;
 }
 
 .dashboard-card-content {

@@ -29,8 +29,7 @@ export class AppComponent {
       width: '728px',
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+    dialogRef.beforeClosed().subscribe(() => {
       this.secretExists = true;
     });
   }
