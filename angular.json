@@ -72,7 +72,8 @@
               "browserTarget": "cos-dashboard:build:production"
             },
             "development": {
-              "browserTarget": "cos-dashboard:build:development"
+              "browserTarget": "cos-dashboard:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

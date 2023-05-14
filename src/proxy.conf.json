@@ -1,0 +1,8 @@
+{
+	"/people": {
+		"target": "https://api.planningcenteronline.com",
+		"secure": false,
+		"logLevel": "debug",
+		"changeOrigin": true
+	}
+}
