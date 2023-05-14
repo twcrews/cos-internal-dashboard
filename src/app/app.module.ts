@@ -20,6 +20,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     ReactiveFormsModule,
     MatDialogModule,
     MatToolbarModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
