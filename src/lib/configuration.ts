@@ -1,22 +1,23 @@
 import * as Configuration from '../assets/app.config.json';
 
-const planningCenterApiSecretLocalStorageKey =
-  localStorage.getItem(Configuration.planningCenter.api.auth.secretKey) ??
-  'planningCenter-api-secret';
+const localStorageConfigurationProperty = (key: string) => ({
+  get: () => localStorage.getItem(key),
+  set: (secret: string) => localStorage.setItem(key, secret),
+});
 
-const loadPlanningCenterApiSecretFromStorage = () => {
-  let tokenString = localStorage.getItem(
-    planningCenterApiSecretLocalStorageKey
-  );
-  return tokenString ?? '';
-};
+export const planningCenterOauthSecret = localStorageConfigurationProperty(
+  Configuration.planningCenter.api.auth.oauthSecretKey
+);
 
-export type BasicAuthenticationCredentials = {
-  id: string;
-  secret: string;
-};
+export const planningCenterBearerToken = localStorageConfigurationProperty(
+  Configuration.planningCenter.api.auth.bearerTokenKey
+);
 
-export const getPlanningCenterApiCredentials: BasicAuthenticationCredentials = {
-  id: Configuration.planningCenter.api.auth.appId,
-  secret: loadPlanningCenterApiSecretFromStorage(),
-};
+export const planningCenterRefreshToken = localStorageConfigurationProperty(
+  Configuration.planningCenter.api.auth.refreshTokenKey
+);
+
+export const planningCenterOauthInitUrl =
+  Configuration.planningCenter.api.auth.oauthInitUrl;
+
+export const planningCenterProducts = Configuration.planningCenter.api.products;
