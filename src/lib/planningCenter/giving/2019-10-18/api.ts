@@ -1,3 +1,4 @@
+import { planningCenterProducts } from 'src/lib/configuration';
 import {
   Batch,
   BatchGroup,
@@ -15,11 +16,9 @@ import {
   Refund,
 } from 'src/lib/planningCenter/giving/2019-10-18/types';
 import { fetchCollection, fetchSingle } from 'src/lib/planningCenter/shared';
-import * as Configuration from '../../../../assets/app.config.json';
 
 const rootUrl =
-  Configuration.planningCenter.api.products.find((p) => p.name === 'Giving')
-    ?.baseUrl ?? '';
+  planningCenterProducts.find((p) => p.name === 'Giving')?.baseUrl ?? '';
 
 export const Giving = {
   fetch: () => fetchSingle<Organization>(`${rootUrl}/`),

@@ -1,3 +1,5 @@
+import { planningCenterBearerToken } from '../configuration';
+
 export interface PlanningCenterSingleResponse<T>
   extends PlanningCenterResponseBase {
   data?: PlanningCenterResponseData<T>;
@@ -57,11 +59,19 @@ type PlanningCenterResponseDataBase = {
 };
 
 export const fetchCollection = <T>(url: string) =>
-  fetch(url)
+  fetch(url, {
+    headers: {
+      Authorization: `Bearer ${planningCenterBearerToken.get()}`,
+    },
+  })
     .then((response) => response.json())
     .then((data) => data as PlanningCenterCollectionResponse<T>);
 
 export const fetchSingle = <T>(url: string) =>
-  fetch(url)
+  fetch(url, {
+    headers: {
+      Authorization: `Bearer ${planningCenterBearerToken.get()}`,
+    },
+  })
     .then((response) => response.json())
     .then((data) => data as PlanningCenterSingleResponse<T>);

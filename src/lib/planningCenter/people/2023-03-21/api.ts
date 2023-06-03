@@ -1,3 +1,4 @@
+import { planningCenterProducts } from 'src/lib/configuration';
 import {
   Address,
   AnniversaryCouples,
@@ -57,15 +58,10 @@ import {
   WorkflowStep,
   WorkflowStepAssigneeSummary,
 } from 'src/lib/planningCenter/people/2023-03-21/types';
-import {
-  PlanningCenterCollectionResponse,
-  PlanningCenterSingleResponse,
-} from 'src/lib/planningCenter/shared';
-import * as Configuration from '../../../../assets/app.config.json';
+import { fetchCollection, fetchSingle } from 'src/lib/planningCenter/shared';
 
 const rootUrl =
-  Configuration.planningCenter.api.products.find((p) => p.name === 'People')
-    ?.baseUrl ?? '';
+  planningCenterProducts.find((p) => p.name === 'People')?.baseUrl ?? '';
 
 export const People = {
   fetch: () => fetchSingle<Organization>(`${rootUrl}/`),
@@ -648,17 +644,3 @@ export const People = {
     }),
   },
 };
-
-const fetchCollection = <T>(path: string) =>
-  fetch(`${rootUrl}/${path}`, {
-    credentials: 'include',
-  })
-    .then((response) => response.json())
-    .then((data) => data as PlanningCenterCollectionResponse<T>);
-
-const fetchSingle = <T>(path: string) =>
-  fetch(`${rootUrl}/${path}`, {
-    credentials: 'include',
-  })
-    .then((response) => response.json())
-    .then((data) => data as PlanningCenterSingleResponse<T>);
