@@ -2,14 +2,13 @@ import { Component } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
-  FormGroupDirective,
-  NgForm,
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import Configuration from '../../assets/app.config.json';
 import { MatDialogRef } from '@angular/material/dialog';
+import { sha3_256 } from 'js-sha3';
+import { authenticationUrl, planningCenterApiKey } from 'src/lib/configuration';
 
 @Component({
   selector: 'app-secret-dialog',
@@ -18,6 +17,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class SecretDialogComponent {
   private _secretText: string = '';
+  private _secretHash: () => string = () => sha3_256(this._secretText);
 
   get SecretAuthenticationState(): typeof SecretAuthenticationState {
     return SecretAuthenticationState;
@@ -28,23 +28,20 @@ export class SecretDialogComponent {
   }
   set secret(text) {
     this._secretText = text;
-    if (validSecret(text)) {
-      this.authenticate();
-    }
   }
+
+  authenticationState = SecretAuthenticationState.Standby;
+  secretFormControl = new FormControl('', [secretValidator()]);
+  matcher = new SecretErrorStateMatcher();
 
   constructor(public dialogRef: MatDialogRef<SecretDialogComponent>) {}
 
-  authenticate() {
+  onValidate() {
     this.authenticationState = SecretAuthenticationState.InProgress;
     this.secretFormControl.disable();
-    fetch('/people/v2', {
-      credentials: 'include',
+    fetch("/api/Authenticate", {
       headers: {
-        authorization: `Basic ${window.btoa(
-          `${Configuration.planningCenter.api.auth.appId}:${this._secretText}`
-        )}`,
-        'X-Requested-With': 'XMLHttpRequest',
+        "X-Functions-Key": this._secretHash()
       },
     })
       .then((response) => {
@@ -62,20 +59,14 @@ export class SecretDialogComponent {
           this.authenticationState !== SecretAuthenticationState.Authenticated
         ) {
           this.secretFormControl.enable();
+        } else {
+          this.save();
         }
       });
   }
 
-  secretFormControl = new FormControl('', [secretValidator()]);
-  authenticationState = SecretAuthenticationState.InProgress;
-
-  matcher = new SecretErrorStateMatcher();
-
-  onSave(): void {
-    localStorage.setItem(
-      Configuration.planningCenter.api.auth.secretKey,
-      this._secretText.toLowerCase()
-    );
+  save(): void {
+    planningCenterApiKey.set(this._secretHash());
     this.dialogRef.close();
   }
 }
@@ -88,20 +79,14 @@ export class SecretErrorStateMatcher implements ErrorStateMatcher {
 
 export function secretValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
-    const validLength = (control.value ?? '').length == 64;
-    const validFormat = /[a-fA-F0-9]{64}/.test(control.value);
-    return validFormat && validLength
+    return (control.value ?? '').length > 0
       ? null
-      : validLength
-      ? { error: 'Secret must be in hexidecimal format' }
-      : { error: 'Secret must be 64 characters' };
+      : { error: "Key can't be empty" };
   };
 }
 
-const validSecret = (text: string) =>
-  text.length == 64 && /[a-fA-F0-9]{64}/.test(text);
-
 enum SecretAuthenticationState {
+  Standby,
   InProgress,
   Authenticated,
   Unauthorized,

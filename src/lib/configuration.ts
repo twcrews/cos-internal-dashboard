@@ -1,23 +1,18 @@
-import * as Configuration from '../assets/app.config.json';
+import Configuration from '../assets/app.config.json';
 
 const localStorageConfigurationProperty = (key: string) => ({
   get: () => localStorage.getItem(key),
   set: (secret: string) => localStorage.setItem(key, secret),
 });
 
-export const planningCenterOauthSecret = localStorageConfigurationProperty(
-  Configuration.planningCenter.api.auth.oauthSecretKey
-);
-
-export const planningCenterBearerToken = localStorageConfigurationProperty(
-  Configuration.planningCenter.api.auth.bearerTokenKey
-);
-
-export const planningCenterRefreshToken = localStorageConfigurationProperty(
-  Configuration.planningCenter.api.auth.refreshTokenKey
-);
-
-export const planningCenterOauthInitUrl =
-  Configuration.planningCenter.api.auth.oauthInitUrl;
-
 export const planningCenterProducts = Configuration.planningCenter.api.products;
+
+export const planningCenterApiKey = localStorageConfigurationProperty(
+  Configuration.planningCenter.api.apiKeyName
+);
+
+export const authenticationUrl = `${
+  Configuration.planningCenter.api.baseUrl
+}${
+  Configuration.planningCenter.api.authenticationEndpoint
+}`

@@ -1,11 +1,12 @@
 .grid-container {
   padding: 16px;
-  box-sizing: border-box;
   height: 100%;
   display: grid;
   gap: 16px;
-  grid-template-rows: repeat(3, 33%);
-  grid-template-columns: repeat(4, 25%);
+  grid-template-rows: repeat(3, 30%);
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  
+  box-sizing: border-box;
 }
 
 .dashboard-card {

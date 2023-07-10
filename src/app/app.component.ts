@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SecretDialogComponent } from './secret-dialog/secret-dialog.component';
-import { planningCenterOauthSecret } from 'src/lib/configuration';
+import { planningCenterApiKey } from 'src/lib/configuration';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { planningCenterOauthSecret } from 'src/lib/configuration';
 export class AppComponent {
   title = 'cos-dashboard';
 
-  secretExists = planningCenterOauthSecret.get() !== null;
+  secretExists = planningCenterApiKey.get() !== null;
 
   constructor(public dialog: MatDialog) {
     if (!this.secretExists) {

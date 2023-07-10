@@ -1,31 +1,15 @@
 {
 	"planningCenter": {
 		"api": {
-			"products": [
-				{
-					"name": "People",
-					"baseUrl": "https://api.planningcenteronline.com/people/v2"
-				},
-				{
-					"name": "Giving",
-					"baseUrl": "https://api.planningcenteronline.com/giving/v2"
-				},
-				{
-					"name": "Services",
-					"baseUrl": "https://api.planningcenteronline.com/services/v2"
-				},
-				{
-					"name": "Check-ins",
-					"baseUrl": "https://api.planningcenteronline.com/check-ins/v2"
-				}
-			],
-			"auth": {
-				"clientId": "e1a3bd5f56ffea6063f5d63d8ad0e2b5def711303a6756e9c5626f92a64b8a53",
-				"oauthInitUrl": "https://api.planningcenteronline.com/oauth/authorize?client_id=e1a3bd5f56ffea6063f5d63d8ad0e2b5def711303a6756e9c5626f92a64b8a53&redirect_uri=https://dashboard.cos.crews.dev&response_type=code&scope=people%20giving%20services%20check_ins",
-				"oauthSecretKey": "planning-center-oauth-secret",
-				"bearerTokenKey": "planning-center-bearer-token",
-				"refreshTokenKey": "planning-center-refresh-token"
-			}
+			"baseUrl": "https://functions.cos.crews.dev/api/",
+			"products": {
+				"people": "CosDashboard/people/v2/",
+				"giving": "CosDashboard/giving/v2/",
+				"services": "CosDashboard/services/v2/",
+				"checkIns": "CosDashboard/check-ins/v2/"
+			},
+			"authenticationEndpoint": "Authenticate",
+			"apiKeyName": "functions-api-key"
 		}
 	}
 }

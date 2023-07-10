@@ -1,6 +1,6 @@
 {
-	"/people": {
-		"target": "https://api.planningcenteronline.com",
+	"/api": {
+		"target": "https://functions.cos.crews.dev",
 		"secure": false,
 		"logLevel": "debug",
 		"changeOrigin": true
