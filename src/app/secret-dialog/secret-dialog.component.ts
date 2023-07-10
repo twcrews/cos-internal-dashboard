@@ -39,7 +39,7 @@ export class SecretDialogComponent {
   onValidate() {
     this.authenticationState = SecretAuthenticationState.InProgress;
     this.secretFormControl.disable();
-    fetch("/api/Authenticate", {
+    fetch(authenticationUrl, {
       headers: {
         "X-Functions-Key": this._secretHash()
       },
