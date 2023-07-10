@@ -1,0 +1,8 @@
+{
+	"/api": {
+		"target": "https://functions.cos.crews.dev",
+		"secure": false,
+		"logLevel": "debug",
+		"changeOrigin": true
+	}
+}

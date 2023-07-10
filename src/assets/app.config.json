@@ -1,0 +1,15 @@
+{
+	"planningCenter": {
+		"api": {
+			"baseUrl": "https://functions.cos.crews.dev/api/",
+			"products": {
+				"people": "CosDashboard/people/v2/",
+				"giving": "CosDashboard/giving/v2/",
+				"services": "CosDashboard/services/v2/",
+				"checkIns": "CosDashboard/check-ins/v2/"
+			},
+			"authenticationEndpoint": "Authenticate",
+			"apiKeyName": "functions-api-key"
+		}
+	}
+}

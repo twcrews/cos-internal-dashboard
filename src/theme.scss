@@ -20,12 +20,13 @@ $cos-dashboard-warn: mat.define-palette(mat.$yellow-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$cos-dashboard-theme: mat.define-light-theme((
+$cos-dashboard-theme: mat.define-dark-theme((
   color: (
     primary: $cos-dashboard-primary,
     accent: $cos-dashboard-accent,
     warn: $cos-dashboard-warn,
-  )
+  ),
+  typography: mat.define-typography-config(),
 ));
 
 // Include theme styles for core and each component used in your app.
