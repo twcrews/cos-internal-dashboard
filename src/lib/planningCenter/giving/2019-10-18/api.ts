@@ -1,4 +1,4 @@
-import { planningCenterProducts } from 'src/lib/configuration';
+import { givingApiUrl } from 'src/lib/configuration';
 import {
   Batch,
   BatchGroup,
@@ -17,52 +17,49 @@ import {
 } from 'src/lib/planningCenter/giving/2019-10-18/types';
 import { fetchCollection, fetchSingle } from 'src/lib/planningCenter/shared';
 
-const rootUrl =
-  planningCenterProducts.find((p) => p.name === 'Giving')?.baseUrl ?? '';
-
 export const Giving = {
-  fetch: () => fetchSingle<Organization>(`${rootUrl}/`),
+  fetch: () => fetchSingle<Organization>(`${givingApiUrl}/`),
   batchGroups: {
-    fetchAll: () => fetchCollection<BatchGroup>(`${rootUrl}/batch_groups`),
+    fetchAll: () => fetchCollection<BatchGroup>(`${givingApiUrl}/batch_groups`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<BatchGroup>(`${rootUrl}/batch_groups/${id}`),
+      fetch: () => fetchSingle<BatchGroup>(`${givingApiUrl}/batch_groups/${id}`),
       batches: {
         fetchAll: () =>
-          fetchCollection<Batch>(`${rootUrl}/batch_groups/${id}/batches`),
+          fetchCollection<Batch>(`${givingApiUrl}/batch_groups/${id}/batches`),
       },
       owner: {
-        fetch: () => fetchSingle<Person>(`${rootUrl}/batch_groups/${id}/owner`),
+        fetch: () => fetchSingle<Person>(`${givingApiUrl}/batch_groups/${id}/owner`),
       },
     }),
   },
   batches: {
-    fetchAll: () => fetchCollection<Batch>(`${rootUrl}/batches`),
+    fetchAll: () => fetchCollection<Batch>(`${givingApiUrl}/batches`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<Batch>(`${rootUrl}/batches/${id}`),
+      fetch: () => fetchSingle<Batch>(`${givingApiUrl}/batches/${id}`),
       donations: {
         fetchAll: () =>
-          fetchCollection<Donation>(`${rootUrl}/batches/${id}/donations`),
+          fetchCollection<Donation>(`${givingApiUrl}/batches/${id}/donations`),
       },
     }),
   },
   campuses: {
-    fetchAll: () => fetchCollection<Campus>(`${rootUrl}/campuses`),
+    fetchAll: () => fetchCollection<Campus>(`${givingApiUrl}/campuses`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<Campus>(`${rootUrl}/campuses/${id}`),
+      fetch: () => fetchSingle<Campus>(`${givingApiUrl}/campuses/${id}`),
       donations: {
         fetchAll: () =>
-          fetchCollection<Donation>(`${rootUrl}/campuses/${id}/donations`),
+          fetchCollection<Donation>(`${givingApiUrl}/campuses/${id}/donations`),
       },
     }),
   },
   donations: {
-    fetchAll: () => fetchCollection<Donation>(`${rootUrl}/donations`),
+    fetchAll: () => fetchCollection<Donation>(`${givingApiUrl}/donations`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<Donation>(`${rootUrl}/donations/${id}`),
+      fetch: () => fetchSingle<Donation>(`${givingApiUrl}/donations/${id}`),
       designations: {
         fetchAll: () =>
           fetchCollection<Designation>(
-            `${rootUrl}/donations/${id}/designations`
+            `${givingApiUrl}/donations/${id}/designations`
           ),
         select: (designationId: string) => ({
           fetch: () =>
@@ -73,10 +70,10 @@ export const Giving = {
       },
       labels: {
         fetchAll: () =>
-          fetchCollection<Label>(`${rootUrl}/donations/${id}/labels`),
+          fetchCollection<Label>(`${givingApiUrl}/donations/${id}/labels`),
       },
       refund: {
-        fetch: () => fetchSingle<Refund>(`${rootUrl}/donations/${id}/refund`),
+        fetch: () => fetchSingle<Refund>(`${givingApiUrl}/donations/${id}/refund`),
         designationRefunds: {
           fetchAll: () =>
             fetchCollection<DesignationRefund>(
@@ -93,51 +90,51 @@ export const Giving = {
     }),
   },
   funds: {
-    fetchAll: () => fetchCollection<Fund>(`${rootUrl}/funds`),
+    fetchAll: () => fetchCollection<Fund>(`${givingApiUrl}/funds`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<Fund>(`${rootUrl}/funds/${id}`),
+      fetch: () => fetchSingle<Fund>(`${givingApiUrl}/funds/${id}`),
     }),
   },
   labels: {
-    fetchAll: () => fetchCollection<Label>(`${rootUrl}/labels`),
+    fetchAll: () => fetchCollection<Label>(`${givingApiUrl}/labels`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<Label>(`${rootUrl}/labels/${id}`),
+      fetch: () => fetchSingle<Label>(`${givingApiUrl}/labels/${id}`),
     }),
   },
   paymentSources: {
     fetchAll: () =>
-      fetchCollection<PaymentSource>(`${rootUrl}/payment_sources`),
+      fetchCollection<PaymentSource>(`${givingApiUrl}/payment_sources`),
     select: (id: string) => ({
       fetch: () =>
-        fetchSingle<PaymentSource>(`${rootUrl}/payment_sources/${id}`),
+        fetchSingle<PaymentSource>(`${givingApiUrl}/payment_sources/${id}`),
       donations: {
         fetchAll: () =>
           fetchCollection<Donation>(
-            `${rootUrl}/payment_sources/${id}/donations`
+            `${givingApiUrl}/payment_sources/${id}/donations`
           ),
       },
     }),
   },
   people: {
-    fetchAll: () => fetchCollection<Person>(`${rootUrl}/people`),
+    fetchAll: () => fetchCollection<Person>(`${givingApiUrl}/people`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<Person>(`${rootUrl}/people/${id}`),
+      fetch: () => fetchSingle<Person>(`${givingApiUrl}/people/${id}`),
       batchGroups: {
         fetchAll: () =>
-          fetchCollection<BatchGroup>(`${rootUrl}/people/${id}/batch_groups`),
+          fetchCollection<BatchGroup>(`${givingApiUrl}/people/${id}/batch_groups`),
       },
       batches: {
         fetchAll: () =>
-          fetchCollection<Batch>(`${rootUrl}/people/${id}/batches`),
+          fetchCollection<Batch>(`${givingApiUrl}/people/${id}/batches`),
       },
       donations: {
         fetchAll: () =>
-          fetchCollection<Donation>(`${rootUrl}/people/${id}/donations`),
+          fetchCollection<Donation>(`${givingApiUrl}/people/${id}/donations`),
       },
       paymentMethods: {
         fetchAll: () =>
           fetchCollection<PaymentMethod>(
-            `${rootUrl}/people/${id}/payment_methods`
+            `${givingApiUrl}/people/${id}/payment_methods`
           ),
         select: (paymentMethodId: string) => ({
           fetch: () =>
@@ -156,10 +153,10 @@ export const Giving = {
   },
   recurringDonations: {
     fetchAll: () =>
-      fetchCollection<RecurringDonation>(`${rootUrl}/recurring_donations`),
+      fetchCollection<RecurringDonation>(`${givingApiUrl}/recurring_donations`),
     select: (id: string) => ({
       fetch: () =>
-        fetchSingle<RecurringDonation>(`${rootUrl}/recurring_donations/${id}`),
+        fetchSingle<RecurringDonation>(`${givingApiUrl}/recurring_donations/${id}`),
       designations: {
         fetchAll: () =>
           fetchCollection<Designation>(
