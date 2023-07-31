@@ -1,4 +1,4 @@
-import { planningCenterProducts } from 'src/lib/configuration';
+import { checkInsApiUrl } from 'src/lib/configuration';
 import { fetchCollection, fetchSingle } from '../../shared';
 import {
   AttendanceType,
@@ -24,68 +24,65 @@ import {
 	Theme,
 } from './types';
 
-const rootUrl =
-  planningCenterProducts.find((p) => p.name === 'Check-ins')?.baseUrl ?? '';
-
 export const CheckIns = {
-  fetch: () => fetchSingle<Organization>(`${rootUrl}/`),
+  fetch: () => fetchSingle<Organization>(`${checkInsApiUrl}/`),
   checkIns: {
-    fetchAll: () => fetchCollection<CheckIn>(`${rootUrl}/check_ins`),
+    fetchAll: () => fetchCollection<CheckIn>(`${checkInsApiUrl}/check_ins`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<CheckIn>(`${rootUrl}/check_ins/${id}`),
+      fetch: () => fetchSingle<CheckIn>(`${checkInsApiUrl}/check_ins/${id}`),
       checkInGroup: {
         fetch: () =>
           fetchSingle<CheckInGroup>(
-            `${rootUrl}/check_ins/${id}/check_in_group`
+            `${checkInsApiUrl}/check_ins/${id}/check_in_group`
           ),
         checkIns: {
           fetchAll: () =>
             fetchCollection<CheckIn>(
-              `${rootUrl}/check_ins/${id}/check_in_group/check_ins`
+              `${checkInsApiUrl}/check_ins/${id}/check_in_group/check_ins`
             ),
         },
       },
       checkInTimes: {
         fetchAll: () =>
           fetchCollection<CheckInTime>(
-            `${rootUrl}/check_ins/${id}/check_in_times`
+            `${checkInsApiUrl}/check_ins/${id}/check_in_times`
           ),
       },
       eventPeriod: {
         fetch: () =>
-          fetchSingle<EventPeriod>(`${rootUrl}/check_ins/${id}/event_period`),
+          fetchSingle<EventPeriod>(`${checkInsApiUrl}/check_ins/${id}/event_period`),
         checkIns: {
           fetchAll: () =>
             fetchCollection<CheckIn>(
-              `${rootUrl}/check_ins/${id}/event_period/check_ins`
+              `${checkInsApiUrl}/check_ins/${id}/event_period/check_ins`
             ),
         },
         eventTimes: {
           fetchAll: () =>
             fetchCollection<EventTime>(
-              `${rootUrl}/check_ins/${id}/event_period/event_times`
+              `${checkInsApiUrl}/check_ins/${id}/event_period/event_times`
             ),
         },
         locationEventPeriods: {
           fetchAll: () =>
             fetchCollection<LocationEventPeriod>(
-              `${rootUrl}/check_ins/${id}/event_period/location_event_periods`
+              `${checkInsApiUrl}/check_ins/${id}/event_period/location_event_periods`
             ),
           select: (periodId: string) => ({
             fetch: () =>
               fetchSingle<LocationEventPeriod>(
-                `${rootUrl}/check_ins/${id}/event_period/location_event_periods/${periodId}`
+                `${checkInsApiUrl}/check_ins/${id}/event_period/location_event_periods/${periodId}`
               ),
             checkIns: {
               fetchAll: () =>
                 fetchCollection<CheckIn>(
-                  `${rootUrl}/check_ins/${id}/event_period/location_event_periods/${periodId}/check_ins`
+                  `${checkInsApiUrl}/check_ins/${id}/event_period/location_event_periods/${periodId}/check_ins`
                 ),
             },
             location: {
               fetch: () =>
                 fetchSingle<Location>(
-                  `${rootUrl}/check_ins/${id}/event_period/location_event_periods/${periodId}/location`
+                  `${checkInsApiUrl}/check_ins/${id}/event_period/location_event_periods/${periodId}/location`
                 ),
             },
           }),
@@ -93,36 +90,36 @@ export const CheckIns = {
       },
       eventTimes: {
         fetchAll: () =>
-          fetchCollection<EventTime>(`${rootUrl}/check_ins/${id}/event_times`),
+          fetchCollection<EventTime>(`${checkInsApiUrl}/check_ins/${id}/event_times`),
       },
       locations: {
         fetchAll: () =>
-          fetchCollection<Location>(`${rootUrl}/check_ins/${id}/locations`),
+          fetchCollection<Location>(`${checkInsApiUrl}/check_ins/${id}/locations`),
         select: (locationId: string) => ({
           fetch: () =>
             fetchSingle<Location>(
-              `${rootUrl}/check_ins/${id}/locations/${locationId}`
+              `${checkInsApiUrl}/check_ins/${id}/locations/${locationId}`
             ),
           checkIns: {
             fetchAll: () =>
               fetchCollection<CheckIn>(
-                `${rootUrl}/check_ins/${id}/locations/${locationId}/check_ins`
+                `${checkInsApiUrl}/check_ins/${id}/locations/${locationId}/check_ins`
               ),
           },
           locationEventPeriods: {
             fetchAll: () =>
               fetchCollection<LocationEventPeriod>(
-                `${rootUrl}/check_ins/${id}/locations/${locationId}/location_event_periods`
+                `${checkInsApiUrl}/check_ins/${id}/locations/${locationId}/location_event_periods`
               ),
             select: (periodId: string) => ({
               fetch: () =>
                 fetchSingle<LocationEventPeriod>(
-                  `${rootUrl}/check_ins/${id}/locations/${locationId}/location_event_periods/${periodId}`
+                  `${checkInsApiUrl}/check_ins/${id}/locations/${locationId}/location_event_periods/${periodId}`
                 ),
               checkIns: {
                 fetchAll: () =>
                   fetchCollection<CheckIn>(
-                    `${rootUrl}/check_ins/${id}/locations/${locationId}/location_event_periods/${periodId}/check_ins`
+                    `${checkInsApiUrl}/check_ins/${id}/locations/${locationId}/location_event_periods/${periodId}/check_ins`
                   ),
               },
             }),
@@ -130,73 +127,73 @@ export const CheckIns = {
           locationEventTimes: {
             fetchAll: () =>
               fetchCollection<LocationEventTime>(
-                `${rootUrl}/check_ins/${id}/locations/${locationId}/location_event_times`
+                `${checkInsApiUrl}/check_ins/${id}/locations/${locationId}/location_event_times`
               ),
           },
           locationLabels: {
             fetchAll: () =>
               fetchCollection<LocationEventTime>(
-                `${rootUrl}/check_ins/${id}/locations/${locationId}/location_labels`
+                `${checkInsApiUrl}/check_ins/${id}/locations/${locationId}/location_labels`
               ),
           },
           locations: {
             fetchAll: () =>
               fetchCollection<Location>(
-                `${rootUrl}/check_ins/${id}/locations/${locationId}/locations`
+                `${checkInsApiUrl}/check_ins/${id}/locations/${locationId}/locations`
               ),
           },
           options: {
             fetchAll: () =>
               fetchCollection<Option>(
-                `${rootUrl}/check_ins/${id}/locations/${locationId}/options`
+                `${checkInsApiUrl}/check_ins/${id}/locations/${locationId}/options`
               ),
           },
           parent: {
             fetch: () =>
               fetchSingle<Location>(
-                `${rootUrl}/check_ins/${id}/locations/${locationId}/parent`
+                `${checkInsApiUrl}/check_ins/${id}/locations/${locationId}/parent`
               ),
           },
         }),
       },
       options: {
         fetchAll: () =>
-          fetchCollection<Option>(`${rootUrl}/check_ins/${id}/options`),
+          fetchCollection<Option>(`${checkInsApiUrl}/check_ins/${id}/options`),
       },
     }),
   },
   eventTimes: {
-    fetchAll: () => fetchCollection<EventTime>(`${rootUrl}/event_times`),
+    fetchAll: () => fetchCollection<EventTime>(`${checkInsApiUrl}/event_times`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<EventTime>(`${rootUrl}/event_times/${id}`),
+      fetch: () => fetchSingle<EventTime>(`${checkInsApiUrl}/event_times/${id}`),
       availableLocations: {
         fetchAll: () =>
-          fetchCollection<Location>(`${rootUrl}/event_times/${id}/locations`),
+          fetchCollection<Location>(`${checkInsApiUrl}/event_times/${id}/locations`),
         select: (locationId: string) => ({
           fetch: () =>
             fetchSingle<Location>(
-              `${rootUrl}/event_times/${id}/locations/${locationId}`
+              `${checkInsApiUrl}/event_times/${id}/locations/${locationId}`
             ),
           checkIns: {
             fetchAll: () =>
               fetchCollection<CheckIn>(
-                `${rootUrl}/event_times/${id}/locations/${locationId}/check_ins`
+                `${checkInsApiUrl}/event_times/${id}/locations/${locationId}/check_ins`
               ),
           },
           locationEventPeriods: {
             fetchAll: () =>
               fetchCollection<LocationEventPeriod>(
-                `${rootUrl}/event_times/${id}/locations/${locationId}/location_event_periods`
+                `${checkInsApiUrl}/event_times/${id}/locations/${locationId}/location_event_periods`
               ),
             select: (periodId: string) => ({
               fetch: () =>
                 fetchSingle<LocationEventPeriod>(
-                  `${rootUrl}/event_times/${id}/locations/${locationId}/location_event_periods/${periodId}`
+                  `${checkInsApiUrl}/event_times/${id}/locations/${locationId}/location_event_periods/${periodId}`
                 ),
               checkIns: {
                 fetchAll: () =>
                   fetchCollection<CheckIn>(
-                    `${rootUrl}/event_times/${id}/locations/${locationId}/location_event_periods/${periodId}/check_ins`
+                    `${checkInsApiUrl}/event_times/${id}/locations/${locationId}/location_event_periods/${periodId}/check_ins`
                   ),
               },
             }),
@@ -204,74 +201,74 @@ export const CheckIns = {
           locationEventTimes: {
             fetchAll: () =>
               fetchCollection<LocationEventTime>(
-                `${rootUrl}/event_times/${id}/locations/${locationId}/location_event_times`
+                `${checkInsApiUrl}/event_times/${id}/locations/${locationId}/location_event_times`
               ),
           },
           locationLabels: {
             fetchAll: () =>
               fetchCollection<LocationEventTime>(
-                `${rootUrl}/event_times/${id}/locations/${locationId}/location_labels`
+                `${checkInsApiUrl}/event_times/${id}/locations/${locationId}/location_labels`
               ),
           },
           locations: {
             fetchAll: () =>
               fetchCollection<Location>(
-                `${rootUrl}/event_times/${id}/locations/${locationId}/locations`
+                `${checkInsApiUrl}/event_times/${id}/locations/${locationId}/locations`
               ),
           },
           options: {
             fetchAll: () =>
               fetchCollection<Option>(
-                `${rootUrl}/event_times/${id}/locations/${locationId}/options`
+                `${checkInsApiUrl}/event_times/${id}/locations/${locationId}/options`
               ),
           },
           parent: {
             fetch: () =>
               fetchSingle<Location>(
-                `${rootUrl}/event_times/${id}/locations/${locationId}/parent`
+                `${checkInsApiUrl}/event_times/${id}/locations/${locationId}/parent`
               ),
           },
         }),
       },
       checkIns: {
         fetchAll: () =>
-          fetchCollection<CheckIn>(`${rootUrl}/event_times/${id}/check_ins`),
+          fetchCollection<CheckIn>(`${checkInsApiUrl}/event_times/${id}/check_ins`),
       },
       eventPeriod: {
         fetch: () =>
-          fetchSingle<EventPeriod>(`${rootUrl}/event_times/${id}/event_period`),
+          fetchSingle<EventPeriod>(`${checkInsApiUrl}/event_times/${id}/event_period`),
         checkIns: {
           fetchAll: () =>
             fetchCollection<CheckIn>(
-              `${rootUrl}/event_times/${id}/event_period/check_ins`
+              `${checkInsApiUrl}/event_times/${id}/event_period/check_ins`
             ),
         },
         eventTimes: {
           fetchAll: () =>
             fetchCollection<EventTime>(
-              `${rootUrl}/event_times/${id}/event_period/event_times`
+              `${checkInsApiUrl}/event_times/${id}/event_period/event_times`
             ),
         },
         locationEventPeriods: {
           fetchAll: () =>
             fetchCollection<LocationEventPeriod>(
-              `${rootUrl}/event_times/${id}/event_period/location_event_periods`
+              `${checkInsApiUrl}/event_times/${id}/event_period/location_event_periods`
             ),
           select: (periodId: string) => ({
             fetch: () =>
               fetchSingle<LocationEventPeriod>(
-                `${rootUrl}/event_times/${id}/event_period/location_event_periods/${periodId}`
+                `${checkInsApiUrl}/event_times/${id}/event_period/location_event_periods/${periodId}`
               ),
             checkIns: {
               fetchAll: () =>
                 fetchCollection<CheckIn>(
-                  `${rootUrl}/event_times/${id}/event_period/location_event_periods/${periodId}/check_ins`
+                  `${checkInsApiUrl}/event_times/${id}/event_period/location_event_periods/${periodId}/check_ins`
                 ),
             },
             location: {
               fetch: () =>
                 fetchSingle<Location>(
-                  `${rootUrl}/event_times/${id}/event_period/location_event_periods/${periodId}/location`
+                  `${checkInsApiUrl}/event_times/${id}/event_period/location_event_periods/${periodId}/location`
                 ),
             },
           }),
@@ -279,78 +276,78 @@ export const CheckIns = {
       },
       headcounts: {
         fetchAll: () =>
-          fetchCollection<Headcount>(`${rootUrl}/event_times/${id}/headcounts`),
+          fetchCollection<Headcount>(`${checkInsApiUrl}/event_times/${id}/headcounts`),
       },
       locationEventTimes: {
         fetchAll: () =>
           fetchCollection<LocationEventTime>(
-            `${rootUrl}/event_times/${id}/location_event_times`
+            `${checkInsApiUrl}/event_times/${id}/location_event_times`
           ),
       },
     }),
   },
   events: {
-    fetchAll: () => fetchCollection<Event>(`${rootUrl}/events`),
+    fetchAll: () => fetchCollection<Event>(`${checkInsApiUrl}/events`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<Event>(`${rootUrl}/events/${id}`),
+      fetch: () => fetchSingle<Event>(`${checkInsApiUrl}/events/${id}`),
       attendanceTypes: {
         fetchAll: () =>
           fetchCollection<AttendanceType>(
-            `${rootUrl}/events/${id}/attendanceTypes`
+            `${checkInsApiUrl}/events/${id}/attendanceTypes`
           ),
       },
       checkIns: {
         fetchAll: () =>
-          fetchCollection<CheckIn>(`${rootUrl}/events/${id}/check_ins`),
+          fetchCollection<CheckIn>(`${checkInsApiUrl}/events/${id}/check_ins`),
       },
       currentEventTimes: {
         fetchAll: () =>
           fetchCollection<EventTime>(
-            `${rootUrl}/events/${id}/current_event_times`
+            `${checkInsApiUrl}/events/${id}/current_event_times`
           ),
       },
       eventLabels: {
         fetchAll: () =>
-          fetchCollection<EventLabel>(`${rootUrl}/events/${id}/event_labels`),
+          fetchCollection<EventLabel>(`${checkInsApiUrl}/events/${id}/event_labels`),
       },
       eventPeriods: {
         fetchAll: () =>
-          fetchCollection<EventPeriod>(`${rootUrl}/events/${id}/event_periods`),
+          fetchCollection<EventPeriod>(`${checkInsApiUrl}/events/${id}/event_periods`),
         select: (periodId: string) => ({
           fetch: () =>
-            fetchSingle<EventPeriod>(`${rootUrl}/events/${id}/event_period`),
+            fetchSingle<EventPeriod>(`${checkInsApiUrl}/events/${id}/event_period`),
           checkIns: {
             fetchAll: () =>
               fetchCollection<CheckIn>(
-                `${rootUrl}/events/${id}/event_period/check_ins`
+                `${checkInsApiUrl}/events/${id}/event_period/check_ins`
               ),
           },
           eventTimes: {
             fetchAll: () =>
               fetchCollection<EventTime>(
-                `${rootUrl}/events/${id}/event_period/event_times`
+                `${checkInsApiUrl}/events/${id}/event_period/event_times`
               ),
           },
           locationEventPeriods: {
             fetchAll: () =>
               fetchCollection<LocationEventPeriod>(
-                `${rootUrl}/events/${id}/event_period/location_event_periods`
+                `${checkInsApiUrl}/events/${id}/event_period/location_event_periods`
               ),
             select: (periodId: string) => ({
               fetch: () =>
                 fetchSingle<LocationEventPeriod>(
-                  `${rootUrl}/events/${id}/event_period/location_event_periods/${periodId}`
+                  `${checkInsApiUrl}/events/${id}/event_period/location_event_periods/${periodId}`
                 ),
               checkIns: {
                 fetchAll: () =>
                   fetchCollection<CheckIn>(
-                    `${rootUrl}/events/${id}/event_period/location_event_periods/${periodId}/check_ins`
+                    `${checkInsApiUrl}/events/${id}/event_period/location_event_periods/${periodId}/check_ins`
                   ),
               },
               location: {
                 fetch: () =>
                   fetchSingle<Location>(
-                    `${rootUrl}/events/${id}/event_period/location_event_periods/${periodId}/location`
+                    `${checkInsApiUrl}/events/${id}/event_period/location_event_periods/${periodId}/location`
                   ),
               },
             }),
@@ -359,32 +356,32 @@ export const CheckIns = {
       },
       locations: {
         fetchAll: () =>
-          fetchCollection<Location>(`${rootUrl}/events/${id}/locations`),
+          fetchCollection<Location>(`${checkInsApiUrl}/events/${id}/locations`),
         select: (locationId: string) => ({
           fetch: () =>
             fetchSingle<Location>(
-              `${rootUrl}/events/${id}/locations/${locationId}`
+              `${checkInsApiUrl}/events/${id}/locations/${locationId}`
             ),
           checkIns: {
             fetchAll: () =>
               fetchCollection<CheckIn>(
-                `${rootUrl}/events/${id}/locations/${locationId}/check_ins`
+                `${checkInsApiUrl}/events/${id}/locations/${locationId}/check_ins`
               ),
           },
           locationEventPeriods: {
             fetchAll: () =>
               fetchCollection<LocationEventPeriod>(
-                `${rootUrl}/events/${id}/locations/${locationId}/location_event_periods`
+                `${checkInsApiUrl}/events/${id}/locations/${locationId}/location_event_periods`
               ),
             select: (periodId: string) => ({
               fetch: () =>
                 fetchSingle<LocationEventPeriod>(
-                  `${rootUrl}/events/${id}/locations/${locationId}/location_event_periods/${periodId}`
+                  `${checkInsApiUrl}/events/${id}/locations/${locationId}/location_event_periods/${periodId}`
                 ),
               checkIns: {
                 fetchAll: () =>
                   fetchCollection<CheckIn>(
-                    `${rootUrl}/events/${id}/locations/${locationId}/location_event_periods/${periodId}/check_ins`
+                    `${checkInsApiUrl}/events/${id}/locations/${locationId}/location_event_periods/${periodId}/check_ins`
                   ),
               },
             }),
@@ -392,81 +389,81 @@ export const CheckIns = {
           locationEventTimes: {
             fetchAll: () =>
               fetchCollection<LocationEventTime>(
-                `${rootUrl}/events/${id}/locations/${locationId}/location_event_times`
+                `${checkInsApiUrl}/events/${id}/locations/${locationId}/location_event_times`
               ),
           },
           locationLabels: {
             fetchAll: () =>
               fetchCollection<LocationEventTime>(
-                `${rootUrl}/events/${id}/locations/${locationId}/location_labels`
+                `${checkInsApiUrl}/events/${id}/locations/${locationId}/location_labels`
               ),
           },
           locations: {
             fetchAll: () =>
               fetchCollection<Location>(
-                `${rootUrl}/events/${id}/locations/${locationId}/locations`
+                `${checkInsApiUrl}/events/${id}/locations/${locationId}/locations`
               ),
           },
           options: {
             fetchAll: () =>
               fetchCollection<Option>(
-                `${rootUrl}/events/${id}/locations/${locationId}/options`
+                `${checkInsApiUrl}/events/${id}/locations/${locationId}/options`
               ),
           },
           parent: {
             fetch: () =>
               fetchSingle<Location>(
-                `${rootUrl}/events/${id}/locations/${locationId}/parent`
+                `${checkInsApiUrl}/events/${id}/locations/${locationId}/parent`
               ),
           },
         }),
       },
       personEvents: {
         fetchAll: () =>
-          fetchCollection<PersonEvent>(`${rootUrl}/events/${id}/person_events`),
+          fetchCollection<PersonEvent>(`${checkInsApiUrl}/events/${id}/person_events`),
       },
     }),
   },
   headcounts: {
-    fetchAll: () => fetchCollection<Headcount>(`${rootUrl}/headcounts`),
+    fetchAll: () => fetchCollection<Headcount>(`${checkInsApiUrl}/headcounts`),
   },
   labels: {
-    fetchAll: () => fetchCollection<Label>(`${rootUrl}/labels`),
+    fetchAll: () => fetchCollection<Label>(`${checkInsApiUrl}/labels`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<Label>(`${rootUrl}/labels/${id}`),
+      fetch: () => fetchSingle<Label>(`${checkInsApiUrl}/labels/${id}`),
       eventLabels: {
         fetchAll: () =>
-          fetchCollection<EventLabel>(`${rootUrl}/labels/${id}/event_labels`),
+          fetchCollection<EventLabel>(`${checkInsApiUrl}/labels/${id}/event_labels`),
       },
       locationLabels: {
         fetchAll: () =>
           fetchCollection<LocationLabel>(
-            `${rootUrl}/labels/${id}/location_labels`
+            `${checkInsApiUrl}/labels/${id}/location_labels`
           ),
         select: (labelId: string) => ({
           location: {
             fetch: () =>
-              fetchSingle<Location>(`${rootUrl}/labels/${id}/location`),
+              fetchSingle<Location>(`${checkInsApiUrl}/labels/${id}/location`),
             checkIns: {
               fetchAll: () =>
                 fetchCollection<CheckIn>(
-                  `${rootUrl}/labels/${id}/location_labels/${labelId}/location/check_ins`
+                  `${checkInsApiUrl}/labels/${id}/location_labels/${labelId}/location/check_ins`
                 ),
             },
             locationEventPeriods: {
               fetchAll: () =>
                 fetchCollection<LocationEventPeriod>(
-                  `${rootUrl}/labels/${id}/location_labels/${labelId}/location/location_event_periods`
+                  `${checkInsApiUrl}/labels/${id}/location_labels/${labelId}/location/location_event_periods`
                 ),
               select: (periodId: string) => ({
                 fetch: () =>
                   fetchSingle<LocationEventPeriod>(
-                    `${rootUrl}/labels/${id}/location_labels/${labelId}/location/location_event_periods/${periodId}`
+                    `${checkInsApiUrl}/labels/${id}/location_labels/${labelId}/location/location_event_periods/${periodId}`
                   ),
                 checkIns: {
                   fetchAll: () =>
                     fetchCollection<CheckIn>(
-                      `${rootUrl}/labels/${id}/location_labels/${labelId}/location/location_event_periods/${periodId}/check_ins`
+                      `${checkInsApiUrl}/labels/${id}/location_labels/${labelId}/location/location_event_periods/${periodId}/check_ins`
                     ),
                 },
               }),
@@ -474,31 +471,31 @@ export const CheckIns = {
             locationEventTimes: {
               fetchAll: () =>
                 fetchCollection<LocationEventTime>(
-                  `${rootUrl}/labels/${id}/location_labels/${labelId}/location/location_event_times`
+                  `${checkInsApiUrl}/labels/${id}/location_labels/${labelId}/location/location_event_times`
                 ),
             },
             locationLabels: {
               fetchAll: () =>
                 fetchCollection<LocationEventTime>(
-                  `${rootUrl}/labels/${id}/location_labels/${labelId}/location/location_labels`
+                  `${checkInsApiUrl}/labels/${id}/location_labels/${labelId}/location/location_labels`
                 ),
             },
             locations: {
               fetchAll: () =>
                 fetchCollection<Location>(
-                  `${rootUrl}/labels/${id}/location_labels/${labelId}/location/locations`
+                  `${checkInsApiUrl}/labels/${id}/location_labels/${labelId}/location/locations`
                 ),
             },
             options: {
               fetchAll: () =>
                 fetchCollection<Option>(
-                  `${rootUrl}/labels/${id}/location_labels/${labelId}/location/options`
+                  `${checkInsApiUrl}/labels/${id}/location_labels/${labelId}/location/options`
                 ),
             },
             parent: {
               fetch: () =>
                 fetchSingle<Location>(
-                  `${rootUrl}/labels/${id}/location_labels/${labelId}/location/parent`
+                  `${checkInsApiUrl}/labels/${id}/location_labels/${labelId}/location/parent`
                 ),
             },
           },
@@ -507,81 +504,81 @@ export const CheckIns = {
     }),
   },
 	options: {
-		fetchAll: () => fetchCollection<Option>(`${rootUrl}/options`),
+		fetchAll: () => fetchCollection<Option>(`${checkInsApiUrl}/options`),
 		select: (id: string) => ({
-			fetch: () => fetchSingle<Option>(`${rootUrl}/options/${id}`),
+			fetch: () => fetchSingle<Option>(`${checkInsApiUrl}/options/${id}`),
 			CheckIns: {
-				fetchAll: () => fetchCollection<CheckIn>(`${rootUrl}/options/${id}/check_ins`)
+				fetchAll: () => fetchCollection<CheckIn>(`${checkInsApiUrl}/options/${id}/check_ins`)
 			}
 		})
 	},
   passes: {
-    fetchAll: () => fetchCollection<Pass>(`${rootUrl}/passes`),
+    fetchAll: () => fetchCollection<Pass>(`${checkInsApiUrl}/passes`),
   },
 	people: {
-    fetchAll: () => fetchCollection<Person>(`${rootUrl}/people`),
+    fetchAll: () => fetchCollection<Person>(`${checkInsApiUrl}/people`),
 		select: (id: string) => ({
-			fetch: () => fetchSingle<Person>(`${rootUrl}/people/${id}`),
+			fetch: () => fetchSingle<Person>(`${checkInsApiUrl}/people/${id}`),
 			CheckIns: {
-				fetchAll: () => fetchCollection<CheckIn>(`${rootUrl}/people/${id}/check_ins`)
+				fetchAll: () => fetchCollection<CheckIn>(`${checkInsApiUrl}/people/${id}/check_ins`)
 			},
 			organization: {
-				fetch: () => fetchSingle<Organization>(`${rootUrl}/people/${id}/organization`)
+				fetch: () => fetchSingle<Organization>(`${checkInsApiUrl}/people/${id}/organization`)
 			},
 			passes: {
-				fetchAll: () => fetchCollection<Pass>(`${rootUrl}/people/${id}/passes`)
+				fetchAll: () => fetchCollection<Pass>(`${checkInsApiUrl}/people/${id}/passes`)
 			},
 			personEvents: {
-				fetchAll: () => fetchCollection<PersonEvent>(`${rootUrl}/people/${id}/person_events`)
+				fetchAll: () => fetchCollection<PersonEvent>(`${checkInsApiUrl}/people/${id}/person_events`)
 			}
 		})
 	},
 	stations: {
-		fetchAll: () => fetchCollection<Station>(`${rootUrl}/stations`),
+		fetchAll: () => fetchCollection<Station>(`${checkInsApiUrl}/stations`),
 		select: (id: string) => ({
-			fetch: () => fetchSingle<Station>(`${rootUrl}/stations/${id}`),
+			fetch: () => fetchSingle<Station>(`${checkInsApiUrl}/stations/${id}`),
 			checkInGroups: {
-				fetchAll: () => fetchCollection<CheckInGroup>(`${rootUrl}/stations/${id}/check_in_groups`),
+				fetchAll: () => fetchCollection<CheckInGroup>(`${checkInsApiUrl}/stations/${id}/check_in_groups`),
 				select: (groupId: string) => ({
-					fetch: () => fetchSingle<CheckInGroup>(`${rootUrl}/stations/${id}/check_in_groups/${groupId}`),
+					fetch: () => fetchSingle<CheckInGroup>(`${checkInsApiUrl}/stations/${id}/check_in_groups/${groupId}`),
 					checkIns: {
-						fetchAll: () => fetchCollection<CheckIn>(`${rootUrl}/stations/${id}/check_in_groups/${groupId}/check_ins`),
+						fetchAll: () => fetchCollection<CheckIn>(`${checkInsApiUrl}/stations/${id}/check_in_groups/${groupId}/check_ins`),
 					},
 					eventPeriod: {
 						fetch: () =>
-							fetchSingle<EventPeriod>(`${rootUrl}/stations/${id}/check_in_groups/${groupId}/event_period`),
+							fetchSingle<EventPeriod>(`${checkInsApiUrl}/stations/${id}/check_in_groups/${groupId}/event_period`),
 						checkIns: {
 							fetchAll: () =>
 								fetchCollection<CheckIn>(
-									`${rootUrl}/stations/${id}/check_in_groups/${groupId}/event_period/check_ins`
+									`${checkInsApiUrl}/stations/${id}/check_in_groups/${groupId}/event_period/check_ins`
 								),
 						},
 						eventTimes: {
 							fetchAll: () =>
 								fetchCollection<EventTime>(
-									`${rootUrl}/stations/${id}/check_in_groups/${groupId}/event_period/event_times`
+									`${checkInsApiUrl}/stations/${id}/check_in_groups/${groupId}/event_period/event_times`
 								),
 						},
 						locationEventPeriods: {
 							fetchAll: () =>
 								fetchCollection<LocationEventPeriod>(
-									`${rootUrl}/stations/${id}/check_in_groups/${groupId}/event_period/location_event_periods`
+									`${checkInsApiUrl}/stations/${id}/check_in_groups/${groupId}/event_period/location_event_periods`
 								),
 							select: (periodId: string) => ({
 								fetch: () =>
 									fetchSingle<LocationEventPeriod>(
-										`${rootUrl}/stations/${id}/check_in_groups/${groupId}/event_period/location_event_periods/${periodId}`
+										`${checkInsApiUrl}/stations/${id}/check_in_groups/${groupId}/event_period/location_event_periods/${periodId}`
 									),
 								checkIns: {
 									fetchAll: () =>
 										fetchCollection<CheckIn>(
-											`${rootUrl}/stations/${id}/check_in_groups/${groupId}/event_period/location_event_periods/${periodId}/check_ins`
+											`${checkInsApiUrl}/stations/${id}/check_in_groups/${groupId}/event_period/location_event_periods/${periodId}/check_ins`
 										),
 								},
 								location: {
 									fetch: () =>
 										fetchSingle<Location>(
-											`${rootUrl}/stations/${id}/check_in_groups/${groupId}/event_period/location_event_periods/${periodId}/location`
+											`${checkInsApiUrl}/stations/${id}/check_in_groups/${groupId}/event_period/location_event_periods/${periodId}/location`
 										),
 								},
 							}),
@@ -590,34 +587,34 @@ export const CheckIns = {
 				})
 			},
 			checkedInAtCheckIns: {
-				fetchAll: () => fetchCollection<CheckIn>(`${rootUrl}/stations/${id}/checked_in_at_check_ins`)
+				fetchAll: () => fetchCollection<CheckIn>(`${checkInsApiUrl}/stations/${id}/checked_in_at_check_ins`)
 			},
 			event: {
-				fetch: () => fetchSingle<Event>(`${rootUrl}/stations/${id}/event`)
+				fetch: () => fetchSingle<Event>(`${checkInsApiUrl}/stations/${id}/event`)
 			},
 			location: {
 				fetch: () =>
-					fetchSingle<Location>(`${rootUrl}/stations/${id}/location`),
+					fetchSingle<Location>(`${checkInsApiUrl}/stations/${id}/location`),
 				checkIns: {
 					fetchAll: () =>
 						fetchCollection<CheckIn>(
-							`${rootUrl}/stations/${id}/location/check_ins`
+							`${checkInsApiUrl}/stations/${id}/location/check_ins`
 						),
 				},
 				locationEventPeriods: {
 					fetchAll: () =>
 						fetchCollection<LocationEventPeriod>(
-							`${rootUrl}/stations/${id}/location/location_event_periods`
+							`${checkInsApiUrl}/stations/${id}/location/location_event_periods`
 						),
 					select: (periodId: string) => ({
 						fetch: () =>
 							fetchSingle<LocationEventPeriod>(
-								`${rootUrl}/stations/${id}/location/location_event_periods/${periodId}`
+								`${checkInsApiUrl}/stations/${id}/location/location_event_periods/${periodId}`
 							),
 						checkIns: {
 							fetchAll: () =>
 								fetchCollection<CheckIn>(
-									`${rootUrl}/stations/${id}/location/location_event_periods/${periodId}/check_ins`
+									`${checkInsApiUrl}/stations/${id}/location/location_event_periods/${periodId}/check_ins`
 								),
 						},
 					}),
@@ -625,37 +622,37 @@ export const CheckIns = {
 				locationEventTimes: {
 					fetchAll: () =>
 						fetchCollection<LocationEventTime>(
-							`${rootUrl}/stations/${id}/location/location_event_times`
+							`${checkInsApiUrl}/stations/${id}/location/location_event_times`
 						),
 				},
 				locationLabels: {
 					fetchAll: () =>
 						fetchCollection<LocationEventTime>(
-							`${rootUrl}/stations/${id}/location/location_labels`
+							`${checkInsApiUrl}/stations/${id}/location/location_labels`
 						),
 				},
 				locations: {
 					fetchAll: () =>
 						fetchCollection<Location>(
-							`${rootUrl}/stations/${id}/location/locations`
+							`${checkInsApiUrl}/stations/${id}/location/locations`
 						),
 				},
 				options: {
 					fetchAll: () =>
 						fetchCollection<Option>(
-							`${rootUrl}/stations/${id}/location/options`
+							`${checkInsApiUrl}/stations/${id}/location/options`
 						),
 				},
 				parent: {
 					fetch: () =>
 						fetchSingle<Location>(
-							`${rootUrl}/stations/${id}/location/parent`
+							`${checkInsApiUrl}/stations/${id}/location/parent`
 						),
 				},
 			},
 		})
 	},
 	themes: {
-		fetchAll: () => fetchCollection<Theme>(`${rootUrl}/themes`)
+		fetchAll: () => fetchCollection<Theme>(`${checkInsApiUrl}/themes`)
 	}
 };

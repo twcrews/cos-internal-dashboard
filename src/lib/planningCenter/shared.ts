@@ -1,4 +1,4 @@
-import { planningCenterBearerToken } from '../configuration';
+import { planningCenterApiKey } from "../configuration";
 
 export interface PlanningCenterSingleResponse<T>
   extends PlanningCenterResponseBase {
@@ -61,7 +61,7 @@ type PlanningCenterResponseDataBase = {
 export const fetchCollection = <T>(url: string) =>
   fetch(url, {
     headers: {
-      Authorization: `Bearer ${planningCenterBearerToken.get()}`,
+      "X-Functions-Key": planningCenterApiKey.get() ?? "",
     },
   })
     .then((response) => response.json())
@@ -70,8 +70,16 @@ export const fetchCollection = <T>(url: string) =>
 export const fetchSingle = <T>(url: string) =>
   fetch(url, {
     headers: {
-      Authorization: `Bearer ${planningCenterBearerToken.get()}`,
+      "X-Functions-Key": planningCenterApiKey.get() ?? "",
     },
   })
     .then((response) => response.json())
     .then((data) => data as PlanningCenterSingleResponse<T>);
+
+export const fetchAvatar = (url: string) =>
+  fetch(url, {
+    headers: {
+      "X-Functions-Key": planningCenterApiKey.get() ?? "",
+    },
+  })
+  .then((response) => response.blob());

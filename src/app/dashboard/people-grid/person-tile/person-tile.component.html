@@ -1,0 +1,26 @@
+<div class="person-tile-container">
+  <img
+    class="person-tile-image"
+    src="{{ data.avatarUrl }}"
+    alt="Avatar for {{ data.name }}"
+  />
+  <div class="person-tile-text">
+    <p class="person-tile-name">{{ data.name }}</p>
+    <p
+      class="{{
+        data.subCaption ? 'person-tile-caption' : 'person-tile-solo-caption'
+      }}"
+      *ngIf="data.caption"
+    >
+      {{ data.caption }}
+    </p>
+    <p
+      class="{{
+        data.caption ? 'person-tile-caption' : 'person-tile-solo-caption'
+      }}"
+      *ngIf="data.subCaption"
+    >
+      {{ data.subCaption }}
+    </p>
+  </div>
+</div>

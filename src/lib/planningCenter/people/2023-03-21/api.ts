@@ -1,4 +1,4 @@
-import { planningCenterProducts } from 'src/lib/configuration';
+import { peopleApiUrl } from 'src/lib/configuration';
 import {
   Address,
   AnniversaryCouples,
@@ -60,87 +60,84 @@ import {
 } from 'src/lib/planningCenter/people/2023-03-21/types';
 import { fetchCollection, fetchSingle } from 'src/lib/planningCenter/shared';
 
-const rootUrl =
-  planningCenterProducts.find((p) => p.name === 'People')?.baseUrl ?? '';
-
 export const People = {
-  fetch: () => fetchSingle<Organization>(`${rootUrl}/`),
+  fetch: () => fetchSingle<Organization>(`${peopleApiUrl}/`),
   addresses: {
-    fetchAll: () => fetchCollection<Address>(`${rootUrl}/addresses`),
+    fetchAll: () => fetchCollection<Address>(`${peopleApiUrl}/addresses`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<Address>(`${rootUrl}/addresses/${id}`),
+      fetch: () => fetchSingle<Address>(`${peopleApiUrl}/addresses/${id}`),
     }),
   },
   anniversaryCouples: {
     fetchAll: () =>
-      fetchCollection<AnniversaryCouples>(`${rootUrl}/anniversary_couples`),
+      fetchCollection<AnniversaryCouples>(`${peopleApiUrl}/anniversary_couples`),
   },
   apps: {
-    fetchAll: () => fetchCollection<App>(`${rootUrl}/apps`),
+    fetchAll: () => fetchCollection<App>(`${peopleApiUrl}/apps`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<App>(`${rootUrl}/apps/${id}`),
+      fetch: () => fetchSingle<App>(`${peopleApiUrl}/apps/${id}`),
     }),
   },
   backgroundChecks: {
     fetchAll: () =>
-      fetchCollection<BackgroundCheck>(`${rootUrl}/background_checks`),
+      fetchCollection<BackgroundCheck>(`${peopleApiUrl}/background_checks`),
     select: (id: string) => ({
       fetch: () =>
-        fetchSingle<BackgroundCheck>(`${rootUrl}/background_checks/${id}`),
+        fetchSingle<BackgroundCheck>(`${peopleApiUrl}/background_checks/${id}`),
     }),
   },
   birthdayPeople: {
     fetchAll: () =>
-      fetchCollection<BirthdayPeople>(`${rootUrl}/birthday_people`),
+      fetchCollection<BirthdayPeople>(`${peopleApiUrl}/birthday_people`),
   },
   campuses: {
-    fetchAll: () => fetchCollection<Campus>(`${rootUrl}/campuses`),
+    fetchAll: () => fetchCollection<Campus>(`${peopleApiUrl}/campuses`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<Campus>(`${rootUrl}/campuses/${id}`),
+      fetch: () => fetchSingle<Campus>(`${peopleApiUrl}/campuses/${id}`),
       lists: {
         fetchAll: () =>
-          fetchCollection<List>(`${rootUrl}/campuses/${id}/lists`),
+          fetchCollection<List>(`${peopleApiUrl}/campuses/${id}/lists`),
       },
       serviceTimes: {
         fetchAll: () =>
           fetchCollection<ServiceTime>(
-            `${rootUrl}/campuses/${id}/service_times`
+            `${peopleApiUrl}/campuses/${id}/service_times`
           ),
       },
     }),
   },
   carriers: {
-    fetchAll: () => fetchCollection<Carrier>(`${rootUrl}/carriers`),
+    fetchAll: () => fetchCollection<Carrier>(`${peopleApiUrl}/carriers`),
   },
   emails: {
-    fetchAll: () => fetchCollection<Email>(`${rootUrl}/emails`),
+    fetchAll: () => fetchCollection<Email>(`${peopleApiUrl}/emails`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<Email>(`${rootUrl}/emails/${id}`),
+      fetch: () => fetchSingle<Email>(`${peopleApiUrl}/emails/${id}`),
     }),
   },
   fieldData: {
-    fetchAll: () => fetchCollection<FieldDatum>(`${rootUrl}/campuses`),
+    fetchAll: () => fetchCollection<FieldDatum>(`${peopleApiUrl}/campuses`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<FieldDatum>(`${rootUrl}/field_data/${id}`),
+      fetch: () => fetchSingle<FieldDatum>(`${peopleApiUrl}/field_data/${id}`),
       fieldOption: {
         fetch: () =>
-          fetchSingle<FieldOption>(`${rootUrl}/field_data/${id}/field_option`),
+          fetchSingle<FieldOption>(`${peopleApiUrl}/field_data/${id}/field_option`),
       },
       tab: {
-        fetch: () => fetchSingle<Tab>(`${rootUrl}/field_data/${id}/tab`),
+        fetch: () => fetchSingle<Tab>(`${peopleApiUrl}/field_data/${id}/tab`),
       },
     }),
   },
   fieldDefinitions: {
     fetchAll: () =>
-      fetchCollection<FieldDefinition>(`${rootUrl}/field_definitions`),
+      fetchCollection<FieldDefinition>(`${peopleApiUrl}/field_definitions`),
     select: (id: string) => ({
       fetch: () =>
-        fetchSingle<FieldDefinition>(`${rootUrl}/field_definitions/${id}`),
+        fetchSingle<FieldDefinition>(`${peopleApiUrl}/field_definitions/${id}`),
       fieldOptions: {
         fetchAll: () =>
           fetchCollection<FieldOption>(
-            `${rootUrl}/field_definitions/${id}/field_options`
+            `${peopleApiUrl}/field_definitions/${id}/field_options`
           ),
         select: (fieldOptionId: string) => ({
           fetch: () =>
@@ -152,15 +149,15 @@ export const People = {
     }),
   },
   forms: {
-    fetchAll: () => fetchCollection<Form>(`${rootUrl}/forms`),
+    fetchAll: () => fetchCollection<Form>(`${peopleApiUrl}/forms`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<Form>(`${rootUrl}/forms/${id}`),
+      fetch: () => fetchSingle<Form>(`${peopleApiUrl}/forms/${id}`),
       fields: {
         fetchAll: () =>
-          fetchCollection<FormField>(`${rootUrl}/forms/${id}/fields`),
+          fetchCollection<FormField>(`${peopleApiUrl}/forms/${id}/fields`),
         select: (fieldId: string) => ({
           fetch: () =>
-            fetchSingle<FormField>(`${rootUrl}/forms/${id}/fields/${fieldId}`),
+            fetchSingle<FormField>(`${peopleApiUrl}/forms/${id}/fields/${fieldId}`),
           options: {
             fetchAll: () =>
               fetchCollection<FormFieldOption>(
@@ -178,7 +175,7 @@ export const People = {
       formSubmissions: {
         fetchAll: () =>
           fetchCollection<FormSubmission>(
-            `${rootUrl}/forms/${id}/form_submissions`
+            `${peopleApiUrl}/forms/${id}/form_submissions`
           ),
         select: (submissionId: string) => ({
           fetch: () =>
@@ -212,9 +209,9 @@ export const People = {
     }),
   },
   households: {
-    fetchAll: () => fetchCollection<Household>(`${rootUrl}/households`),
+    fetchAll: () => fetchCollection<Household>(`${peopleApiUrl}/households`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<Household>(`${rootUrl}/households/${id}`),
+      fetch: () => fetchSingle<Household>(`${peopleApiUrl}/households/${id}`),
       memberships: {
         fetchAll: () =>
           fetchCollection<HouseholdMembership>(
@@ -229,99 +226,99 @@ export const People = {
       },
       people: {
         fetchAll: () =>
-          fetchCollection<Person>(`${rootUrl}/households/${id}/people`),
+          fetchCollection<Person>(`${peopleApiUrl}/households/${id}/people`),
       },
     }),
   },
   inactiveReasons: {
     fetchAll: () =>
-      fetchCollection<InactiveReason>(`${rootUrl}/inactive_reasons`),
+      fetchCollection<InactiveReason>(`${peopleApiUrl}/inactive_reasons`),
     select: (id: string) => ({
       fetch: () =>
-        fetchSingle<InactiveReason>(`${rootUrl}/inactive_reasons/${id}`),
+        fetchSingle<InactiveReason>(`${peopleApiUrl}/inactive_reasons/${id}`),
     }),
   },
   listCategories: {
-    fetchAll: () => fetchCollection<ListCategory>(`${rootUrl}/list_categories`),
+    fetchAll: () => fetchCollection<ListCategory>(`${peopleApiUrl}/list_categories`),
   },
   lists: {
-    fetchAll: () => fetchCollection<List>(`${rootUrl}/lists`),
+    fetchAll: () => fetchCollection<List>(`${peopleApiUrl}/lists`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<List>(`${rootUrl}/lists/${id}`),
+      fetch: () => fetchSingle<List>(`${peopleApiUrl}/lists/${id}`),
       listResults: {
         fetchAll: () =>
-          fetchCollection<ListResult>(`${rootUrl}/lists/${id}/list_results`),
+          fetchCollection<ListResult>(`${peopleApiUrl}/lists/${id}/list_results`),
         select: (resultId: string) => ({
           fetch: () =>
             fetchSingle<ListResult>(
-              `${rootUrl}/lists/${id}/list_results/${resultId}`
+              `${peopleApiUrl}/lists/${id}/list_results/${resultId}`
             ),
         }),
       },
       people: {
         fetchAll: () =>
-          fetchCollection<Person>(`${rootUrl}/lists/${id}/people`),
+          fetchCollection<Person>(`${peopleApiUrl}/lists/${id}/people`),
       },
       rules: {
-        fetchAll: () => fetchCollection<Rule>(`${rootUrl}/lists/${id}/rules`),
+        fetchAll: () => fetchCollection<Rule>(`${peopleApiUrl}/lists/${id}/rules`),
         select: (ruleId: string) => ({
           fetch: () =>
-            fetchSingle<Rule>(`${rootUrl}/lists/${id}/rules/${ruleId}`),
+            fetchSingle<Rule>(`${peopleApiUrl}/lists/${id}/rules/${ruleId}`),
         }),
       },
       shares: {
         fetchAll: () =>
-          fetchCollection<ListShare>(`${rootUrl}/lists/${id}/shares`),
+          fetchCollection<ListShare>(`${peopleApiUrl}/lists/${id}/shares`),
         select: (shareId: string) => ({
           fetch: () =>
-            fetchSingle<ListShare>(`${rootUrl}/lists/${id}/shares/${shareId}`),
+            fetchSingle<ListShare>(`${peopleApiUrl}/lists/${id}/shares/${shareId}`),
         }),
       },
       stars: {
         fetchAll: () =>
-          fetchCollection<ListStar>(`${rootUrl}/lists/${id}/star`),
+          fetchCollection<ListStar>(`${peopleApiUrl}/lists/${id}/star`),
       },
     }),
   },
   maritalStata: {
     fetchAll: () =>
-      fetchCollection<MaritalStatus>(`${rootUrl}/marital_statuses`),
+      fetchCollection<MaritalStatus>(`${peopleApiUrl}/marital_statuses`),
     select: (id: string) => ({
       fetch: () =>
-        fetchSingle<MaritalStatus>(`${rootUrl}/marital_statuses/${id}`),
+        fetchSingle<MaritalStatus>(`${peopleApiUrl}/marital_statuses/${id}`),
     }),
   },
   messageGroups: {
-    fetchAll: () => fetchCollection<MessageGroup>(`${rootUrl}/message_groups`),
+    fetchAll: () => fetchCollection<MessageGroup>(`${peopleApiUrl}/message_groups`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<MessageGroup>(`${rootUrl}/message_groups/${id}`),
+      fetch: () => fetchSingle<MessageGroup>(`${peopleApiUrl}/message_groups/${id}`),
       messages: {
         fetchAll: () =>
-          fetchCollection<Message>(`${rootUrl}/message_groups/${id}/messages`),
+          fetchCollection<Message>(`${peopleApiUrl}/message_groups/${id}/messages`),
       },
     }),
   },
   namePrefixes: {
-    fetchAll: () => fetchCollection<NamePrefix>(`${rootUrl}/name_prefixes`),
+    fetchAll: () => fetchCollection<NamePrefix>(`${peopleApiUrl}/name_prefixes`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<NamePrefix>(`${rootUrl}/name_prefixes/${id}`),
+      fetch: () => fetchSingle<NamePrefix>(`${peopleApiUrl}/name_prefixes/${id}`),
     }),
   },
   nameSuffixes: {
-    fetchAll: () => fetchCollection<NameSuffix>(`${rootUrl}/name_suffixes`),
+    fetchAll: () => fetchCollection<NameSuffix>(`${peopleApiUrl}/name_suffixes`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<NameSuffix>(`${rootUrl}/name_suffixes/${id}`),
+      fetch: () => fetchSingle<NameSuffix>(`${peopleApiUrl}/name_suffixes/${id}`),
     }),
   },
   noteCategories: {
-    fetchAll: () => fetchCollection<NoteCategory>(`${rootUrl}/note_categories`),
+    fetchAll: () => fetchCollection<NoteCategory>(`${peopleApiUrl}/note_categories`),
     select: (id: string) => ({
       fetch: () =>
-        fetchSingle<NoteCategory>(`${rootUrl}/note_categories/${id}`),
+        fetchSingle<NoteCategory>(`${peopleApiUrl}/note_categories/${id}`),
       shares: {
         fetchAll: () =>
           fetchCollection<NoteCategoryShare>(
-            `${rootUrl}/note_categories/${id}/shares`
+            `${peopleApiUrl}/note_categories/${id}/shares`
           ),
         select: (shareId: string) => ({
           fetch: () =>
@@ -333,7 +330,7 @@ export const People = {
       subscribers: {
         fetchAll: () =>
           fetchCollection<Person>(
-            `${rootUrl}/note_categories/${id}/subscribers`
+            `${peopleApiUrl}/note_categories/${id}/subscribers`
           ),
       },
       subscriptions: {
@@ -347,7 +344,7 @@ export const People = {
   noteCategorySubscription: {
     fetchAll: () =>
       fetchCollection<NoteCategorySubscription>(
-        `${rootUrl}/note_category_subscriptions`
+        `${peopleApiUrl}/note_category_subscriptions`
       ),
     select: (id: string) => ({
       fetch: () =>
@@ -357,32 +354,32 @@ export const People = {
     }),
   },
   notes: {
-    fetchAll: () => fetchCollection<Note>(`${rootUrl}/notes`),
+    fetchAll: () => fetchCollection<Note>(`${peopleApiUrl}/notes`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<Note>(`${rootUrl}/notes/${id}`),
+      fetch: () => fetchSingle<Note>(`${peopleApiUrl}/notes/${id}`),
     }),
   },
   people: {
-    fetchAll: () => fetchCollection<Person>(`${rootUrl}/people`),
+    fetchAll: () => fetchCollection<Person>(`${peopleApiUrl}/people`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<Person>(`${rootUrl}/people/${id}`),
+      fetch: () => fetchSingle<Person>(`${peopleApiUrl}/people/${id}`),
       addresses: {
         fetchAll: () =>
-          fetchCollection<Address>(`${rootUrl}/people/${id}/addresses`),
+          fetchCollection<Address>(`${peopleApiUrl}/people/${id}/addresses`),
       },
       apps: {
-        fetchAll: () => fetchCollection<App>(`${rootUrl}/people/${id}/apps`),
+        fetchAll: () => fetchCollection<App>(`${peopleApiUrl}/people/${id}/apps`),
       },
       backgroundChecks: {
         fetchAll: () =>
           fetchCollection<BackgroundCheck>(
-            `${rootUrl}/people/${id}/background_checks`
+            `${peopleApiUrl}/people/${id}/background_checks`
           ),
       },
       connectedPeople: {
         fetchAll: () =>
           fetchCollection<ConnectedPerson>(
-            `${rootUrl}/people/${id}/connected_people`
+            `${peopleApiUrl}/people/${id}/connected_people`
           ),
         select: (connectedPersonId: string) => ({
           fetch: () =>
@@ -393,11 +390,11 @@ export const People = {
       },
       emails: {
         fetchAll: () =>
-          fetchCollection<Email>(`${rootUrl}/people/${id}/emails`),
+          fetchCollection<Email>(`${peopleApiUrl}/people/${id}/emails`),
       },
       fieldData: {
         fetchAll: () =>
-          fetchCollection<FieldDatum>(`${rootUrl}/people/${id}/field_data`),
+          fetchCollection<FieldDatum>(`${peopleApiUrl}/people/${id}/field_data`),
       },
       householdMemberships: {
         fetchAll: () =>
@@ -407,38 +404,38 @@ export const People = {
       },
       households: {
         fetchAll: () =>
-          fetchCollection<Household>(`${rootUrl}/people/${id}/households`),
+          fetchCollection<Household>(`${peopleApiUrl}/people/${id}/households`),
       },
       message_groups: {
         fetchAll: () =>
           fetchCollection<MessageGroup>(
-            `${rootUrl}/people/${id}/message_groups`
+            `${peopleApiUrl}/people/${id}/message_groups`
           ),
       },
       messages: {
         fetchAll: () =>
-          fetchCollection<Message>(`${rootUrl}/people/${id}/messages`),
+          fetchCollection<Message>(`${peopleApiUrl}/people/${id}/messages`),
       },
       notes: {
-        fetchAll: () => fetchCollection<Note>(`${rootUrl}/people/${id}/notes`),
+        fetchAll: () => fetchCollection<Note>(`${peopleApiUrl}/people/${id}/notes`),
       },
       organization: {
         fetch: () =>
-          fetchSingle<Organization>(`${rootUrl}/people/${id}/organization`),
+          fetchSingle<Organization>(`${peopleApiUrl}/people/${id}/organization`),
       },
       personApps: {
         fetchAll: () =>
-          fetchCollection<PersonApp>(`${rootUrl}/people/${id}/person_apps`),
+          fetchCollection<PersonApp>(`${peopleApiUrl}/people/${id}/person_apps`),
         select: (appId: string) => ({
           fetch: () =>
             fetchSingle<PersonApp>(
-              `${rootUrl}/people/${id}/person_apps/${appId}`
+              `${peopleApiUrl}/people/${id}/person_apps/${appId}`
             ),
         }),
       },
       phoneNumbers: {
         fetchAll: () =>
-          fetchCollection<PhoneNumber>(`${rootUrl}/people/${id}/phone_numbers`),
+          fetchCollection<PhoneNumber>(`${peopleApiUrl}/people/${id}/phone_numbers`),
       },
       platformNotifications: {
         fetchAll: () =>
@@ -455,27 +452,27 @@ export const People = {
       socialProfiles: {
         fetchAll: () =>
           fetchCollection<SocialProfile>(
-            `${rootUrl}/people/${id}/social_profiles`
+            `${peopleApiUrl}/people/${id}/social_profiles`
           ),
       },
       workflowCards: {
         fetchAll: () =>
           fetchCollection<WorkflowCard>(
-            `${rootUrl}/people/${id}/workflow_cards`
+            `${peopleApiUrl}/people/${id}/workflow_cards`
           ),
       },
       workflowShares: {
         fetchAll: () =>
           fetchCollection<WorkflowShare>(
-            `${rootUrl}/people/${id}/workflow_shares`
+            `${peopleApiUrl}/people/${id}/workflow_shares`
           ),
       },
     }),
   },
   peopleImports: {
-    fetchAll: () => fetchCollection<PeopleImport>(`${rootUrl}/people_imports`),
+    fetchAll: () => fetchCollection<PeopleImport>(`${peopleApiUrl}/people_imports`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<PeopleImport>(`${rootUrl}/people_imports/${id}`),
+      fetch: () => fetchSingle<PeopleImport>(`${peopleApiUrl}/people_imports/${id}`),
       conflicts: {
         fetchAll: () =>
           fetchCollection<PeopleImportConflict>(
@@ -503,57 +500,57 @@ export const People = {
     }),
   },
   phoneNumbers: {
-    fetchAll: () => fetchCollection<PhoneNumber>(`${rootUrl}/phone_numbers`),
+    fetchAll: () => fetchCollection<PhoneNumber>(`${peopleApiUrl}/phone_numbers`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<PhoneNumber>(`${rootUrl}/phone_numbers/${id}`),
+      fetch: () => fetchSingle<PhoneNumber>(`${peopleApiUrl}/phone_numbers/${id}`),
     }),
   },
   reports: {
-    fetchAll: () => fetchCollection<Report>(`${rootUrl}/reports`),
+    fetchAll: () => fetchCollection<Report>(`${peopleApiUrl}/reports`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<Report>(`${rootUrl}/reports/${id}`),
+      fetch: () => fetchSingle<Report>(`${peopleApiUrl}/reports/${id}`),
       createdBy: {
-        fetch: () => fetchSingle<Person>(`${rootUrl}/reports/${id}/created_by`),
+        fetch: () => fetchSingle<Person>(`${peopleApiUrl}/reports/${id}/created_by`),
       },
       updatedBy: {
-        fetch: () => fetchSingle<Person>(`${rootUrl}/reports/${id}/updated_by`),
+        fetch: () => fetchSingle<Person>(`${peopleApiUrl}/reports/${id}/updated_by`),
       },
     }),
   },
   schoolOptions: {
-    fetchAll: () => fetchCollection<SchoolOption>(`${rootUrl}/school_options`),
+    fetchAll: () => fetchCollection<SchoolOption>(`${peopleApiUrl}/school_options`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<SchoolOption>(`${rootUrl}/school_options/${id}`),
+      fetch: () => fetchSingle<SchoolOption>(`${peopleApiUrl}/school_options/${id}`),
     }),
   },
   socialProfiles: {
     fetchAll: () =>
-      fetchCollection<SocialProfile>(`${rootUrl}/social_profiles`),
+      fetchCollection<SocialProfile>(`${peopleApiUrl}/social_profiles`),
     select: (id: string) => ({
       fetch: () =>
-        fetchSingle<SocialProfile>(`${rootUrl}/social_profiles/${id}`),
+        fetchSingle<SocialProfile>(`${peopleApiUrl}/social_profiles/${id}`),
     }),
   },
   stats: {
-    fetch: () => fetchSingle<OrganizationStatistics>(`${rootUrl}/stats`),
+    fetch: () => fetchSingle<OrganizationStatistics>(`${peopleApiUrl}/stats`),
   },
   tabs: {
-    fetchAll: () => fetchCollection<Tab>(`${rootUrl}/tabs`),
+    fetchAll: () => fetchCollection<Tab>(`${peopleApiUrl}/tabs`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<Tab>(`${rootUrl}/tabs/${id}`),
+      fetch: () => fetchSingle<Tab>(`${peopleApiUrl}/tabs/${id}`),
       fieldDefinitions: {
         fetchAll: () =>
           fetchCollection<FieldDefinition>(
-            `${rootUrl}/tabs/${id}/field_definitions`
+            `${peopleApiUrl}/tabs/${id}/field_definitions`
           ),
       },
       fieldOptions: {
         fetchAll: () =>
-          fetchCollection<FieldOption>(`${rootUrl}/tabs/${id}/field_options`),
+          fetchCollection<FieldOption>(`${peopleApiUrl}/tabs/${id}/field_options`),
         select: (optionId: string) => ({
           fetch: () =>
             fetchSingle<FieldOption>(
-              `${rootUrl}/tabs/${id}/field_options/${optionId}`
+              `${peopleApiUrl}/tabs/${id}/field_options/${optionId}`
             ),
         }),
       },
@@ -561,23 +558,23 @@ export const People = {
   },
   workflowCategories: {
     fetchAll: () =>
-      fetchCollection<WorkflowCategory>(`${rootUrl}/workflow_categories`),
+      fetchCollection<WorkflowCategory>(`${peopleApiUrl}/workflow_categories`),
     select: (id: string) => ({
       fetch: () =>
-        fetchSingle<WorkflowCategory>(`${rootUrl}/workflow_categories/${id}`),
+        fetchSingle<WorkflowCategory>(`${peopleApiUrl}/workflow_categories/${id}`),
     }),
   },
   workflows: {
-    fetchAll: () => fetchCollection<Workflow>(`${rootUrl}/workflows`),
+    fetchAll: () => fetchCollection<Workflow>(`${peopleApiUrl}/workflows`),
     select: (id: string) => ({
-      fetch: () => fetchSingle<Workflow>(`${rootUrl}/workflows/${id}`),
+      fetch: () => fetchSingle<Workflow>(`${peopleApiUrl}/workflows/${id}`),
       cards: {
         fetchAll: () =>
-          fetchCollection<WorkflowCard>(`${rootUrl}/workflows/${id}/cards`),
+          fetchCollection<WorkflowCard>(`${peopleApiUrl}/workflows/${id}/cards`),
         select: (cardId: string) => ({
           fetch: () =>
             fetchSingle<WorkflowCard>(
-              `${rootUrl}/workflows/${id}/cards/${cardId}`
+              `${peopleApiUrl}/workflows/${id}/cards/${cardId}`
             ),
           activities: {
             fetchAll: () =>
@@ -607,25 +604,25 @@ export const People = {
       },
       sharedPeople: {
         fetchAll: () =>
-          fetchCollection<Person>(`${rootUrl}/workflows/${id}/shared_people`),
+          fetchCollection<Person>(`${peopleApiUrl}/workflows/${id}/shared_people`),
       },
       shares: {
         fetchAll: () =>
-          fetchCollection<WorkflowShare>(`${rootUrl}/workflows/${id}/shares`),
+          fetchCollection<WorkflowShare>(`${peopleApiUrl}/workflows/${id}/shares`),
         select: (shareId: string) => ({
           fetch: () =>
             fetchSingle<WorkflowShare>(
-              `${rootUrl}/workflows/${id}/shares/${shareId}`
+              `${peopleApiUrl}/workflows/${id}/shares/${shareId}`
             ),
         }),
       },
       steps: {
         fetchAll: () =>
-          fetchCollection<WorkflowStep>(`${rootUrl}/workflows/${id}/steps`),
+          fetchCollection<WorkflowStep>(`${peopleApiUrl}/workflows/${id}/steps`),
         select: (stepId: string) => ({
           fetch: () =>
             fetchSingle<WorkflowStep>(
-              `${rootUrl}/workflows/${id}/steps/${stepId}`
+              `${peopleApiUrl}/workflows/${id}/steps/${stepId}`
             ),
           assigneeSummaries: {
             fetchAll: () =>
