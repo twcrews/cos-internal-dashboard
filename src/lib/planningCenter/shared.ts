@@ -75,3 +75,11 @@ export const fetchSingle = <T>(url: string) =>
   })
     .then((response) => response.json())
     .then((data) => data as PlanningCenterSingleResponse<T>);
+
+export const fetchAvatar = (url: string) =>
+  fetch(url, {
+    headers: {
+      "X-Functions-Key": planningCenterApiKey.get() ?? "",
+    },
+  })
+  .then((response) => response.blob());

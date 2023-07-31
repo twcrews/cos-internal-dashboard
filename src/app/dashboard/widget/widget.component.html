@@ -1,0 +1,14 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon fontIcon="{{ icon }}" />
+      {{ title }}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="card-content">
+    <ng-content />
+    <div class="default-content">
+      <app-empty-content />
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -21,8 +21,12 @@
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
     "@angular/service-worker": "^15.2.0",
+    "@types/number-to-words": "^1.2.1",
+    "@types/pluralize": "^0.0.30",
     "chart.js": "^4.3.0",
     "js-sha3": "^0.8.0",
+    "number-to-words": "^1.2.4",
+    "pluralize": "^8.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

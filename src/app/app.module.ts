@@ -1,33 +1,45 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import {
+  HttpClientModule
+} from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { WidgetComponent } from './widget/widget.component';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ApiService } from 'src/lib/services/api.service';
+import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { LayoutModule } from '@angular/cdk/layout';
+import { PeopleGridComponent } from './dashboard/people-grid/people-grid.component';
+import { PersonTileComponent } from './dashboard/people-grid/person-tile/person-tile.component';
+import { EmptyContentComponent } from './dashboard/widget/empty-content/empty-content.component';
+import { WidgetComponent } from './dashboard/widget/widget.component';
 import { SecretDialogComponent } from './secret-dialog/secret-dialog.component';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatRadioModule } from '@angular/material/radio';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { RsvpListComponent } from './dashboard/rsvp-list/rsvp-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WidgetComponent,
     DashboardComponent,
     SecretDialogComponent,
+    PeopleGridComponent,
+    PersonTileComponent,
+    WidgetComponent,
+    EmptyContentComponent,
+    RsvpListComponent,
   ],
   imports: [
     MatSlideToggleModule,
@@ -52,8 +64,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatDialogModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
