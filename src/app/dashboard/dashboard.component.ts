@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { newProfilesUrl } from 'src/lib/configuration';
+import { newProfilesUrl, teamRsvpsUrl } from 'src/lib/configuration';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,4 +8,5 @@ import { newProfilesUrl } from 'src/lib/configuration';
 })
 export class DashboardComponent {
   newProfilesUrl = newProfilesUrl;
+  teamRsvpsUrl = teamRsvpsUrl;
 }

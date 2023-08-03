@@ -5,20 +5,26 @@ const localStorageConfigurationProperty = (key: string) => ({
   set: (secret: string) => localStorage.setItem(key, secret),
 });
 
-export const planningCenterProducts = Configuration.planningCenter.api.products;
+const api = Configuration.planningCenter.api;
+const products = api.products;
+const paths = api.paths;
+
+export const planningCenterProducts = api.products;
 
 export const planningCenterApiKey = localStorageConfigurationProperty(
-  Configuration.planningCenter.api.apiKeyName
+  api.apiKeyName
 );
 
-export const authenticationUrl = `${Configuration.planningCenter.api.baseUrl}${Configuration.planningCenter.api.authenticationEndpoint}`;
+export const authenticationUrl = `${api.baseUrl}${api.authenticationEndpoint}`;
 
-export const peopleApiUrl = `${Configuration.planningCenter.api.baseUrl}${Configuration.planningCenter.api.products.people}`;
+export const peopleApiUrl = `${api.baseUrl}${products.people}`;
 
-export const givingApiUrl = `${Configuration.planningCenter.api.baseUrl}${Configuration.planningCenter.api.products.giving}`;
+export const givingApiUrl = `${api.baseUrl}${products.giving}`;
 
-export const servicesApiUrl = `${Configuration.planningCenter.api.baseUrl}${Configuration.planningCenter.api.products.services}`;
+export const servicesApiUrl = `${api.baseUrl}${products.services}`;
 
-export const checkInsApiUrl = `${Configuration.planningCenter.api.baseUrl}${Configuration.planningCenter.api.products.checkIns}`;
+export const checkInsApiUrl = `${api.baseUrl}${products.checkIns}`;
 
-export const newProfilesUrl = `${peopleApiUrl}${Configuration.planningCenter.api.paths.newProfiles}`;
+export const newProfilesUrl = `${peopleApiUrl}${paths.newProfiles}`;
+
+export const teamRsvpsUrl = `${servicesApiUrl}${paths.teamRsvps}`;

@@ -11,7 +11,8 @@
 			"authenticationEndpoint": "Authenticate",
 			"apiKeyName": "functions-api-key",
 			"paths": {
-				"newProfiles": "people?fields%5BPerson%5D=name%2Cavatar%2Ccreated_at&per_page=15&order=-created_at"
+				"newProfiles": "people?fields%5BPerson%5D=name%2Cavatar%2Ccreated_at&per_page=15&order=-created_at",
+				"teamRsvps": "service_types/120128/next_up_plans?fields%5BNeededPosition%5D=quantity%2Cteam&fields%5BNextUpPlans%5D=needed_positions%2Cplans%2Cplan_people%2Cteams&fields%5BPlan%5D=service_type%2Cshort_dates&fields%5BPlanPerson%5D=status%2Cteam&fields%5BServiceType%5D=name&fields%5BTeam%5D=name%2Csequence&per_page=100&filter=not_across_organizations%2Call_teams&include=needed_positions%2Cplans.service_type%2Cplan_people%2Cteams"
 			}
 		}
 	}
