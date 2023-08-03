@@ -735,6 +735,12 @@ export enum ChordChartFontSize {
   FortyEight = 48,
 }
 
+export enum PlanPersonStatus {
+  Confirmed = 'C',
+  Unconfirmed = 'U',
+  Declined = 'D',
+}
+
 export enum RepeatFrequency {
   None = 'no_repeat',
   One = 'every_1',

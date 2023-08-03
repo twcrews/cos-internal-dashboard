@@ -1,4 +1,4 @@
-import { planningCenterApiKey } from "../configuration";
+import { planningCenterApiKey } from '../configuration';
 
 export interface PlanningCenterSingleResponse<T>
   extends PlanningCenterResponseBase {
@@ -50,7 +50,7 @@ type PlanningCenterResponseBase = {
 };
 
 type PlanningCenterRelationshipValue = {
-  data?: PlanningCenterResponseDataBase;
+  data?: PlanningCenterResponseDataBase | PlanningCenterResponseDataBase[];
 };
 
 type PlanningCenterResponseDataBase = {
@@ -61,7 +61,7 @@ type PlanningCenterResponseDataBase = {
 export const fetchCollection = <T>(url: string) =>
   fetch(url, {
     headers: {
-      "X-Functions-Key": planningCenterApiKey.get() ?? "",
+      'X-Functions-Key': planningCenterApiKey.get() ?? '',
     },
   })
     .then((response) => response.json())
@@ -70,7 +70,7 @@ export const fetchCollection = <T>(url: string) =>
 export const fetchSingle = <T>(url: string) =>
   fetch(url, {
     headers: {
-      "X-Functions-Key": planningCenterApiKey.get() ?? "",
+      'X-Functions-Key': planningCenterApiKey.get() ?? '',
     },
   })
     .then((response) => response.json())
@@ -79,7 +79,6 @@ export const fetchSingle = <T>(url: string) =>
 export const fetchAvatar = (url: string) =>
   fetch(url, {
     headers: {
-      "X-Functions-Key": planningCenterApiKey.get() ?? "",
+      'X-Functions-Key': planningCenterApiKey.get() ?? '',
     },
-  })
-  .then((response) => response.blob());
+  }).then((response) => response.blob());

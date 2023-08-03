@@ -29,6 +29,8 @@ import { EmptyContentComponent } from './dashboard/widget/empty-content/empty-co
 import { WidgetComponent } from './dashboard/widget/widget.component';
 import { SecretDialogComponent } from './secret-dialog/secret-dialog.component';
 import { RsvpListComponent } from './dashboard/rsvp-list/rsvp-list.component';
+import { RsvpItemComponent } from './dashboard/rsvp-list/rsvp-item/rsvp-item.component';
+import { LoadingSpinnerComponent } from './dashboard/widget/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { RsvpListComponent } from './dashboard/rsvp-list/rsvp-list.component';
     WidgetComponent,
     EmptyContentComponent,
     RsvpListComponent,
+    RsvpItemComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     MatSlideToggleModule,

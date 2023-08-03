@@ -1,1 +1,5 @@
-<app-widget icon="schedule" title="Team Breakdown" />
+<app-widget icon="schedule" title="Team Breakdown">
+	<div *ngFor="let rsvp of rsvps">
+		<app-rsvp-item [data]="rsvp" />
+	</div>
+</app-widget>
