@@ -1,6 +1,0 @@
-<app-widget title="New Profiles" icon="person_add">
-	<app-loading-spinner *ngIf="!people" />
-	<div class="grid-container" *ngIf="people">
-		<app-person-tile *ngFor="let person of people" [data]="person" />
-	</div>
-</app-widget>

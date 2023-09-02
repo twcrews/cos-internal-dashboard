@@ -1,7 +1,7 @@
 <div class="person-tile-container">
   <img
     class="person-tile-image"
-    src="{{ data.avatarUrl }}"
+    src="{{ data.avatarUrl ?? 'https://placekitten.com/g/48/48' }}"
     alt="Avatar for {{ data.name }}"
   />
   <div class="person-tile-text">

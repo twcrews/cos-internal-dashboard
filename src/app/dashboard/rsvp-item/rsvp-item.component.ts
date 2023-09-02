@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Rsvp } from '../lib/types';
+import { Rsvp } from './lib/types';
 
 @Component({
   selector: 'app-rsvp-item',

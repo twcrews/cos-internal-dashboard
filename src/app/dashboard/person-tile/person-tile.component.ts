@@ -10,7 +10,7 @@ export class PersonTileComponent {
 }
 
 export type PersonTile = {
-  avatarUrl: string;
+  avatarUrl?: string;
   name: string;
   caption?: string;
   subCaption?: string;

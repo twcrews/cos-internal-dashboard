@@ -18,13 +18,10 @@ export const planningCenterApiKey = localStorageConfigurationProperty(
 export const authenticationUrl = `${api.baseUrl}${api.authenticationEndpoint}`;
 
 export const peopleApiUrl = `${api.baseUrl}${products.people}`;
-
 export const givingApiUrl = `${api.baseUrl}${products.giving}`;
-
 export const servicesApiUrl = `${api.baseUrl}${products.services}`;
-
 export const checkInsApiUrl = `${api.baseUrl}${products.checkIns}`;
 
 export const newProfilesUrl = `${peopleApiUrl}${paths.newProfiles}`;
-
 export const teamRsvpsUrl = `${servicesApiUrl}${paths.teamRsvps}`;
+export const firstTimeVisitorsUrl = `${checkInsApiUrl}${paths.firstTimeVisitors}`;

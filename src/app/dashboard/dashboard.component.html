@@ -1,5 +1,17 @@
 <div class="grid-container">
-  <app-people-grid [url]="newProfilesUrl" />
-  <app-rsvp-list [url]="teamRsvpsUrl" />
-  <app-people-grid />
+  <app-widget icon="person_add" title="New profiles">
+    <div class="people-grid" *ngIf="newProfiles">
+      <app-person-tile *ngFor="let profile of newProfiles" [data]="profile" />
+    </div>
+  </app-widget>
+  <app-widget icon="schedule" title="Team breakdown">
+    <div class="rsvp-list" *ngIf="rsvps">
+      <app-rsvp-item *ngFor="let rsvp of rsvps" [data]="rsvp" />
+    </div>
+  </app-widget>
+  <app-widget icon="looks_one" title="First time visitors">
+    <div class="people-grid" *ngIf="firstTimeVisitors">
+      <app-person-tile *ngFor="let visitor of firstTimeVisitors" [data]="visitor" />
+    </div>
+  </app-widget>
 </div>

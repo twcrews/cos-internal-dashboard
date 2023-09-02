@@ -1,0 +1,23 @@
+<div class="container">
+  <h6 class="title">{{ data.title }}</h6>
+  <div class="count-container">
+    <div class="green-count">
+      <div class="green-icon-container">
+        <mat-icon class="green-icon" fontIcon="check" />
+			</div>
+      <p class="count">{{ data.confirmedCount }}</p>
+    </div>
+    <div class="red-count">
+      <div class="red-icon-container">
+        <mat-icon class="red-icon" fontIcon="close" />
+      </div>
+      <p class="count">{{ data.declinedCount }}</p>
+    </div>
+    <div class="yellow-count">
+      <div class="yellow-icon-container">
+        <mat-icon class="yellow-icon" fontIcon="question_mark" />
+      </div>
+      <p class="count">{{ data.unconfirmedCount }}</p>
+    </div>
+  </div>
+</div>

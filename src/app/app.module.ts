@@ -23,13 +23,11 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { ApiService } from 'src/lib/services/api.service';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { PeopleGridComponent } from './dashboard/people-grid/people-grid.component';
-import { PersonTileComponent } from './dashboard/people-grid/person-tile/person-tile.component';
+import { PersonTileComponent } from './dashboard/person-tile/person-tile.component';
 import { EmptyContentComponent } from './dashboard/widget/empty-content/empty-content.component';
 import { WidgetComponent } from './dashboard/widget/widget.component';
 import { SecretDialogComponent } from './secret-dialog/secret-dialog.component';
-import { RsvpListComponent } from './dashboard/rsvp-list/rsvp-list.component';
-import { RsvpItemComponent } from './dashboard/rsvp-list/rsvp-item/rsvp-item.component';
+import { RsvpItemComponent } from './dashboard/rsvp-item/rsvp-item.component';
 import { LoadingSpinnerComponent } from './dashboard/widget/loading-spinner/loading-spinner.component';
 
 @NgModule({
@@ -37,11 +35,9 @@ import { LoadingSpinnerComponent } from './dashboard/widget/loading-spinner/load
     AppComponent,
     DashboardComponent,
     SecretDialogComponent,
-    PeopleGridComponent,
     PersonTileComponent,
     WidgetComponent,
     EmptyContentComponent,
-    RsvpListComponent,
     RsvpItemComponent,
     LoadingSpinnerComponent,
   ],
