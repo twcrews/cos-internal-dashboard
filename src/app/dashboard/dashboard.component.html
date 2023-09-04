@@ -14,4 +14,14 @@
       <app-person-tile *ngFor="let visitor of firstTimeVisitors" [data]="visitor" />
     </div>
   </app-widget>
+  <app-widget icon="cake" title="Upcoming birthdays">
+    <div class="people-grid" *ngIf="birthdays">
+      <app-person-tile *ngFor="let birthday of birthdays" [data]="birthday" />
+    </div>
+  </app-widget>
+  <app-widget icon="payments" title="Newest donors">
+    <div class="people-grid" *ngIf="newDonors">
+      <app-person-tile *ngFor="let donor of newDonors" [data]="donor" />
+    </div>
+  </app-widget>
 </div>

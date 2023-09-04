@@ -1,38 +1,43 @@
-.person-tile-container {
+.container {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.person-tile-image {
+.image {
 	border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 4px;
-  width: 42px;
   height: 42px;
+  width: 42px;
+  object-fit: cover;
 }
 
-.person-tile-text {
+.text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.person-tile-name,
-.person-tile-caption {
+.name,
+.caption {
   margin: 0;
 }
 
-.person-tile-name {
+.name {
   font-weight: bold;
   font-size: 16px;
 }
 
-.person-tile-caption,
-.person-tile-solo-caption {
+.caption,
+.solo-caption {
   opacity: 0.6;
   font-size: 14px;
 }
 
-.person-tile-solo-caption {
+.caption {
+  line-height: 14px;
+}
+
+.solo-caption {
   margin: 4px 0;
 }

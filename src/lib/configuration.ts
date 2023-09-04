@@ -25,3 +25,5 @@ export const checkInsApiUrl = `${api.baseUrl}${products.checkIns}`;
 export const newProfilesUrl = `${peopleApiUrl}${paths.newProfiles}`;
 export const teamRsvpsUrl = `${servicesApiUrl}${paths.teamRsvps}`;
 export const firstTimeVisitorsUrl = `${checkInsApiUrl}${paths.firstTimeVisitors}`;
+export const birthdaysUrl = `${peopleApiUrl}${paths.birthdays}`;
+export const newDonorsUrl = `${givingApiUrl}${paths.newDonors}`;

@@ -19,7 +19,8 @@ import {
   Person,
 } from 'src/lib/planningCenter/check-ins/2023-04-05/types';
 import { PersonTile } from '../person-tile/person-tile.component';
-import { friendlyTimespanArray, timespan } from 'src/lib/formatting/date';
+import { BirthdayPeople } from 'src/lib/planningCenter/people/2023-03-21/types';
+import { DateTime } from 'luxon';
 
 export const getRsvps = (value: PlanningCenterSingleResponse<any>): Rsvp[] => {
   const includedData = value.included as PlanningCenterResponseData<any>[];
@@ -41,12 +42,14 @@ export const getRsvps = (value: PlanningCenterSingleResponse<any>): Rsvp[] => {
     confirmedCount: getStatusCount(planPeople, t, PlanPersonStatus.Confirmed),
     unconfirmedCount:
       getStatusCount(planPeople, t, PlanPersonStatus.Unconfirmed) +
-      (neededPositions.filter(
-        (n) =>
-          (n.relationships?.['team'].data as PlanningCenterResponseData<Team>)
-            .id === t.id
-      ).map(p => p?.attributes?.quantity ?? 0)
-      .reduce((sum, number) => sum + number, 0)),
+      neededPositions
+        .filter(
+          (n) =>
+            (n.relationships?.['team'].data as PlanningCenterResponseData<Team>)
+              .id === t.id
+        )
+        .map((p) => p?.attributes?.quantity ?? 0)
+        .reduce((sum, number) => sum + number, 0),
     declinedCount: getStatusCount(planPeople, t, PlanPersonStatus.Declined),
   }));
 };
@@ -102,16 +105,34 @@ export const getFirstTimeVisitors = (
       name: person?.attributes?.name ?? 'Unknown person',
       avatarUrl: person?.attributes?.demographic_avatar_url?.split('?')[0],
       caption: event?.attributes?.name ?? 'Unknown event',
-      subCaption: `${
-        friendlyTimespanArray(
-          timespan(
-            new Date(eventTime?.attributes?.starts_at ?? new Date()),
-            new Date()
-          )
-        )[0]
-      } ago`,
+      subCaption:
+        DateTime.fromISO(
+          eventTime?.attributes?.starts_at?.toString() ?? ''
+        ).toFormat('MMMM d') ?? undefined,
     };
   });
+};
+
+export const getBirthdays = (
+  value: PlanningCenterSingleResponse<BirthdayPeople>
+): PersonTile[] => {
+  const people = value.data?.attributes?.people ?? [];
+
+  return people.map((person) => {
+    const birthdate = DateTime.fromISO(person.birthdate?.toString() ?? '');
+    const [, month, day] = (person.birthdate?.toString() ?? '--').split('-');
+    const birthdateThisYear = DateTime.fromISO(
+      `${DateTime.now().year}-${month}-${day}`
+    );
+
+    return {
+      name: person.name ?? 'Unknown person',
+      avatarUrl: person.avatar,
+      caption: `${birthdateThisYear.toRelativeCalendar()} | ${
+        Math.trunc(birthdate.diffNow().negate().as('years'))
+      } years old`,
+    };
+  }).slice(0, 10);
 };
 
 const filterData = (data: PlanningCenterResponseData<any>[], type: string) =>

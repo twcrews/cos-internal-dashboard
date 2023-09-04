@@ -1,14 +1,14 @@
-<div class="person-tile-container">
+<div class="container">
   <img
-    class="person-tile-image"
+    class="image"
     src="{{ data.avatarUrl ?? 'https://placekitten.com/g/48/48' }}"
     alt="Avatar for {{ data.name }}"
   />
-  <div class="person-tile-text">
-    <p class="person-tile-name">{{ data.name }}</p>
+  <div class="text">
+    <p class="name">{{ data.name }}</p>
     <p
       class="{{
-        data.subCaption ? 'person-tile-caption' : 'person-tile-solo-caption'
+        data.subCaption ? 'caption' : 'solo-caption'
       }}"
       *ngIf="data.caption"
     >
@@ -16,7 +16,7 @@
     </p>
     <p
       class="{{
-        data.caption ? 'person-tile-caption' : 'person-tile-solo-caption'
+        data.caption ? 'caption' : 'solo-caption'
       }}"
       *ngIf="data.subCaption"
     >
