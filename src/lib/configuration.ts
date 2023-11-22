@@ -27,3 +27,9 @@ export const teamRsvpsUrl = `${servicesApiUrl}${paths.teamRsvps}`;
 export const firstTimeVisitorsUrl = `${checkInsApiUrl}${paths.firstTimeVisitors}`;
 export const birthdaysUrl = `${peopleApiUrl}${paths.birthdays}`;
 export const newDonorsUrl = `${givingApiUrl}${paths.newDonors}`;
+
+export const auditoriumChartUrl = `${peopleApiUrl}${paths.auditoriumChart}`;
+export const kidsCheckInChartUrl = `${peopleApiUrl}${paths.kidsCheckInChart}`;
+export const givingChartUrl = `${peopleApiUrl}${paths.givingChart}`;
+
+export const cosEventsCalendarUrl = Configuration.google.calendar.ical.cosEvents;

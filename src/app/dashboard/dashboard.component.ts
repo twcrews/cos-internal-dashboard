@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import {
+  auditoriumChartUrl,
   birthdaysUrl,
+  cosEventsCalendarUrl,
   firstTimeVisitorsUrl,
+  givingChartUrl,
+  kidsCheckInChartUrl,
   newDonorsUrl,
   newProfilesUrl,
   teamRsvpsUrl,
@@ -13,10 +17,16 @@ import {
   BirthdayPeople,
   Person,
 } from 'src/lib/planningCenter/people/2023-03-21/types';
-import { getBirthdays, getFirstTimeVisitors, getRsvps } from './lib/mutators';
 import { CheckIn } from 'src/lib/planningCenter/check-ins/2023-04-05/types';
 import { DateTime } from 'luxon';
 import { HomeWidgetsNewDonor } from 'src/lib/planningCenter/giving/privateTypes';
+import { getRsvps } from './lib/mutators/rsvps';
+import { getBirthdays, getFirstTimeVisitors } from './lib/mutators/people';
+import { ChartData, ChartOptions } from 'chart.js';
+import { DashboardWidget } from 'src/lib/planningCenter/undocumented/people/types';
+import { getMonthlyChartData, getWeeklyChartData } from './lib/mutators/charts';
+import { chartOptions } from './lib/charts';
+import { VCalendar, icsCalendarToObject, parseIcsCalendar } from 'ts-ics';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,14 +40,32 @@ export class DashboardComponent {
   birthdays?: PersonTile[];
   newDonors?: PersonTile[];
 
+  auditoriumData?: ChartData;
+  kidsCheckInData?: ChartData;
+  givingData?: ChartData;
+  barChartOptions: ChartOptions = chartOptions;
+
+  cosEventsCalendar?: VCalendar;
+
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
+    this.fetchData();
+    setInterval(() => {
+      this.fetchData();
+    }, 1 * 3600 * 1000); // Refresh each hour
+  }
+
+  fetchData() {
     this.fetchNewProfiles();
     this.fetchRsvps();
     this.fetchFirstTimeVisitors();
     this.fetchBirthdays();
     this.fetchNewDonors();
+    this.fetchAuditoriumData();
+    this.fetchKidsCheckInData();
+    this.fetchGivingData();
+    this.fetchCalendar();
   }
 
   fetchNewProfiles() {
@@ -89,5 +117,31 @@ export class DashboardComponent {
             ).toFormat('MMMM d'),
           })))
       );
+  }
+
+  fetchAuditoriumData() {
+    this.apiService
+      .postAndFetchSingle<DashboardWidget>(auditoriumChartUrl, '')
+      .subscribe((data) => (this.auditoriumData = getWeeklyChartData(data)));
+  }
+
+  fetchKidsCheckInData() {
+    this.apiService
+      .postAndFetchSingle<DashboardWidget>(kidsCheckInChartUrl, '')
+      .subscribe((data) => (this.kidsCheckInData = getWeeklyChartData(data)));
+  }
+
+  fetchGivingData() {
+    this.apiService
+      .postAndFetchSingle<DashboardWidget>(givingChartUrl, '')
+      .subscribe((data) => (this.givingData = getMonthlyChartData(data)));
+  }
+
+  fetchCalendar() {
+    this.apiService
+      .fetchPlainText(cosEventsCalendarUrl)
+      .subscribe((text) => {
+        console.log(icsCalendarToObject(text));
+      });
   }
 }

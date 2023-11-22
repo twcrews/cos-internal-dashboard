@@ -8,6 +8,11 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^15.2.0",
@@ -21,10 +26,14 @@
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
     "@angular/service-worker": "^15.2.0",
-    "chart.js": "^4.3.0",
+    "angular-calendar": "^0.31.0",
+    "chart.js": "^3.6.0",
+    "date-fns": "^2.29.3",
     "js-sha3": "^0.8.0",
     "luxon": "^3.4.2",
+    "ng2-charts": "^4.1.1",
     "rxjs": "~7.8.0",
+    "ts-ics": "^1.2.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },

@@ -1,58 +1,8 @@
-import { getPlanPersonStatus } from 'src/lib/planningCenter/services/2018-11-01/helpers';
-import {
-  NeededPosition,
-  PlanPerson,
-  PlanPersonStatus,
-  Team,
-} from 'src/lib/planningCenter/services/2018-11-01/types';
-import {
-  PlanningCenterCollectionResponse,
-  PlanningCenterResponseData,
-  PlanningCenterSingleResponse,
-} from 'src/lib/planningCenter/shared';
-import { Rsvp } from '../rsvp-item/lib/types';
-import {
-  CheckIn,
-  CheckInTime,
-  Event,
-  EventTime,
-  Person,
-} from 'src/lib/planningCenter/check-ins/2023-04-05/types';
-import { PersonTile } from '../person-tile/person-tile.component';
-import { BirthdayPeople } from 'src/lib/planningCenter/people/2023-03-21/types';
-import { DateTime } from 'luxon';
-
-export const getRsvps = (value: PlanningCenterSingleResponse<any>): Rsvp[] => {
-  const includedData = value.included as PlanningCenterResponseData<any>[];
-  const planPeople = filterData(includedData, 'PlanPerson');
-  const neededPositions: PlanningCenterResponseData<NeededPosition>[] =
-    filterData(includedData, 'NeededPosition');
-
-  const teams: PlanningCenterResponseData<Team>[] = filterData(
-    includedData,
-    'Team'
-  );
-
-  const visibleTeams = teams.filter((t) =>
-    planPeople.map((p) => getTeamId(p)).includes(t.id)
-  );
-
-  return visibleTeams.map((t) => ({
-    title: t.attributes?.name ?? 'Unknown team',
-    confirmedCount: getStatusCount(planPeople, t, PlanPersonStatus.Confirmed),
-    unconfirmedCount:
-      getStatusCount(planPeople, t, PlanPersonStatus.Unconfirmed) +
-      neededPositions
-        .filter(
-          (n) =>
-            (n.relationships?.['team'].data as PlanningCenterResponseData<Team>)
-              .id === t.id
-        )
-        .map((p) => p?.attributes?.quantity ?? 0)
-        .reduce((sum, number) => sum + number, 0),
-    declinedCount: getStatusCount(planPeople, t, PlanPersonStatus.Declined),
-  }));
-};
+import { DateTime } from "luxon";
+import { CheckIn, CheckInTime, EventTime, Event } from "src/lib/planningCenter/check-ins/2023-04-05/types";
+import { Person, BirthdayPeople } from "src/lib/planningCenter/people/2023-03-21/types";
+import { PlanningCenterCollectionResponse, PlanningCenterResponseData, PlanningCenterSingleResponse } from "src/lib/planningCenter/shared";
+import { PersonTile } from "../../person-tile/person-tile.component";
 
 export const getFirstTimeVisitors = (
   value: PlanningCenterCollectionResponse<CheckIn>
@@ -134,18 +84,3 @@ export const getBirthdays = (
     };
   }).slice(0, 10);
 };
-
-const filterData = (data: PlanningCenterResponseData<any>[], type: string) =>
-  data.filter((i) => i.type === type);
-
-const getTeamId = (person: PlanningCenterResponseData<PlanPerson>) =>
-  (person.relationships?.['team'].data as PlanningCenterResponseData<Team>).id;
-
-const getStatusCount = (
-  people: PlanningCenterResponseData<PlanPerson>[],
-  team: PlanningCenterResponseData<Team>,
-  status: PlanPersonStatus
-) =>
-  people.filter(
-    (p) => getTeamId(p) === team.id && getPlanPersonStatus(p) === status
-  ).length;

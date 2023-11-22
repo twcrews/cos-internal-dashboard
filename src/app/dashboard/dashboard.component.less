@@ -1,11 +1,10 @@
-.grid-container {
+.page {
   padding: 8px;
   height: 100%;
   display: grid;
   gap: 8px;
-  grid-template-rows: repeat(3, 33%);
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-
+  grid-auto-rows: minmax(min-content, max-content);
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
   box-sizing: border-box;
 }
 
@@ -21,6 +20,6 @@
   gap: 24px;
 }
 
-mat-card {
-  overflow: hidden;
+.full-width {
+  grid-column: 1 / -1;
 }

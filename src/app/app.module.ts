@@ -29,6 +29,10 @@ import { WidgetComponent } from './dashboard/widget/widget.component';
 import { SecretDialogComponent } from './secret-dialog/secret-dialog.component';
 import { RsvpItemComponent } from './dashboard/rsvp-item/rsvp-item.component';
 import { LoadingSpinnerComponent } from './dashboard/widget/loading-spinner/loading-spinner.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgChartsModule } from 'ng2-charts';
+import { AgendaComponent } from './dashboard/agenda/agenda.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,7 @@ import { LoadingSpinnerComponent } from './dashboard/widget/loading-spinner/load
     EmptyContentComponent,
     RsvpItemComponent,
     LoadingSpinnerComponent,
+    AgendaComponent,
   ],
   imports: [
     MatSlideToggleModule,
@@ -65,6 +70,8 @@ import { LoadingSpinnerComponent } from './dashboard/widget/loading-spinner/load
     MatToolbarModule,
     MatProgressSpinnerModule,
     HttpClientModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    NgChartsModule,
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],

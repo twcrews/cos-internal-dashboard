@@ -1,4 +1,4 @@
-<div class="grid-container">
+<div class="page">
   <app-widget icon="person_add" title="New profiles">
     <div class="people-grid" *ngIf="newProfiles">
       <app-person-tile *ngFor="let profile of newProfiles" [data]="profile" />
@@ -11,7 +11,10 @@
   </app-widget>
   <app-widget icon="looks_one" title="First time visitors">
     <div class="people-grid" *ngIf="firstTimeVisitors">
-      <app-person-tile *ngFor="let visitor of firstTimeVisitors" [data]="visitor" />
+      <app-person-tile
+        *ngFor="let visitor of firstTimeVisitors"
+        [data]="visitor"
+      />
     </div>
   </app-widget>
   <app-widget icon="cake" title="Upcoming birthdays">
@@ -23,5 +26,17 @@
     <div class="people-grid" *ngIf="newDonors">
       <app-person-tile *ngFor="let donor of newDonors" [data]="donor" />
     </div>
+  </app-widget>
+  <app-widget icon="bar_chart" title="Auditorium">
+    <canvas baseChart [data]="auditoriumData" [options]="barChartOptions" type="bar" height="184px"></canvas>
+  </app-widget>
+  <app-widget icon="bar_chart" title="Kids Check-in">
+    <canvas baseChart [data]="kidsCheckInData" [options]="barChartOptions" type="bar" height="184px"></canvas>
+  </app-widget>
+  <app-widget icon="bar_chart" title="Giving">
+    <canvas baseChart [data]="givingData" [options]="barChartOptions" type="bar" height="184px"></canvas>
+  </app-widget>
+  <app-widget class="full-width" icon="calendar_month" title="Calendar">
+    <app-agenda />
   </app-widget>
 </div>
