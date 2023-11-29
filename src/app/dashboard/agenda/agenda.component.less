@@ -7,19 +7,24 @@ p {
   display: flex;
   gap: 16px;
   text-align: left;
-	margin-left: -16px;
+  margin-left: -16px;
+  overflow: hidden;
 }
 
-.green,
-.purple,
-.gold {
-  border: solid 2px rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
+.events-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  max-width: 280px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.event {
+  border: solid 2px rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
   overflow: hidden;
+  padding: 4px 8px;
+  min-width: 80px;
+  max-width: 240px;
 }
 
 .green {
@@ -35,55 +40,35 @@ p {
 }
 
 .title {
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 8px;
-}
-
-.date,
-.location {
-  font-weight: 500;
   font-size: 18px;
-}
-
-.description {
-  margin: 16px 0;
-}
-
-.content {
-  flex: 1;
-  padding: 8px;
+  font-weight: 500;
+  display: -webkit-box;
+  line-clamp: 2;
   overflow: hidden;
-  height: 100%;
-  text-overflow: ellipsis;
-  box-sizing: border-box;
+  -webkit-box-orient: vertical;
 }
 
-.calendar-name {
-  background-color: rgba(255, 255, 255, 0.2);
-  text-transform: uppercase;
-  padding: 4px 8px;
-  text-wrap: nowrap;
+.subtitle {
   font-size: 14px;
-  font-weight: 600;
+  margin-top: 4px;
 }
 
 .divider {
-	height: 268px;
-	width: 24px;
-	padding-left: 16px;
-	margin-right: -8px;
+  height: 268px;
+  width: 24px;
+  padding-left: 16px;
+  margin-right: -8px;
 }
 
 .divider p {
-	position: relative;
-	float: left;
-	transform: rotate(-90deg);
-	width: 268px;
-	text-wrap: nowrap;
-	align-self: flex-end;
-	border-bottom: solid 1px rgba(255, 255, 255, 0.3);
-	height: 24px;
-	left: -126px;
-	bottom: -126px;
+  position: relative;
+  float: left;
+  transform: rotate(-90deg);
+  width: 268px;
+  text-wrap: nowrap;
+  align-self: flex-end;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.3);
+  height: 24px;
+  left: -126px;
+  bottom: -120px;
 }

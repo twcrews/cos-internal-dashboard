@@ -31,7 +31,6 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
-              "node_modules/angular-calendar/css/angular-calendar.css",
               "src/theme.scss",
               "src/styles.less"
             ],
@@ -100,7 +99,6 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
-              "node_modules/angular-calendar/css/angular-calendar.css",
               "src/styles.less"
             ],
             "scripts": []

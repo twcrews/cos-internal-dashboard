@@ -4,9 +4,10 @@
       <mat-icon fontIcon="{{ icon }}" />
       {{ title }}
     </mat-card-title>
+    <ng-content select="[header]" />
   </mat-card-header>
   <mat-card-content class="card-content">
-    <ng-content />
+    <ng-content select="[body]" />
     <div class="default-content">
       <app-loading-spinner />
     </div>

@@ -1,10 +1,38 @@
-import { DateTime } from "luxon";
-import { CheckIn, CheckInTime, EventTime, Event } from "src/lib/planningCenter/check-ins/2023-04-05/types";
-import { Person, BirthdayPeople } from "src/lib/planningCenter/people/2023-03-21/types";
-import { PlanningCenterCollectionResponse, PlanningCenterResponseData, PlanningCenterSingleResponse } from "src/lib/planningCenter/shared";
-import { PersonTile } from "../../person-tile/person-tile.component";
+import { DateTime } from 'luxon';
+import {
+  CheckIn,
+  CheckInTime,
+  EventTime,
+  Event,
+} from 'src/lib/planningCenter/check-ins/2023-04-05/types';
+import {
+  Person,
+  BirthdayPeople,
+} from 'src/lib/planningCenter/people/2023-03-21/types';
+import {
+  PlanningCenterCollectionResponse,
+  PlanningCenterResponseData,
+  PlanningCenterSingleResponse,
+} from 'src/lib/planningCenter/shared';
+import { PersonTile } from '../../person-tile/person-tile.component';
 
-export const getFirstTimeVisitors = (
+export const parseNewProfiles = (
+  value: PlanningCenterCollectionResponse<Person>
+): PersonTile[] => {
+  const data = value.data ?? [];
+  return data.map(
+    (d) =>
+      ({
+        avatarUrl: d.attributes?.avatar,
+        name: d.attributes?.name,
+        caption: DateTime.fromISO(
+          d.attributes?.created_at?.toString() ?? ''
+        ).toRelativeCalendar(),
+      } as PersonTile)
+  );
+};
+
+export const parseFirstTimeVisitors = (
   value: PlanningCenterCollectionResponse<CheckIn>
 ): PersonTile[] => {
   const checkIns = value.data ?? [];
@@ -63,24 +91,26 @@ export const getFirstTimeVisitors = (
   });
 };
 
-export const getBirthdays = (
+export const parseBirthdays = (
   value: PlanningCenterSingleResponse<BirthdayPeople>
 ): PersonTile[] => {
   const people = value.data?.attributes?.people ?? [];
 
-  return people.map((person) => {
-    const birthdate = DateTime.fromISO(person.birthdate?.toString() ?? '');
-    const [, month, day] = (person.birthdate?.toString() ?? '--').split('-');
-    const birthdateThisYear = DateTime.fromISO(
-      `${DateTime.now().year}-${month}-${day}`
-    );
+  return people
+    .map((person) => {
+      const birthdate = DateTime.fromISO(person.birthdate?.toString() ?? '');
+      const [, month, day] = (person.birthdate?.toString() ?? '--').split('-');
+      const birthdateThisYear = DateTime.fromISO(
+        `${DateTime.now().year}-${month}-${day}`
+      );
 
-    return {
-      name: person.name ?? 'Unknown person',
-      avatarUrl: person.avatar,
-      caption: `${birthdateThisYear.toRelativeCalendar()} | ${
-        Math.trunc(birthdate.diffNow().negate().as('years'))
-      } years old`,
-    };
-  }).slice(0, 10);
+      return {
+        name: person.name ?? 'Unknown person',
+        avatarUrl: person.avatar,
+        caption: `${birthdateThisYear.toRelativeCalendar()} | ${Math.trunc(
+          birthdate.diffNow().negate().as('years')
+        )} years old`,
+      };
+    })
+    .slice(0, 10);
 };

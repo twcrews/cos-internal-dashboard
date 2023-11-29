@@ -1,14 +1,16 @@
 {
-	"planningCenter": {
-		"api": {
-			"baseUrl": "https://functions.cos.crews.dev/api/",
+	"api": {
+		"baseUrl": "https://functions.cos.crews.dev/api/",
+		"authenticationEndpoint": "Authenticate",
+		"headHashEndpint": "HeadHash",
+		"headHashName": "client-head-hash",
+		"planningCenter": {
 			"products": {
 				"people": "CosDashboard/people/v2/",
 				"giving": "CosDashboard/giving/v2/",
 				"services": "CosDashboard/services/v2/",
 				"checkIns": "CosDashboard/check-ins/v2/"
 			},
-			"authenticationEndpoint": "Authenticate",
 			"apiKeyName": "functions-api-key",
 			"paths": {
 				"newProfiles": "people?fields%5BPerson%5D=name%2Cavatar%2Ccreated_at&per_page=10&order=-created_at",
@@ -20,13 +22,23 @@
 				"kidsCheckInChart": "dashboards/32614/widgets/40752/refresh",
 				"givingChart": "dashboards/32614/widgets/40754/refresh"
 			}
-		}
-	},
-	"google": {
-		"calendar": {
-			"ical": {
-				"cosEvents": "https://functions.cos.crews.dev/api/Calendar/office"
-			}
+		},
+		"agenda": {
+			"path": "Calendar/",
+			"calendars": [
+				{
+					"name": "COS Events",
+					"path": "cos-events"
+				},
+				{
+					"name": "Building Use",
+					"path": "building-use"
+				},
+				{
+					"name": "Office",
+					"path": "office"
+				}
+			]
 		}
 	}
 }

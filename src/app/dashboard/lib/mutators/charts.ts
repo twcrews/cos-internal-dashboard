@@ -6,7 +6,7 @@ import {
   PeopleDashboardsData,
 } from 'src/lib/planningCenter/undocumented/people/types';
 
-export const getWeeklyChartData = (
+export const parseWeeklyChartData = (
   value: PlanningCenterSingleResponse<DashboardWidget>
 ): ChartData<'bar'> => {
   const rawData: PeopleDashboardsData[] =
@@ -35,10 +35,10 @@ export const getWeeklyChartData = (
   };
 };
 
-export const getMonthlyChartData = (
+export const parseMonthlyChartData = (
   value: PlanningCenterSingleResponse<DashboardWidget>
 ): ChartData<'bar'> => {
-  const result = getWeeklyChartData(value);
+  const result = parseWeeklyChartData(value);
   result.labels =
     result.labels?.map((l) =>
       DateTime.fromFormat(l as string, 'LLL dd').toFormat('LLL')

@@ -2,9 +2,10 @@ import { ChartOptions } from 'chart.js';
 
 export const chartOptions: ChartOptions = {
   responsive: true,
+  animation: false,
   plugins: {
     legend: {
-      position: 'bottom',
+      display: false,
     },
     title: {
       display: false,

@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -29,10 +30,10 @@ import { WidgetComponent } from './dashboard/widget/widget.component';
 import { SecretDialogComponent } from './secret-dialog/secret-dialog.component';
 import { RsvpItemComponent } from './dashboard/rsvp-item/rsvp-item.component';
 import { LoadingSpinnerComponent } from './dashboard/widget/loading-spinner/loading-spinner.component';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgChartsModule } from 'ng2-charts';
 import { AgendaComponent } from './dashboard/agenda/agenda.component';
+import { SplashComponent } from './splash/splash.component';
+import { StatusComponent } from './status/status.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,8 @@ import { AgendaComponent } from './dashboard/agenda/agenda.component';
     RsvpItemComponent,
     LoadingSpinnerComponent,
     AgendaComponent,
+    SplashComponent,
+    StatusComponent,
   ],
   imports: [
     MatSlideToggleModule,
@@ -69,8 +72,8 @@ import { AgendaComponent } from './dashboard/agenda/agenda.component';
     MatDialogModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
+    MatProgressBarModule,
     HttpClientModule,
-    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     NgChartsModule,
   ],
   providers: [ApiService],

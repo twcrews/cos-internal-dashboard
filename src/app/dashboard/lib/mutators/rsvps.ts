@@ -3,7 +3,7 @@ import { PlanningCenterSingleResponse, PlanningCenterResponseData } from "src/li
 import { Rsvp } from "../../rsvp-item/lib/types";
 import { filterData, getTeamId, getStatusCount } from "./mutation";
 
-export const getRsvps = (value: PlanningCenterSingleResponse<any>): Rsvp[] => {
+export const parseRsvps = (value: PlanningCenterSingleResponse<any>): Rsvp[] => {
   const includedData = value.included as PlanningCenterResponseData<any>[];
   const planPeople = filterData(includedData, 'PlanPerson');
   const neededPositions: PlanningCenterResponseData<NeededPosition>[] =

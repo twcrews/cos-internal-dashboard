@@ -1,16 +1,16 @@
 <div class="page">
   <app-widget icon="person_add" title="New profiles">
-    <div class="people-grid" *ngIf="newProfiles">
+    <div body class="people-grid" *ngIf="newProfiles">
       <app-person-tile *ngFor="let profile of newProfiles" [data]="profile" />
     </div>
   </app-widget>
   <app-widget icon="schedule" title="Team breakdown">
-    <div class="rsvp-list" *ngIf="rsvps">
+    <div body class="rsvp-list" *ngIf="rsvps">
       <app-rsvp-item *ngFor="let rsvp of rsvps" [data]="rsvp" />
     </div>
   </app-widget>
   <app-widget icon="looks_one" title="First time visitors">
-    <div class="people-grid" *ngIf="firstTimeVisitors">
+    <div body class="people-grid" *ngIf="firstTimeVisitors">
       <app-person-tile
         *ngFor="let visitor of firstTimeVisitors"
         [data]="visitor"
@@ -18,25 +18,90 @@
     </div>
   </app-widget>
   <app-widget icon="cake" title="Upcoming birthdays">
-    <div class="people-grid" *ngIf="birthdays">
+    <div body class="people-grid" *ngIf="birthdays">
       <app-person-tile *ngFor="let birthday of birthdays" [data]="birthday" />
     </div>
   </app-widget>
   <app-widget icon="payments" title="Newest donors">
-    <div class="people-grid" *ngIf="newDonors">
+    <div body class="people-grid" *ngIf="newDonors">
       <app-person-tile *ngFor="let donor of newDonors" [data]="donor" />
     </div>
   </app-widget>
   <app-widget icon="bar_chart" title="Auditorium">
-    <canvas baseChart [data]="auditoriumData" [options]="barChartOptions" type="bar" height="184px"></canvas>
+    <div header class="legend">
+      <div class="legend-item">
+        <div class="pink dot"></div>
+        <p class="legend-text">Prev. year</p>
+      </div>
+      <div class="legend-item">
+        <div class="red dot"></div>
+        <p class="legend-text">Current</p>
+      </div>
+    </div>
+    <canvas
+      body
+      baseChart
+      [data]="auditoriumData"
+      [options]="chartOptions"
+      type="bar"
+      height="184px"
+    ></canvas>
   </app-widget>
   <app-widget icon="bar_chart" title="Kids Check-in">
-    <canvas baseChart [data]="kidsCheckInData" [options]="barChartOptions" type="bar" height="184px"></canvas>
+    <div header class="legend">
+      <div class="legend-item">
+        <div class="pink dot"></div>
+        <p class="legend-text">Prev. year</p>
+      </div>
+      <div class="legend-item">
+        <div class="red dot"></div>
+        <p class="legend-text">Current</p>
+      </div>
+    </div>
+    <canvas
+      body
+      baseChart
+      [data]="kidsCheckInData"
+      [options]="chartOptions"
+      type="bar"
+      height="184px"
+    ></canvas>
   </app-widget>
   <app-widget icon="bar_chart" title="Giving">
-    <canvas baseChart [data]="givingData" [options]="barChartOptions" type="bar" height="184px"></canvas>
+    <div header class="legend">
+      <div class="legend-item">
+        <div class="pink dot"></div>
+        <p class="legend-text">Prev. year</p>
+      </div>
+      <div class="legend-item">
+        <div class="red dot"></div>
+        <p class="legend-text">Current</p>
+      </div>
+    </div>
+    <canvas
+      body
+      baseChart
+      [data]="givingData"
+      [options]="chartOptions"
+      type="bar"
+      height="184px"
+    ></canvas>
   </app-widget>
   <app-widget class="full-width" icon="calendar_month" title="Calendar">
-    <app-agenda />
+    <div header class="legend">
+      <div class="legend-item">
+        <div class="green dot"></div>
+        <p class="legend-text">COS events</p>
+      </div>
+      <div class="legend-item">
+        <div class="purple dot"></div>
+        <p class="legend-text">Building use</p>
+      </div>
+      <div class="legend-item">
+        <div class="gold dot"></div>
+        <p class="legend-text">Office</p>
+      </div>
+    </div>
+    <app-agenda body [days]="agenda" *ngIf="agenda" />
   </app-widget>
 </div>
