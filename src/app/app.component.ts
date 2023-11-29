@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { SecretDialogComponent } from './secret-dialog/secret-dialog.component';
 import {
   auditoriumChartUrl,
   birthdaysUrl,
@@ -137,22 +136,7 @@ export class AppComponent {
       .pipe(map((text) => ({ name: name, calendar: text })));
   }
 
-  constructor(public dialog: MatDialog, private apiService: ApiService) {
-    if (!this.secretExists) {
-      this.openDialog();
-    }
-  }
-
-  openDialog() {
-    const dialogRef = this.dialog.open(SecretDialogComponent, {
-      disableClose: true,
-      width: '728px',
-    });
-
-    dialogRef.beforeClosed().subscribe(() => {
-      this.secretExists = true;
-    });
-  }
+  constructor(private apiService: ApiService) { }
 
   updateStatusText() {
     const now = DateTime.now();

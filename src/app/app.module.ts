@@ -27,7 +27,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PersonTileComponent } from './dashboard/person-tile/person-tile.component';
 import { EmptyContentComponent } from './dashboard/widget/empty-content/empty-content.component';
 import { WidgetComponent } from './dashboard/widget/widget.component';
-import { SecretDialogComponent } from './secret-dialog/secret-dialog.component';
 import { RsvpItemComponent } from './dashboard/rsvp-item/rsvp-item.component';
 import { LoadingSpinnerComponent } from './dashboard/widget/loading-spinner/loading-spinner.component';
 import { NgChartsModule } from 'ng2-charts';
@@ -39,7 +38,6 @@ import { StatusComponent } from './status/status.component';
   declarations: [
     AppComponent,
     DashboardComponent,
-    SecretDialogComponent,
     PersonTileComponent,
     WidgetComponent,
     EmptyContentComponent,
