@@ -31,6 +31,15 @@
   width: 50%;
 }
 
+#secret-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  max-width: 100%;
+  gap: 24px;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -38,4 +47,28 @@
   100% {
     opacity: 1;
   }
+}
+
+.full-width {
+  width: 100%;
+}
+
+button {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.error-message {
+  color: #f66;
+}
+
+.status-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.secret-string {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
 }

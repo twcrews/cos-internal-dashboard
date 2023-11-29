@@ -1,9 +1,78 @@
 <div id="page">
   <div id="center-content">
     <img id="logo" src="assets/cos-base.png" alt="COS logo" />
-    <div id="progress-container">
+    <div id="progress-container" *ngIf="secretExists">
       <mat-progress-bar id="progress-bar" mode="indeterminate" />
       <p>Fetching new data</p>
+    </div>
+    <div id="secret-input-container" *ngIf="!secretExists">
+      <mat-form-field class="full-width code">
+        <mat-label>API Key</mat-label
+        ><input
+          [attr.disabled]="true"
+          maxlength="64"
+          [formControl]="secretFormControl"
+          [errorStateMatcher]="matcher"
+          matInput
+          spellcheck="false"
+          [(ngModel)]="secret"
+        />
+        <mat-error *ngIf="secretFormControl.errors">
+          {{ secretFormControl.errors["error"] }}
+        </mat-error>
+      </mat-form-field>
+      <button
+        mat-flat-button
+        (click)="onValidate()"
+        disabled="{{
+          secretFormControl.errors ||
+            authenticationState === SecretAuthenticationState.InProgress
+        }}"
+      >
+        Verify
+      </button>
+      <div
+        *ngIf="
+          !secretFormControl.errors &&
+          authenticationState !== SecretAuthenticationState.Standby
+        "
+      >
+        <span
+          class="status-container"
+          *ngIf="
+            authenticationState === SecretAuthenticationState.InProgress;
+            else elseBlock
+          "
+        >
+          <mat-spinner [diameter]="24" />
+          Verifying secret with Planning Center servers...
+        </span>
+        <ng-template #elseBlock
+          ><span
+            class="{{
+              authenticationState === SecretAuthenticationState.Authenticated
+                ? 'success'
+                : 'error'
+            }}-message status-container"
+          >
+            <mat-icon
+              fontIcon="{{
+                authenticationState === SecretAuthenticationState.Authenticated
+                  ? 'check_circle'
+                  : 'cancel'
+              }}-filled"
+            />
+            {{
+              authenticationState === SecretAuthenticationState.Error
+                ? "Unknown error"
+                : authenticationState ===
+                  SecretAuthenticationState.Authenticated
+                ? "API key accepted"
+                : "API key rejected"
+            }}</span
+          >
+        </ng-template>
+      </div>
     </div>
   </div>
 </div>
