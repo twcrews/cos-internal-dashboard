@@ -192,6 +192,7 @@ export class AppComponent {
     let wakeTime = 3500; // how long to wait before hiding cursor 
     let currentCursor = document.body.style.cursor;
     currentCursor == 'none' ? 'default' : currentCursor;
+    timeout = setTimeout(hideMouseCursor, wakeTime);
     
     function hideMouseCursor() {  
       if (document.body.style.cursor !== 'none') {
