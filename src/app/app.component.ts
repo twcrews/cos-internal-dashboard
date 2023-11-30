@@ -52,6 +52,7 @@ export class AppComponent {
   private clientUpdateDelayInSeconds = 300; // Wait 5 minutes before refreshing client
 
   private lastRefresh: DateTime = DateTime.now();
+  private fetchDataInterval?: any;
   private statusUpdateInterval?: any;
   private clientUpdateCheckInterval?: any;
 
@@ -70,7 +71,7 @@ export class AppComponent {
 
   init() {
     this.fetchData();
-    setInterval(() => {
+    this.fetchDataInterval = setInterval(() => {
       this.fetchData();
     }, Duration.fromObject({ seconds: this.fetchIntervalInSeconds }).toMillis());
 
@@ -171,6 +172,7 @@ export class AppComponent {
   updateClient() {
     clearInterval(this.statusUpdateInterval);
     clearInterval(this.clientUpdateCheckInterval);
+    clearInterval(this.fetchDataInterval);
 
     this.statusColor = BackgroundColor.Warning;
     this.statusText = 'Client updating soon';
