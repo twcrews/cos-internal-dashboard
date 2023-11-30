@@ -32,6 +32,11 @@ export class AgendaComponent {
         }
         return 0;
       });
+    this.upcoming?.forEach((d) =>
+      d.events.sort(
+        (a, b) => a.event.start.date.getTime() - b.event.start.date.getTime()
+      )
+    );
   }
 
   getFriendlySubtitle(event: VEvent) {
@@ -43,8 +48,10 @@ export class AgendaComponent {
       subtitle = DateTime.fromJSDate(event.start.date).toFormat('h:mm a');
     }
 
-    if (event.location) {
-      subtitle = `${subtitle} - ${event.location}`;
+    if (event.end) {
+      subtitle = `${subtitle}– ${DateTime.fromJSDate(event.end.date).toFormat(
+        'h:mm a'
+      )}`.replace(/(AM|PM)(.*?)(AM|PM)/, '$2$3');
     }
     return subtitle;
   }

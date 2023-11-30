@@ -8,7 +8,16 @@
         </p>
       </div>
       <div class="events-container">
-        <div *ngFor="let event of day.events" class="green event">
+        <div
+          *ngFor="let event of day.events"
+          class="{{
+            event.name === 'COS Events'
+              ? 'green'
+              : event.name === 'Building Use'
+              ? 'purple'
+              : 'gold'
+          }} event"
+        >
           <p class="title">{{ event.event.summary }}</p>
           <p class="subtitle">{{ getFriendlySubtitle(event.event) }}</p>
         </div>
