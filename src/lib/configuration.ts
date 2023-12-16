@@ -1,3 +1,4 @@
+import { isDevMode } from '@angular/core';
 import Configuration from '../assets/app.config.json';
 
 const localStorageConfigurationProperty = (key: string) => ({
@@ -5,7 +6,7 @@ const localStorageConfigurationProperty = (key: string) => ({
   set: (secret: string) => localStorage.setItem(key, secret),
 });
 
-const baseUrl = Configuration.api.baseUrl;
+const baseUrl = isDevMode() ? Configuration.api.devBaseUrl : Configuration.api.baseUrl;
 const planningCenter = Configuration.api.planningCenter;
 const products = planningCenter.products;
 const paths = planningCenter.paths;
