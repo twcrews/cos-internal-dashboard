@@ -14,12 +14,12 @@ export const chartOptions: ChartOptions = {
   scales: {
     x: {
       grid: {
-        borderColor: '#555',
+        borderColor: 'rgba(255, 255, 255, 0.1)',
         display: false,
-        color: '#555',
+        color: 'rgba(255, 255, 255, 0.1)',
       },
       ticks: {
-        color: '#AAA',
+        color: 'rgba(255, 255, 255, 0.6)',
         autoSkip: true,
         autoSkipPadding: 4,
       },
@@ -27,12 +27,12 @@ export const chartOptions: ChartOptions = {
     y: {
       grid: {
         borderColor: 'transparent',
-        color: '#555',
+        color: 'rgba(255, 255, 255, 0.1)',
       },
       ticks: {
-        color: '#AAA',
+        color: 'rgba(255, 255, 255, 0.6)',
       },
     },
   },
-  color: '#AAA',
+  color: 'rgba(255, 255, 255, 0.6)',
 };
