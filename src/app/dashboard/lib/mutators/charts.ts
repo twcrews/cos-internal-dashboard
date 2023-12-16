@@ -22,13 +22,13 @@ export const parseWeeklyChartData = (
       {
         label: (DateTime.local().year - 1).toString(),
         data: rawData.map((d) => (d.aggregations ?? [])[0].comparison ?? 0),
-        backgroundColor: '#E18888',
+        backgroundColor: '#735',
         borderRadius: 4,
       },
       {
         label: DateTime.local().year.toString(),
         data: rawData.map((d) => (d.aggregations ?? [])[0].current ?? 0),
-        backgroundColor: '#E14444',
+        backgroundColor: '#D46',
         borderRadius: 4,
       },
     ],

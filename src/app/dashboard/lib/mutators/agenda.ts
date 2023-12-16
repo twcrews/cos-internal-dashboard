@@ -58,13 +58,6 @@ const splitRecurringEvent = (event: VEvent): VEvent[] => {
   if (!recurrence) {
     return [event];
   }
-  if (event.summary === 'Prayer Team Mtg') {
-    console.log(event);
-    if (recurrence.byDay) {
-      console.log(convertWeekday(recurrence.byDay));
-    }
-    console.log(convertWeekStart(recurrence.workweekStart));
-  }
 
   const rule = new RRule({
     freq: convertFrequency(recurrence.frequency),
@@ -117,20 +110,6 @@ const splitRecurringEvent = (event: VEvent): VEvent[] => {
 
       if (event.end) {
         newEvent.end = { ...event.end, date: endTime.toJSDate() };
-      }
-
-      if (newEvent.uid === '8khrc42q25h874mr4hdi4vlqot@google.com') {
-        console.log(event);
-        console.warn(rule);
-        if (recurrence.byDay) {
-          console.warn(convertWeekday(recurrence.byDay));
-        }
-        console.warn(time);
-      }
-
-      if (newEvent.summary === 'Prayer Team Mtg') {
-        console.log(newEvent);
-        console.log(rule);
       }
       return newEvent;
     });
