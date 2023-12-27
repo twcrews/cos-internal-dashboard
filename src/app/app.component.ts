@@ -45,7 +45,7 @@ import { hardRefresh } from 'src/lib/browser';
   styleUrls: ['./app.component.less'],
 })
 export class AppComponent {
-  private fetchIntervalInSeconds = 30; // Refresh data every 5 minutes
+  private fetchIntervalInSeconds = 300; // Refresh data every 5 minutes
   private hardRefreshIntervalInHours = 24; // Refresh page each day
   private checkForUpatesIntervalInSeconds = 60; // Check for client updates every minute
   private clientUpdateDelayInSeconds = 300; // Wait 5 minutes before refreshing client
