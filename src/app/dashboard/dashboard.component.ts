@@ -27,6 +27,14 @@ export class DashboardComponent {
   chartOptions = chartOptions;
 
   ngOnInit() {
+    this.updateData();
+  }
+
+  ngOnChanges() {
+    this.updateData();
+  }
+
+  updateData() {
     this.newProfiles = this.appData.newProfiles;
     this.rsvps = this.appData.rsvps;
     this.firstTimeVisitors = this.appData.firstTimeVisitors;

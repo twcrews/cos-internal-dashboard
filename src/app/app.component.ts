@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import {
   auditoriumChartUrl,
   birthdaysUrl,
@@ -46,7 +45,7 @@ import { hardRefresh } from 'src/lib/browser';
   styleUrls: ['./app.component.less'],
 })
 export class AppComponent {
-  private fetchIntervalInSeconds = 300; // Refresh data every 5 minutes
+  private fetchIntervalInSeconds = 30; // Refresh data every 5 minutes
   private hardRefreshIntervalInHours = 24; // Refresh page each day
   private checkForUpatesIntervalInSeconds = 60; // Check for client updates every minute
   private clientUpdateDelayInSeconds = 300; // Wait 5 minutes before refreshing client
@@ -62,6 +61,8 @@ export class AppComponent {
 
   statusText: string = '';
   statusColor: BackgroundColor = BackgroundColor.None;
+
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     if (planningCenterApiKey.get() !== null) {
@@ -143,8 +144,6 @@ export class AppComponent {
       .pipe(map((text) => ({ name: name, calendar: text })));
   }
 
-  constructor(private apiService: ApiService) { }
-
   updateStatusText() {
     const now = DateTime.now();
     this.statusText = `updated ${now
@@ -201,22 +200,21 @@ export class AppComponent {
         document.body.style.cursor = 'none';  
       }
     }
+
     function showMouseCursor() {
       clearTimeout(timeout);
       if (document.body.style.cursor !== 'default') {
         document.body.style.cursor = 'default';  
       }
     }
+
     document.onmousemove = function () {  
-      // wake up on mouse move ...
       showMouseCursor();
-      // goto sleep after a few moments
       timeout = setTimeout(hideMouseCursor, wakeTime);
     };
+
     document.onmousedown = function () {
-      // wake up on mouse click
       showMouseCursor();
-      // goto sleep after a few moments
       timeout = setTimeout(hideMouseCursor, wakeTime);
     };
   }
