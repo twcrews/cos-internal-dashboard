@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   auditoriumChartUrl,
   birthdaysUrl,
@@ -62,7 +62,7 @@ export class AppComponent {
   statusText: string = '';
   statusColor: BackgroundColor = BackgroundColor.None;
 
-  constructor(private apiService: ApiService, private changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     if (planningCenterApiKey.get() !== null) {
@@ -132,7 +132,6 @@ export class AppComponent {
           givingData: parseMonthlyChartData(givingData),
           agenda: parseAgenda(agenda),
         };
-        this.changeDetectorRef.detectChanges();
         this.statusText = 'updated just now';
         this.lastRefresh = DateTime.now();
       }
