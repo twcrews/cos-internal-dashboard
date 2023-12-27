@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import {
   auditoriumChartUrl,
   birthdaysUrl,
@@ -62,6 +61,8 @@ export class AppComponent {
 
   statusText: string = '';
   statusColor: BackgroundColor = BackgroundColor.None;
+
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     if (planningCenterApiKey.get() !== null) {
@@ -143,8 +144,6 @@ export class AppComponent {
       .pipe(map((text) => ({ name: name, calendar: text })));
   }
 
-  constructor(private apiService: ApiService) { }
-
   updateStatusText() {
     const now = DateTime.now();
     this.statusText = `updated ${now
@@ -201,22 +200,21 @@ export class AppComponent {
         document.body.style.cursor = 'none';  
       }
     }
+
     function showMouseCursor() {
       clearTimeout(timeout);
       if (document.body.style.cursor !== 'default') {
         document.body.style.cursor = 'default';  
       }
     }
+
     document.onmousemove = function () {  
-      // wake up on mouse move ...
       showMouseCursor();
-      // goto sleep after a few moments
       timeout = setTimeout(hideMouseCursor, wakeTime);
     };
+
     document.onmousedown = function () {
-      // wake up on mouse click
       showMouseCursor();
-      // goto sleep after a few moments
       timeout = setTimeout(hideMouseCursor, wakeTime);
     };
   }
