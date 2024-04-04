@@ -6,7 +6,7 @@ const localStorageConfigurationProperty = (key: string) => ({
   set: (secret: string) => localStorage.setItem(key, secret),
 });
 
-const baseUrl = isDevMode() ? Configuration.api.devBaseUrl : Configuration.api.baseUrl;
+const baseUrl = getBaseUrl();
 const planningCenter = Configuration.api.planningCenter;
 const products = planningCenter.products;
 const paths = planningCenter.paths;
@@ -43,3 +43,15 @@ export const calendars = agenda.calendars.map((c) => ({
   name: c.name,
   path: `${baseUrl}${agenda.path}${c.path}`,
 }));
+
+function getBaseUrl() {
+  if (isDevMode()) {
+    return Configuration.api.devBaseUrl
+  }
+
+  if (window.location.href.toLowerCase().includes("stage")) {
+    return Configuration.api.stageBaseUrl
+  }
+
+  return Configuration.api.baseUrl
+}
