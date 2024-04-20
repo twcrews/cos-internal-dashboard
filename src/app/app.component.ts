@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {
   auditoriumChartUrl,
   birthdaysUrl,
-  calendars,
   clientHeadHash,
   firstTimeVisitorsUrl,
   givingChartUrl,
@@ -22,7 +21,6 @@ import {
 } from 'src/lib/planningCenter/people/2023-03-21/types';
 import { DashboardWidget } from 'src/lib/planningCenter/undocumented/people/types';
 import { ApiService } from 'src/lib/services/api.service';
-import { parseAgenda, NamedCalendar } from './dashboard/lib/mutators/agenda';
 import {
   parseWeeklyChartData,
   parseMonthlyChartData,
@@ -108,7 +106,6 @@ export class AppComponent {
         ''
       ),
       this.apiService.postAndFetchSingle<DashboardWidget>(givingChartUrl, ''),
-      forkJoin(calendars.map((c) => this.fetchNamedCalendar(c.name, c.path))),
     ]).subscribe(
       ([
         newProfiles,
@@ -119,7 +116,6 @@ export class AppComponent {
         auditoriumData,
         kidsCheckInData,
         givingData,
-        agenda,
       ]) => {
         this.appData = {
           newProfiles: parseNewProfiles(newProfiles),
@@ -130,18 +126,11 @@ export class AppComponent {
           auditoriumData: parseWeeklyChartData(auditoriumData),
           kidsCheckInData: parseWeeklyChartData(kidsCheckInData),
           givingData: parseMonthlyChartData(givingData),
-          agenda: parseAgenda(agenda),
         };
         this.statusText = 'updated just now';
         this.lastRefresh = DateTime.now();
       }
     );
-  }
-
-  fetchNamedCalendar(name: string, url: string): Observable<NamedCalendar> {
-    return this.apiService
-      .fetchPlainText(url)
-      .pipe(map((text) => ({ name: name, calendar: text })));
   }
 
   updateStatusText() {

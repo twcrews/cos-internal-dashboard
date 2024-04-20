@@ -11,7 +11,8 @@
 				"people": "CosDashboard/people/v2/",
 				"giving": "CosDashboard/giving/v2/",
 				"services": "CosDashboard/services/v2/",
-				"checkIns": "CosDashboard/check-ins/v2/"
+				"checkIns": "CosDashboard/check-ins/v2/",
+				"calendar": "CosDashboard/calendar/v2/"
 			},
 			"apiKeyName": "functions-api-key",
 			"paths": {
@@ -24,23 +25,6 @@
 				"kidsCheckInChart": "dashboards/32614/widgets/40752/refresh",
 				"givingChart": "dashboards/32614/widgets/40754/refresh"
 			}
-		},
-		"agenda": {
-			"path": "Calendar/",
-			"calendars": [
-				{
-					"name": "COS Events",
-					"path": "cos-events"
-				},
-				{
-					"name": "Building Use",
-					"path": "building-use"
-				},
-				{
-					"name": "Office",
-					"path": "office"
-				}
-			]
 		}
 	}
 }

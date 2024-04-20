@@ -10,7 +10,6 @@ const baseUrl = getBaseUrl();
 const planningCenter = Configuration.api.planningCenter;
 const products = planningCenter.products;
 const paths = planningCenter.paths;
-const agenda = Configuration.api.agenda;
 
 export const planningCenterProducts = planningCenter.products;
 
@@ -38,11 +37,6 @@ export const newDonorsUrl = `${givingApiUrl}${paths.newDonors}`;
 export const auditoriumChartUrl = `${peopleApiUrl}${paths.auditoriumChart}`;
 export const kidsCheckInChartUrl = `${peopleApiUrl}${paths.kidsCheckInChart}`;
 export const givingChartUrl = `${peopleApiUrl}${paths.givingChart}`;
-
-export const calendars = agenda.calendars.map((c) => ({
-  name: c.name,
-  path: `${baseUrl}${agenda.path}${c.path}`,
-}));
 
 function getBaseUrl() {
   if (isDevMode()) {
