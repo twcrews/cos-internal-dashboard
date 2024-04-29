@@ -29,10 +29,10 @@ import { EmptyContentComponent } from './dashboard/widget/empty-content/empty-co
 import { WidgetComponent } from './dashboard/widget/widget.component';
 import { RsvpItemComponent } from './dashboard/rsvp-item/rsvp-item.component';
 import { LoadingSpinnerComponent } from './dashboard/widget/loading-spinner/loading-spinner.component';
-import { NgChartsModule } from 'ng2-charts';
 import { AgendaComponent } from './dashboard/agenda/agenda.component';
 import { SplashComponent } from './splash/splash.component';
 import { StatusComponent } from './status/status.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
