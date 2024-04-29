@@ -69,11 +69,11 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "cos-dashboard:build:production"
+              "buildTarget": "cos-dashboard:build:production"
             },
             "development": {
-              "browserTarget": "cos-dashboard:build:development",
-              "proxyConfig": "src/proxy.conf.json"
+              "proxyConfig": "src/proxy.conf.json",
+              "buildTarget": "cos-dashboard:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -81,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cos-dashboard:build"
+            "buildTarget": "cos-dashboard:build"
           }
         },
         "test": {
