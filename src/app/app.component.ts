@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {
+  agendaUrl,
   auditoriumChartUrl,
   birthdaysUrl,
   clientHeadHash,
@@ -36,6 +37,8 @@ import { parseNewDonors } from './dashboard/lib/mutators/giving';
 import { DateTime, Duration } from 'luxon';
 import { BackgroundColor } from './status/status.component';
 import { hardRefresh } from 'src/lib/browser';
+import { EventInstance } from 'src/lib/planningCenter/calendar/types';
+import { parseAgenda } from './dashboard/lib/mutators/agenda';
 
 @Component({
   selector: 'app-root',
@@ -106,6 +109,7 @@ export class AppComponent {
         ''
       ),
       this.apiService.postAndFetchSingle<DashboardWidget>(givingChartUrl, ''),
+      this.apiService.fetchCollection<EventInstance>(agendaUrl)
     ]).subscribe(
       ([
         newProfiles,
@@ -116,6 +120,7 @@ export class AppComponent {
         auditoriumData,
         kidsCheckInData,
         givingData,
+        agenda
       ]) => {
         this.appData = {
           newProfiles: parseNewProfiles(newProfiles),
@@ -126,6 +131,7 @@ export class AppComponent {
           auditoriumData: parseWeeklyChartData(auditoriumData),
           kidsCheckInData: parseWeeklyChartData(kidsCheckInData),
           givingData: parseMonthlyChartData(givingData),
+          agenda: parseAgenda(agenda)
         };
         this.statusText = 'updated just now';
         this.lastRefresh = DateTime.now();

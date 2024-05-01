@@ -1,12 +1,13 @@
 import { DateTime } from "luxon"
-import { VEvent } from "ts-ics";
+import { Tag } from "src/lib/planningCenter/calendar/types";
 
-export type Day = {
-	day: DateTime;
-	events: NamedEvent[];
+export type AgendaEvent = {
+	title: string;
+	subtitle?: string;
+	tags: Tag[];
 }
 
-export type NamedEvent = {
-	name: string;
-	event: VEvent;
+export type EventDay = {
+	date: DateTime;
+	events: AgendaEvent[];
 }

@@ -1,4 +1,5 @@
 import { NgModule, isDevMode } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { LayoutModule } from '@angular/cdk/layout';
@@ -33,6 +34,7 @@ import { AgendaComponent } from './dashboard/agenda/agenda.component';
 import { SplashComponent } from './splash/splash.component';
 import { StatusComponent } from './status/status.component';
 import { NgChartsModule } from 'ng2-charts';
+import { TagComponent } from './dashboard/agenda/tag/tag.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { NgChartsModule } from 'ng2-charts';
     AgendaComponent,
     SplashComponent,
     StatusComponent,
+    TagComponent
   ],
   imports: [
     MatSlideToggleModule,
@@ -73,6 +76,7 @@ import { NgChartsModule } from 'ng2-charts';
     MatProgressBarModule,
     HttpClientModule,
     NgChartsModule,
+    CommonModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],

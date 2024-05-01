@@ -23,7 +23,8 @@
 				"newDonors": "home_widgets/new_donors?fields%5BHomeWidgetsNewDonor%5D=name%2Cfirst_donation_received_at%2Cavatar_url&per_page=10&period=last_30_days",
 				"auditoriumChart": "dashboards/32614/widgets/40751/refresh",
 				"kidsCheckInChart": "dashboards/32614/widgets/40752/refresh",
-				"givingChart": "dashboards/32614/widgets/40754/refresh"
+				"givingChart": "dashboards/32614/widgets/40754/refresh",
+				"agenda": "event_instances?filter=future&include=event,tags"
 			}
 		}
 	}

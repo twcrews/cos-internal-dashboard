@@ -53,7 +53,7 @@ type PlanningCenterRelationshipValue = {
   data?: PlanningCenterResponseDataBase | PlanningCenterResponseDataBase[];
 };
 
-type PlanningCenterResponseDataBase = {
+export type PlanningCenterResponseDataBase = {
   type?: string;
   id?: string;
 };

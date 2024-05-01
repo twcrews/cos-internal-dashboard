@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Day } from './lib/types';
-import { DateTime } from 'luxon';
-import { VEvent } from 'ts-ics';
+import { EventDay } from './lib/types';
 
 @Component({
   selector: 'app-agenda',
@@ -9,50 +7,15 @@ import { VEvent } from 'ts-ics';
   styleUrls: ['./agenda.component.less'],
 })
 export class AgendaComponent {
-  @Input() days?: Day[];
-  upcoming?: Day[];
-  maxDays = 30;
+  @Input() days?: EventDay[];
 
-  ngOnInit() {
-    this.upcoming = this.days
-      ?.filter((d) => {
-        const today = DateTime.now().startOf('day');
-        const maxDate = today.plus({ days: this.maxDays });
-        return d.day >= today && d.day <= maxDate;
-      })
-      .sort((a, b) => {
-        const aSeconds = a.day.toSeconds();
-        const bSeconds = b.day.toSeconds();
-
-        if (aSeconds > bSeconds) {
-          return 1;
-        }
-        if (aSeconds < bSeconds) {
-          return -1;
-        }
-        return 0;
-      });
-    this.upcoming?.forEach((d) =>
-      d.events.sort(
-        (a, b) => a.event.start.date.getTime() - b.event.start.date.getTime()
-      )
-    );
-  }
-
-  getFriendlySubtitle(event: VEvent) {
-    let subtitle: string = '';
-
-    if (event.start.type === 'DATE') {
-      subtitle = 'All day';
-    } else {
-      subtitle = DateTime.fromJSDate(event.start.date).toFormat('h:mm a');
-    }
-
-    if (event.end) {
-      subtitle = `${subtitle}– ${DateTime.fromJSDate(event.end.date).toFormat(
-        'h:mm a'
-      )}`.replace(/(AM|PM)(.*?)(AM|PM)/, '$2$3');
-    }
-    return subtitle;
+  ngAfterViewInit() {
+    const body = document.querySelector('.agenda-container');
+    const containers = document.querySelectorAll('.events-container');
+    containers.forEach(container => {
+      if (container.clientHeight - 5 > (body?.clientHeight ?? 268)) {
+        container.classList.add('animated');
+      }
+    })
   }
 }

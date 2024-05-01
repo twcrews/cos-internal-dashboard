@@ -2,7 +2,7 @@ p {
   margin: 0;
 }
 
-.container {
+.agenda-container {
   height: 268px;
   display: flex;
   gap: 16px;
@@ -12,30 +12,25 @@ p {
 }
 
 .events-container {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  gap: 8px;
+  gap: 24px;
+  max-width: 280px;
+  height: min-content;
+  min-height: 100%;
+}
+
+.animated {
+  position: relative;
+  animation: scroll 20s linear infinite;
+  animation-direction: alternate;
 }
 
 .event {
-  border: solid 2px rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
-  overflow: hidden;
-  padding: 4px 8px;
-  min-width: 184px;
-}
-
-.green {
-  background-color: #282;
-}
-
-.purple {
-  background-color: #628;
-}
-
-.gold {
-  background-color: #861;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .title {
@@ -49,7 +44,13 @@ p {
 
 .subtitle {
   font-size: 14px;
-  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.5)
+}
+
+.tags {
+  display: flex;
+  gap: 4px;
+  min-height: 20px;
 }
 
 .divider {
@@ -70,4 +71,11 @@ p {
   height: 24px;
   left: -126px;
   bottom: -120px;
+}
+
+@keyframes scroll {
+  0%,
+  30% { transform: translateY(0%); top: 0%; }
+  70%,
+  100% { transform: translateY(-100%); top: 100%; }
 }

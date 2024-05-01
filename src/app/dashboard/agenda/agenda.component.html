@@ -1,28 +1,25 @@
 <ng-container>
-  <div class="container" *ngIf="upcoming">
-    <ng-container *ngFor="let day of upcoming">
+  <div class="agenda-container" *ngIf="days">
+    <ng-container *ngFor="let day of days">
       <div class="divider">
         <p>
-          <b>{{ day.day.toFormat("d") }}</b
-          >{{ day.day.toFormat(" LLLL, cccc") }}
+          <b>{{ day.date.toFormat("d") }}</b
+          >{{ day.date.toFormat(" LLLL, cccc") }}
         </p>
       </div>
       <div class="events-container">
         <div
           *ngFor="let event of day.events"
-          class="{{
-            event.name === 'COS Events'
-              ? 'green'
-              : event.name === 'Building Use'
-              ? 'purple'
-              : 'gold'
-          }} event"
+          class="event"
         >
-          <p class="title">{{ event.event.summary }}</p>
-          <p class="subtitle">{{ getFriendlySubtitle(event.event) }}</p>
+          <p class="title">{{ event.title }}</p>
+          <p class="subtitle">{{ event.subtitle }}</p>
+          <span *ngIf="event.tags.length > 0" class="tags">
+            <app-tag *ngFor="let tag of event.tags" [tag]="tag" />
+          </span>
         </div>
       </div>
     </ng-container>
   </div>
-  <app-loading-spinner *ngIf="!upcoming" />
+  <app-loading-spinner *ngIf="!days" />
 </ng-container>

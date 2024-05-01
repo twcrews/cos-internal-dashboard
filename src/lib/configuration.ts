@@ -27,6 +27,7 @@ export const peopleApiUrl = `${baseUrl}${products.people}`;
 export const givingApiUrl = `${baseUrl}${products.giving}`;
 export const servicesApiUrl = `${baseUrl}${products.services}`;
 export const checkInsApiUrl = `${baseUrl}${products.checkIns}`;
+export const calendarApiUrl = `${baseUrl}${products.calendar}`;
 
 export const newProfilesUrl = `${peopleApiUrl}${paths.newProfiles}`;
 export const teamRsvpsUrl = `${servicesApiUrl}${paths.teamRsvps}`;
@@ -37,6 +38,8 @@ export const newDonorsUrl = `${givingApiUrl}${paths.newDonors}`;
 export const auditoriumChartUrl = `${peopleApiUrl}${paths.auditoriumChart}`;
 export const kidsCheckInChartUrl = `${peopleApiUrl}${paths.kidsCheckInChart}`;
 export const givingChartUrl = `${peopleApiUrl}${paths.givingChart}`;
+
+export const agendaUrl = `${calendarApiUrl}${paths.agenda}`;
 
 function getBaseUrl() {
   if (isDevMode()) {

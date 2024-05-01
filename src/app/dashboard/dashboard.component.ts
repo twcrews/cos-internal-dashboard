@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AppData } from 'src/lib/types';
-import { Day } from './agenda/lib/types';
+import { EventDay } from './agenda/lib/types';
 import { ChartData } from 'chart.js';
 import { PersonTile } from './person-tile/person-tile.component';
 import { Rsvp } from './rsvp-item/lib/types';
@@ -22,7 +22,7 @@ export class DashboardComponent {
   auditoriumData?: ChartData;
   kidsCheckInData?: ChartData;
   givingData?: ChartData;
-  agenda?: Day[];
+  agenda?: EventDay[];
 
   chartOptions = chartOptions;
 
