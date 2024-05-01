@@ -88,20 +88,6 @@
     ></canvas>
   </app-widget>
   <app-widget class="full-width" icon="calendar_month" title="Calendar">
-    <div header class="legend">
-      <div class="legend-item">
-        <div class="green dot"></div>
-        <p class="legend-text">COS events</p>
-      </div>
-      <div class="legend-item">
-        <div class="purple dot"></div>
-        <p class="legend-text">Building use</p>
-      </div>
-      <div class="legend-item">
-        <div class="gold dot"></div>
-        <p class="legend-text">Office</p>
-      </div>
-    </div>
     <app-agenda body [days]="agenda" *ngIf="agenda" />
   </app-widget>
 </div>
