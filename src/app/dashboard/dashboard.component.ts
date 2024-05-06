@@ -4,7 +4,7 @@ import { EventDay } from './agenda/lib/types';
 import { ChartData } from 'chart.js';
 import { PersonTile } from './person-tile/person-tile.component';
 import { Rsvp } from './rsvp-item/lib/types';
-import { chartOptions } from './lib/charts';
+import { chartOptions, currencyChartOptions } from './lib/charts';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,6 +25,7 @@ export class DashboardComponent {
   agenda?: EventDay[];
 
   chartOptions = chartOptions;
+  currencyChartOptions = currencyChartOptions;
 
   ngOnInit() {
     this.updateData();

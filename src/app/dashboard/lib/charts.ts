@@ -36,3 +36,12 @@ export const chartOptions: ChartOptions = {
   },
   color: 'rgba(255, 255, 255, 0.6)',
 };
+
+export const currencyChartOptions: ChartOptions = { ...chartOptions, scales: {...chartOptions.scales, y: { ...chartOptions.scales?.['y'], ticks: {...chartOptions.scales?.['y']?.ticks, 
+callback: function(value, index, values) {
+  if(parseInt(`${value}`) >= 1000){
+    return '$' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  } else {
+    return '$' + value;
+  }
+}}}}}
