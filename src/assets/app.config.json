@@ -17,7 +17,7 @@
 			"apiKeyName": "functions-api-key",
 			"paths": {
 				"newProfiles": "people?fields%5BPerson%5D=name%2Cavatar%2Ccreated_at&per_page=10&order=-created_at",
-				"teamRsvps": "service_types/1437573/next_up_plans?fields%5BNeededPosition%5D=quantity%2Cteam&fields%5BNextUpPlans%5D=needed_positions%2Cplans%2Cplan_people%2Cteams&fields%5BPlan%5D=service_type%2Cshort_dates&fields%5BPlanPerson%5D=status%2Cteam&fields%5BServiceType%5D=name&fields%5BTeam%5D=name%2Csequence&per_page=100&filter=not_across_organizations%2Call_teams&include=needed_positions%2Cplans.service_type%2Cplan_people%2Cteams",
+				"teamRsvps": "service_types/1573354/next_up_plans?fields%5BNeededPosition%5D=quantity%2Cteam&fields%5BNextUpPlans%5D=needed_positions%2Cplans%2Cplan_people%2Cteams&fields%5BPlan%5D=service_type%2Cshort_dates&fields%5BPlanPerson%5D=status%2Cteam&fields%5BServiceType%5D=name&fields%5BTeam%5D=name%2Csequence&per_page=100&filter=not_across_organizations%2Call_teams&include=needed_positions%2Cplans.service_type%2Cplan_people%2Cteams",
 				"firstTimeVisitors": "check_ins?fields%5BCheckIn%5D=person%2Cevent%2Ccheck_in_times&fields%5BEvent%5D=name&fields%5BPerson%5D=name%2Cdemographic_avatar_url&fields%5BCheckInTime%5D=event_time&fields%5BEventTime%5D=starts_at&where%5Bcreated_at%5D%5Bgte%5D=2023-08-02&per_page=10&filter=first_time&include=person%2Cevent%2Ccheck_in_times.event_time",
 				"birthdays": "birthday_people?fields%5BBirthdayPeople%5D=name%2Cchild%2Cavatar_url&per_page=10",
 				"newDonors": "home_widgets/new_donors?fields%5BHomeWidgetsNewDonor%5D=name%2Cfirst_donation_received_at%2Cavatar_url&per_page=10&period=last_30_days",
