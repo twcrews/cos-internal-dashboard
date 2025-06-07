@@ -1,19 +1,10 @@
 import { PlanningCenterResponseData } from '../../shared';
 
 export type DashboardWidget = {
-  comparison?: string;
-  config?: DashboardWidgetConfig;
-  created_at?: Date;
-  data?: PlanningCenterResponseData<PeopleDashboards>;
-  position?: number;
-  refresh_after?: Date;
+  data?: PeopleDashboards;
   refreshed_at?: Date;
-  size?: string;
+  error?: any;
   status?: string;
-  timeframe?: string;
-  title?: string;
-  updated_at?: Date;
-  widget_type?: string;
 };
 
 export type DashboardWidgetConfig = {

@@ -12,7 +12,8 @@
 				"giving": "CosDashboard/giving/v2/",
 				"services": "CosDashboard/services/v2/",
 				"checkIns": "CosDashboard/check-ins/v2/",
-				"calendar": "CosDashboard/calendar/v2/"
+				"calendar": "CosDashboard/calendar/v2/",
+				"home": "CosDashboard/home/v2/"
 			},
 			"apiKeyName": "functions-api-key",
 			"paths": {
@@ -21,9 +22,9 @@
 				"firstTimeVisitors": "check_ins?fields%5BCheckIn%5D=person%2Cevent%2Ccheck_in_times&fields%5BEvent%5D=name&fields%5BPerson%5D=name%2Cdemographic_avatar_url&fields%5BCheckInTime%5D=event_time&fields%5BEventTime%5D=starts_at&where%5Bcreated_at%5D%5Bgte%5D=2023-08-02&per_page=10&filter=first_time&include=person%2Cevent%2Ccheck_in_times.event_time",
 				"birthdays": "birthday_people?fields%5BBirthdayPeople%5D=name%2Cchild%2Cavatar_url&per_page=10",
 				"newDonors": "home_widgets/new_donors?fields%5BHomeWidgetsNewDonor%5D=name%2Cfirst_donation_received_at%2Cavatar_url&per_page=10&period=last_30_days",
-				"auditoriumChart": "dashboards/32614/widgets/40751/refresh",
-				"kidsCheckInChart": "dashboards/32614/widgets/40752/refresh",
-				"givingChart": "dashboards/32614/widgets/40754/refresh",
+				"auditoriumChart": "people/121641364/dashboards/733729/widgets/4300593/data",
+				"kidsCheckInChart": "people/121641364/dashboards/733729/widgets/4300596/data",
+				"givingChart": "people/121641364/dashboards/733729/widgets/4300600/data",
 				"agenda": "event_instances?filter=future&include=event,tags"
 			}
 		}
