@@ -11,5 +11,6 @@
 			]
 		}
 	},
-	"postCreateCommand": "printf \"\nInstalling project dependencies...\n\" && npm install"
+	"postCreateCommand": "printf \"\nInstalling project dependencies...\n\" && npm install",
+	"postStartCommand": "sudo bash .devcontainer/startup.sh"
 }
