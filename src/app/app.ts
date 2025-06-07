@@ -64,6 +64,7 @@ export class AppComponent {
   private fetchDataInterval?: any;
   private statusUpdateInterval?: any;
   private clientUpdateCheckInterval?: any;
+  private clockInterval?: any;
 
   title = 'cos-dashboard';
 
@@ -71,6 +72,8 @@ export class AppComponent {
 
   statusText = signal('');
   statusColor = signal(BackgroundColor.None);
+
+  currentTime = signal(DateTime.now().toFormat('h:mm:ss a'));
 
   constructor(private apiService: ApiService) {}
 
@@ -89,6 +92,10 @@ export class AppComponent {
     this.statusUpdateInterval = setInterval(() => {
       this.updateStatusText();
     }, Duration.fromObject({ minutes: 1 }).toMillis());
+
+    this.clockInterval = setInterval(() => {
+      this.currentTime.set(DateTime.now().toFormat('h:mm:ss a'));
+    }, Duration.fromObject({ seconds: 1 }).toMillis());
 
     setTimeout(() => {
       hardRefresh();
@@ -144,10 +151,12 @@ export class AppComponent {
 
   updateStatusText() {
     const now = DateTime.now();
-    this.statusText.set(`updated ${now
-      .minus(now.diff(this.lastRefresh))
-      .minus({ minutes: 1 })
-      .toRelative({ unit: 'minutes' })}`);
+    this.statusText.set(
+      `updated ${now
+        .minus(now.diff(this.lastRefresh))
+        .minus({ minutes: 1 })
+        .toRelative({ unit: 'minutes' })}`
+    );
   }
 
   checkForClientUpdates() {
