@@ -21,33 +21,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ApiService } from 'src/lib/services/api.service';
-import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { PersonTileComponent } from './dashboard/person-tile/person-tile.component';
-import { EmptyContentComponent } from './dashboard/widget/empty-content/empty-content.component';
-import { WidgetComponent } from './dashboard/widget/widget.component';
-import { RsvpItemComponent } from './dashboard/rsvp-item/rsvp-item.component';
-import { LoadingSpinnerComponent } from './dashboard/widget/loading-spinner/loading-spinner.component';
-import { AgendaComponent } from './dashboard/agenda/agenda.component';
-import { SplashComponent } from './splash/splash.component';
-import { StatusComponent } from './status/status.component';
 import { NgChartsModule } from 'ng2-charts';
-import { TagComponent } from './dashboard/agenda/tag/tag.component';
 
-@NgModule({ declarations: [
-        AppComponent,
-        DashboardComponent,
-        PersonTileComponent,
-        WidgetComponent,
-        EmptyContentComponent,
-        RsvpItemComponent,
-        LoadingSpinnerComponent,
-        AgendaComponent,
-        SplashComponent,
-        StatusComponent,
-        TagComponent
-    ],
-    bootstrap: [AppComponent], imports: [MatSlideToggleModule,
+@NgModule({
+    imports: [MatSlideToggleModule,
         BrowserModule,
         BrowserAnimationsModule,
         ServiceWorkerModule.register('ngsw-worker.js', {
