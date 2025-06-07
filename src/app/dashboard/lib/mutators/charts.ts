@@ -1,10 +1,10 @@
 import { ChartData } from 'chart.js';
 import { DateTime } from 'luxon';
-import { PlanningCenterSingleResponse } from 'src/lib/planningCenter/shared';
+import { PlanningCenterSingleResponse } from '../../../../lib/planningCenter/shared';
 import {
   DashboardWidget,
   PeopleDashboardsData,
-} from 'src/lib/planningCenter/undocumented/people/types';
+} from '../../../../lib/planningCenter/undocumented/people/types';
 
 export const parseWeeklyChartData = (
   value: PlanningCenterSingleResponse<DashboardWidget>,

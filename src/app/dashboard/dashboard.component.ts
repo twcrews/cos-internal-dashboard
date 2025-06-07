@@ -1,15 +1,26 @@
 import { Component, Input } from '@angular/core';
-import { AppData } from 'src/lib/types';
+import { AppData } from '../../lib/types';
 import { EventDay } from './agenda/lib/types';
 import { ChartData } from 'chart.js';
-import { PersonTile } from './person-tile/person-tile.component';
+import { PersonTile, PersonTileComponent } from './person-tile/person-tile.component';
 import { Rsvp } from './rsvp-item/lib/types';
 import { chartOptions, currencyChartOptions } from './lib/charts';
+import { WidgetComponent } from './widget/widget.component';
+import { RsvpItemComponent } from './rsvp-item/rsvp-item.component';
+import { AgendaComponent } from './agenda/agenda.component';
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.less'],
+  imports: [
+    WidgetComponent,
+    PersonTileComponent,
+    RsvpItemComponent,
+    AgendaComponent,
+    BaseChartDirective
+  ]
 })
 export class DashboardComponent {
   @Input() appData: AppData = {};

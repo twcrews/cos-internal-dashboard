@@ -14,7 +14,6 @@ export const chartOptions: ChartOptions = {
   scales: {
     x: {
       grid: {
-        borderColor: 'rgba(255, 255, 255, 0.1)',
         display: false,
         color: 'rgba(255, 255, 255, 0.1)',
       },
@@ -26,7 +25,6 @@ export const chartOptions: ChartOptions = {
     },
     y: {
       grid: {
-        borderColor: 'transparent',
         color: 'rgba(255, 255, 255, 0.1)',
       },
       ticks: {

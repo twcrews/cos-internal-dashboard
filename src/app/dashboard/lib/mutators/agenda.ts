@@ -2,12 +2,12 @@ import {
   Event,
   EventInstance,
   Tag,
-} from 'src/lib/planningCenter/calendar/types';
+} from '../../../../lib/planningCenter/calendar/types';
 import {
   PlanningCenterCollectionResponse,
   PlanningCenterResponseData,
   PlanningCenterResponseDataBase,
-} from 'src/lib/planningCenter/shared';
+} from '../../../../lib/planningCenter/shared';
 import { EventDay } from '../../agenda/lib/types';
 import { DateTime } from 'luxon';
 

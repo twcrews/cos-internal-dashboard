@@ -234,7 +234,7 @@ export type MailchimpSyncStatus = {
   segment_id?: number;
 };
 
-export { InactiveReason as MaritalStatus };
+export type { InactiveReason as MaritalStatus };
 
 export type Message = {
   kind?: MessageKind;
@@ -264,9 +264,9 @@ export type MessageGroup = {
   created_at?: Date;
 };
 
-export { InactiveReason as NamePrefix };
+export type { InactiveReason as NamePrefix };
 
-export { InactiveReason as NameSuffix };
+export type { InactiveReason as NameSuffix };
 
 export type Note = {
   note?: string;
@@ -293,7 +293,7 @@ export type NoteCategoryShare = {
   person_id?: number;
 };
 
-export { ListResult as NoteCategorySubscription };
+export type { ListResult as NoteCategorySubscription };
 
 export type Organization = {
   name?: string;
@@ -503,7 +503,7 @@ export type WorkflowCategory = {
   updated_at?: Date;
 };
 
-export { NoteCategoryShare as WorkflowShare };
+export type { NoteCategoryShare as WorkflowShare };
 
 export type WorkflowStep = {
   created_at?: Date;

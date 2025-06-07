@@ -1,14 +1,29 @@
 import { Component } from '@angular/core';
-import { FormControl, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormControl, ValidatorFn, AbstractControl, ValidationErrors, ReactiveFormsModule } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { sha3_256 } from 'js-sha3';
-import { hardRefresh } from 'src/lib/browser';
-import { authenticationUrl, planningCenterApiKey } from 'src/lib/configuration';
+import { hardRefresh } from '../../lib/browser';
+import { authenticationUrl, planningCenterApiKey } from '../../lib/configuration';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-splash',
   templateUrl: './splash.component.html',
-  styleUrls: ['./splash.component.less']
+  styleUrls: ['./splash.component.less'],
+  imports: [
+    MatFormFieldModule,
+    MatProgressBarModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatButtonModule
+  ]
 })
 export class SplashComponent {
   secretExists = planningCenterApiKey.get() !== null  

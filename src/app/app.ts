@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import {
   agendaUrl,
   auditoriumChartUrl,
@@ -12,16 +12,16 @@ import {
   newProfilesUrl,
   planningCenterApiKey,
   teamRsvpsUrl,
-} from 'src/lib/configuration';
-import { forkJoin, Observable, map } from 'rxjs';
-import { CheckIn } from 'src/lib/planningCenter/check-ins/2023-04-05/types';
-import { HomeWidgetsNewDonor } from 'src/lib/planningCenter/giving/privateTypes';
+} from '../lib/configuration';
+import { forkJoin } from 'rxjs';
+import { CheckIn } from '../lib/planningCenter/check-ins/2023-04-05/types';
+import { HomeWidgetsNewDonor } from '../lib/planningCenter/giving/privateTypes';
 import {
   Person,
   BirthdayPeople,
-} from 'src/lib/planningCenter/people/2023-03-21/types';
-import { DashboardWidget } from 'src/lib/planningCenter/undocumented/people/types';
-import { ApiService } from 'src/lib/services/api.service';
+} from '../lib/planningCenter/people/2023-03-21/types';
+import { DashboardWidget } from '../lib/planningCenter/undocumented/people/types';
+import { ApiService } from '../lib/services/api.service';
 import {
   parseWeeklyChartData,
   parseMonthlyChartData,
@@ -32,18 +32,27 @@ import {
   parseNewProfiles,
 } from './dashboard/lib/mutators/people';
 import { parseRsvps } from './dashboard/lib/mutators/rsvps';
-import { AppData } from 'src/lib/types';
+import { AppData } from '../lib/types';
 import { parseNewDonors } from './dashboard/lib/mutators/giving';
 import { DateTime, Duration } from 'luxon';
-import { BackgroundColor } from './status/status.component';
-import { hardRefresh } from 'src/lib/browser';
-import { EventInstance } from 'src/lib/planningCenter/calendar/types';
+import { BackgroundColor, StatusComponent } from './status/status.component';
+import { hardRefresh } from '../lib/browser';
+import { EventInstance } from '../lib/planningCenter/calendar/types';
 import { parseAgenda } from './dashboard/lib/mutators/agenda';
+import { SplashComponent } from './splash/splash.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less'],
+  templateUrl: './app.html',
+  styleUrls: ['./app.less'],
+  imports: [
+    SplashComponent,
+    StatusComponent,
+    DashboardComponent,
+    MatToolbarModule,
+  ],
 })
 export class AppComponent {
   private fetchIntervalInSeconds = 300; // Refresh data every 5 minutes
@@ -58,12 +67,12 @@ export class AppComponent {
 
   title = 'cos-dashboard';
 
-  appData?: AppData;
+  appData = signal<AppData | undefined>(undefined);
 
-  statusText: string = '';
-  statusColor: BackgroundColor = BackgroundColor.None;
+  statusText = signal('');
+  statusColor = signal(BackgroundColor.None);
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
     if (planningCenterApiKey.get() !== null) {
@@ -100,16 +109,10 @@ export class AppComponent {
       this.apiService.fetchCollection<CheckIn>(firstTimeVisitorsUrl),
       this.apiService.fetchSingle<BirthdayPeople>(birthdaysUrl),
       this.apiService.fetchCollection<HomeWidgetsNewDonor>(newDonorsUrl),
-      this.apiService.postAndFetchSingle<DashboardWidget>(
-        auditoriumChartUrl,
-        ''
-      ),
-      this.apiService.postAndFetchSingle<DashboardWidget>(
-        kidsCheckInChartUrl,
-        ''
-      ),
-      this.apiService.postAndFetchSingle<DashboardWidget>(givingChartUrl, ''),
-      this.apiService.fetchCollection<EventInstance>(agendaUrl)
+      this.apiService.fetchSingle<DashboardWidget>(auditoriumChartUrl),
+      this.apiService.fetchSingle<DashboardWidget>(kidsCheckInChartUrl),
+      this.apiService.fetchSingle<DashboardWidget>(givingChartUrl),
+      this.apiService.fetchCollection<EventInstance>(agendaUrl),
     ]).subscribe(
       ([
         newProfiles,
@@ -120,9 +123,9 @@ export class AppComponent {
         auditoriumData,
         kidsCheckInData,
         givingData,
-        agenda
+        agenda,
       ]) => {
-        this.appData = {
+        this.appData.set({
           newProfiles: parseNewProfiles(newProfiles),
           rsvps: parseRsvps(rsvps),
           firstTimeVisitors: parseFirstTimeVisitors(firstTimeVisitors),
@@ -131,9 +134,9 @@ export class AppComponent {
           auditoriumData: parseWeeklyChartData(auditoriumData),
           kidsCheckInData: parseWeeklyChartData(kidsCheckInData),
           givingData: parseMonthlyChartData(givingData),
-          agenda: parseAgenda(agenda)
-        };
-        this.statusText = 'updated just now';
+          agenda: parseAgenda(agenda),
+        });
+        this.statusText.set('updated just now');
         this.lastRefresh = DateTime.now();
       }
     );
@@ -141,10 +144,10 @@ export class AppComponent {
 
   updateStatusText() {
     const now = DateTime.now();
-    this.statusText = `updated ${now
+    this.statusText.set(`updated ${now
       .minus(now.diff(this.lastRefresh))
       .minus({ minutes: 1 })
-      .toRelative({ unit: 'minutes' })}`;
+      .toRelative({ unit: 'minutes' })}`);
   }
 
   checkForClientUpdates() {
@@ -168,8 +171,8 @@ export class AppComponent {
     clearInterval(this.clientUpdateCheckInterval);
     clearInterval(this.fetchDataInterval);
 
-    this.statusColor = BackgroundColor.Warning;
-    this.statusText = 'Client updating soon';
+    this.statusColor.set(BackgroundColor.Warning);
+    this.statusText.set('Client updating soon');
 
     setTimeout(
       () => hardRefresh(),
@@ -185,25 +188,25 @@ export class AppComponent {
 
   setupMouseHiding() {
     let timeout: any;
-    let wakeTime = 3500; // how long to wait before hiding cursor 
+    let wakeTime = 3500; // how long to wait before hiding cursor
     let currentCursor = document.body.style.cursor;
     currentCursor == 'none' ? 'default' : currentCursor;
     timeout = setTimeout(hideMouseCursor, wakeTime);
-    
-    function hideMouseCursor() {  
+
+    function hideMouseCursor() {
       if (document.body.style.cursor !== 'none') {
-        document.body.style.cursor = 'none';  
+        document.body.style.cursor = 'none';
       }
     }
 
     function showMouseCursor() {
       clearTimeout(timeout);
       if (document.body.style.cursor !== 'default') {
-        document.body.style.cursor = 'default';  
+        document.body.style.cursor = 'default';
       }
     }
 
-    document.onmousemove = function () {  
+    document.onmousemove = function () {
       showMouseCursor();
       timeout = setTimeout(hideMouseCursor, wakeTime);
     };

@@ -1,4 +1,4 @@
-import { peopleApiUrl } from "src/lib/configuration";
+import { peopleApiUrl } from "../../../configuration";
 import { fetchCollection, fetchSingle } from "../../shared";
 import { DashboardWidget } from "./types";
 
