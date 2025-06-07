@@ -1,6 +1,6 @@
-import { getPlanPersonStatus } from "src/lib/planningCenter/services/2018-11-01/helpers";
-import { PlanPerson, Team, PlanPersonStatus } from "src/lib/planningCenter/services/2018-11-01/types";
-import { PlanningCenterResponseData } from "src/lib/planningCenter/shared";
+import { getPlanPersonStatus } from "../../../../lib/planningCenter/services/2018-11-01/helpers";
+import { PlanPerson, Team, PlanPersonStatus } from "../../../../lib/planningCenter/services/2018-11-01/types";
+import { PlanningCenterResponseData } from "../../../../lib/planningCenter/shared";
 
 
 export const filterData = (data: PlanningCenterResponseData<any>[], type: string) =>

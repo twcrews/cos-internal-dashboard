@@ -3,24 +3,26 @@
     class="image"
     src="{{ data.avatarUrl ?? 'https://placekitten.com/g/48/48' }}"
     alt="Avatar for {{ data.name }}"
-  />
+    />
   <div class="text">
     <p class="name">{{ data.name }}</p>
-    <p
+    @if (data.caption) {
+      <p
       class="{{
         data.subCaption ? 'caption' : 'solo-caption'
       }}"
-      *ngIf="data.caption"
-    >
-      {{ data.caption }}
-    </p>
-    <p
+        >
+        {{ data.caption }}
+      </p>
+    }
+    @if (data.subCaption) {
+      <p
       class="{{
         data.caption ? 'caption' : 'solo-caption'
       }}"
-      *ngIf="data.subCaption"
-    >
-      {{ data.subCaption }}
-    </p>
+        >
+        {{ data.subCaption }}
+      </p>
+    }
   </div>
 </div>

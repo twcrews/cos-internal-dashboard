@@ -1,4 +1,4 @@
-import { peopleApiUrl } from 'src/lib/configuration';
+import { peopleApiUrl } from '../../../configuration';
 import {
   Address,
   AnniversaryCouples,
@@ -57,8 +57,8 @@ import {
   WorkflowShare,
   WorkflowStep,
   WorkflowStepAssigneeSummary,
-} from 'src/lib/planningCenter/people/2023-03-21/types';
-import { fetchCollection, fetchSingle } from 'src/lib/planningCenter/shared';
+} from '../../../planningCenter/people/2023-03-21/types';
+import { fetchCollection, fetchSingle } from '../../../planningCenter/shared';
 
 export const People = {
   fetch: () => fetchSingle<Organization>(`${peopleApiUrl}/`),

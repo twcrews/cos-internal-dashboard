@@ -1,31 +1,50 @@
 <div class="page">
   <app-widget icon="person_add" title="New profiles">
-    <div body class="people-grid" *ngIf="newProfiles">
-      <app-person-tile *ngFor="let profile of newProfiles" [data]="profile" />
-    </div>
+    @if (newProfiles) {
+      <div body class="people-grid">
+        @for (profile of newProfiles; track profile) {
+          <app-person-tile [data]="profile" />
+        }
+      </div>
+    }
   </app-widget>
   <app-widget icon="schedule" title="Team breakdown">
-    <div body class="rsvp-list" *ngIf="rsvps">
-      <app-rsvp-item *ngFor="let rsvp of rsvps" [data]="rsvp" />
-    </div>
+    @if (rsvps) {
+      <div body class="rsvp-list">
+        @for (rsvp of rsvps; track rsvp) {
+          <app-rsvp-item [data]="rsvp" />
+        }
+      </div>
+    }
   </app-widget>
   <app-widget icon="looks_one" title="First time visitors">
-    <div body class="people-grid" *ngIf="firstTimeVisitors">
-      <app-person-tile
-        *ngFor="let visitor of firstTimeVisitors"
-        [data]="visitor"
-      />
-    </div>
+    @if (firstTimeVisitors) {
+      <div body class="people-grid">
+        @for (visitor of firstTimeVisitors; track visitor) {
+          <app-person-tile
+            [data]="visitor"
+            />
+        }
+      </div>
+    }
   </app-widget>
   <app-widget icon="cake" title="Upcoming birthdays">
-    <div body class="people-grid" *ngIf="birthdays">
-      <app-person-tile *ngFor="let birthday of birthdays" [data]="birthday" />
-    </div>
+    @if (birthdays) {
+      <div body class="people-grid">
+        @for (birthday of birthdays; track birthday) {
+          <app-person-tile [data]="birthday" />
+        }
+      </div>
+    }
   </app-widget>
   <app-widget icon="payments" title="Newest donors">
-    <div body class="people-grid" *ngIf="newDonors">
-      <app-person-tile *ngFor="let donor of newDonors" [data]="donor" />
-    </div>
+    @if (newDonors) {
+      <div body class="people-grid">
+        @for (donor of newDonors; track donor) {
+          <app-person-tile [data]="donor" />
+        }
+      </div>
+    }
   </app-widget>
   <app-widget icon="bar_chart" title="Auditorium">
     <div header class="legend">
@@ -88,6 +107,8 @@
     ></canvas>
   </app-widget>
   <app-widget class="full-width" icon="calendar_month" title="Calendar">
-    <app-agenda body [days]="agenda" *ngIf="agenda" />
+    @if (agenda) {
+      <app-agenda body [days]="agenda" />
+    }
   </app-widget>
 </div>

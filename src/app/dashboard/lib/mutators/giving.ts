@@ -1,5 +1,5 @@
-import { HomeWidgetsNewDonor } from 'src/lib/planningCenter/giving/privateTypes';
-import { PlanningCenterCollectionResponse } from 'src/lib/planningCenter/shared';
+import { HomeWidgetsNewDonor } from '../../../../lib/planningCenter/giving/privateTypes';
+import { PlanningCenterCollectionResponse } from '../../../../lib/planningCenter/shared';
 import { PersonTile } from '../../person-tile/person-tile.component';
 import { DateTime } from 'luxon';
 

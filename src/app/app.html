@@ -1,0 +1,15 @@
+@if (!appData()) {
+  <app-splash />
+} @else {
+  <div class="page-container">
+    <mat-toolbar>
+      <img
+        src="cos-base-slim.png"
+        alt="cos dashboard logo"
+        class="toolbar-logo"
+        />
+      <app-status [text]="statusText()" [backgroundColor]="statusColor()" />
+    </mat-toolbar>
+    <app-dashboard class="dashboard" [appData]="appData()!" />
+  </div>
+}

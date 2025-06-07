@@ -1,5 +1,5 @@
 import { isDevMode } from '@angular/core';
-import Configuration from '../assets/app.config.json';
+import Configuration from './app.config.json';
 
 const localStorageConfigurationProperty = (key: string) => ({
   get: () => localStorage.getItem(key),

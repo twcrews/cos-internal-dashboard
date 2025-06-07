@@ -4,16 +4,16 @@ import {
   CheckInTime,
   EventTime,
   Event,
-} from 'src/lib/planningCenter/check-ins/2023-04-05/types';
+} from '../../../../lib/planningCenter/check-ins/2023-04-05/types';
 import {
   Person,
   BirthdayPeople,
-} from 'src/lib/planningCenter/people/2023-03-21/types';
+} from '../../../../lib/planningCenter/people/2023-03-21/types';
 import {
   PlanningCenterCollectionResponse,
   PlanningCenterResponseData,
   PlanningCenterSingleResponse,
-} from 'src/lib/planningCenter/shared';
+} from '../../../../lib/planningCenter/shared';
 import { PersonTile } from '../../person-tile/person-tile.component';
 
 export const parseNewProfiles = (

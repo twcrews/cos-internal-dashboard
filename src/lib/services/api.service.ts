@@ -7,7 +7,7 @@ import {
 } from '../planningCenter/shared';
 import { lastValueFrom } from 'rxjs';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ApiService {
   private httpOptions = {
     headers: {

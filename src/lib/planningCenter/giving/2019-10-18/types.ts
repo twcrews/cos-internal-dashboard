@@ -28,7 +28,7 @@ export type Designation = {
   amount_currency?: string;
 };
 
-export { Designation as DesignationRefund };
+export type { Designation as DesignationRefund };
 
 export type Donation = {
   created_at?: Date;
@@ -141,7 +141,7 @@ export type RecurringDonation = {
   amount_currency?: string;
 };
 
-export { Designation as RecurringDonationDesignation };
+export type { Designation as RecurringDonationDesignation };
 
 export type Refund = {
   created_at?: Date;

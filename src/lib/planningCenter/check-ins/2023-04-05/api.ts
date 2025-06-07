@@ -1,4 +1,4 @@
-import { checkInsApiUrl } from 'src/lib/configuration';
+import { checkInsApiUrl } from '../../../configuration';
 import { fetchCollection, fetchSingle } from '../../shared';
 import {
   AttendanceType,
