@@ -11,7 +11,7 @@ export const parseWeeklyChartData = (
   currency?: boolean
 ): ChartData<'bar'> => {
   const rawData: PeopleDashboardsData[] =
-    value.data?.attributes?.data?.attributes?.data ?? [];
+    value.data?.attributes?.data?.data ?? [];
 
   let prevData = rawData.map((d) => (d.aggregations ?? [])[0].comparison ?? 0);
   let currentData = rawData.map((d) => (d.aggregations ?? [])[0].current ?? 0);
