@@ -549,7 +549,7 @@ export type ServiceType = {
   attachment_types_enabled?: boolean;
 };
 
-export { FolderPath as ServiceTypePath };
+export type { FolderPath as ServiceTypePath };
 
 export type SignupSheet = {
   sort_date?: Date;

@@ -1,0 +1,7 @@
+{
+  "name": "cos-internal-dashboard",
+  "short_name": "cos-internal-dashboard",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./"
+}

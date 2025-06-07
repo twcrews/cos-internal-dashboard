@@ -1,5 +1,5 @@
 import { DateTime } from "luxon"
-import { Tag } from "src/lib/planningCenter/calendar/types";
+import { Tag } from "../../../../lib/planningCenter/calendar/types";
 
 export type AgendaEvent = {
 	title: string;

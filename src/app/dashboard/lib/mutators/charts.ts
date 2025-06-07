@@ -1,17 +1,17 @@
 import { ChartData } from 'chart.js';
 import { DateTime } from 'luxon';
-import { PlanningCenterSingleResponse } from 'src/lib/planningCenter/shared';
+import { PlanningCenterSingleResponse } from '../../../../lib/planningCenter/shared';
 import {
   DashboardWidget,
   PeopleDashboardsData,
-} from 'src/lib/planningCenter/undocumented/people/types';
+} from '../../../../lib/planningCenter/undocumented/people/types';
 
 export const parseWeeklyChartData = (
   value: PlanningCenterSingleResponse<DashboardWidget>,
   currency?: boolean
 ): ChartData<'bar'> => {
   const rawData: PeopleDashboardsData[] =
-    value.data?.attributes?.data?.attributes?.data ?? [];
+    value.data?.attributes?.data?.data ?? [];
 
   let prevData = rawData.map((d) => (d.aggregations ?? [])[0].comparison ?? 0);
   let currentData = rawData.map((d) => (d.aggregations ?? [])[0].current ?? 0);

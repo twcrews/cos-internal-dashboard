@@ -1,4 +1,4 @@
-import { givingApiUrl } from 'src/lib/configuration';
+import { givingApiUrl } from '../../../configuration';
 import {
   Batch,
   BatchGroup,
@@ -14,8 +14,8 @@ import {
   Person,
   RecurringDonation,
   Refund,
-} from 'src/lib/planningCenter/giving/2019-10-18/types';
-import { fetchCollection, fetchSingle } from 'src/lib/planningCenter/shared';
+} from '../../../planningCenter/giving/2019-10-18/types';
+import { fetchCollection, fetchSingle } from '../../../planningCenter/shared';
 
 export const Giving = {
   fetch: () => fetchSingle<Organization>(`${givingApiUrl}/`),

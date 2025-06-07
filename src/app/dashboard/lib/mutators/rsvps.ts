@@ -1,5 +1,5 @@
-import { NeededPosition, Team, PlanPersonStatus } from "src/lib/planningCenter/services/2018-11-01/types";
-import { PlanningCenterSingleResponse, PlanningCenterResponseData } from "src/lib/planningCenter/shared";
+import { NeededPosition, Team, PlanPersonStatus } from "../../../../lib/planningCenter/services/2018-11-01/types";
+import { PlanningCenterSingleResponse, PlanningCenterResponseData } from "../../../../lib/planningCenter/shared";
 import { Rsvp } from "../../rsvp-item/lib/types";
 import { filterData, getTeamId, getStatusCount } from "./mutation";
 

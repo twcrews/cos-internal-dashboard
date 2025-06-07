@@ -1,11 +1,10 @@
 import { Component, Input, input } from '@angular/core';
 import fontColorContrast from 'font-color-contrast';
-import { Tag } from 'src/lib/planningCenter/calendar/types';
+import { Tag } from '../../../../lib/planningCenter/calendar/types';
 
 @Component({
   selector: 'app-tag',
-  templateUrl: './tag.component.html',
-  styleUrl: './tag.component.less'
+  templateUrl: './tag.component.html'
 })
 export class TagComponent {
   defaultColor = '#666666';

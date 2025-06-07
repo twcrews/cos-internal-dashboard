@@ -131,7 +131,7 @@ export type LocationEventPeriod = {
   updated_at?: Date;
 };
 
-export { LocationEventPeriod as LocationEventTime };
+export type { LocationEventPeriod as LocationEventTime };
 
 export type LocationLabel = {
   quantity?: number;
