@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { LayoutModule } from '@angular/cdk/layout';
-import {
-  HttpClientModule
-} from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -36,49 +34,42 @@ import { StatusComponent } from './status/status.component';
 import { NgChartsModule } from 'ng2-charts';
 import { TagComponent } from './dashboard/agenda/tag/tag.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    DashboardComponent,
-    PersonTileComponent,
-    WidgetComponent,
-    EmptyContentComponent,
-    RsvpItemComponent,
-    LoadingSpinnerComponent,
-    AgendaComponent,
-    SplashComponent,
-    StatusComponent,
-    TagComponent
-  ],
-  imports: [
-    MatSlideToggleModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000',
-    }),
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    LayoutModule,
-    MatInputModule,
-    MatSelectModule,
-    MatRadioModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatToolbarModule,
-    MatProgressSpinnerModule,
-    MatProgressBarModule,
-    HttpClientModule,
-    NgChartsModule,
-    CommonModule
-  ],
-  providers: [ApiService],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        DashboardComponent,
+        PersonTileComponent,
+        WidgetComponent,
+        EmptyContentComponent,
+        RsvpItemComponent,
+        LoadingSpinnerComponent,
+        AgendaComponent,
+        SplashComponent,
+        StatusComponent,
+        TagComponent
+    ],
+    bootstrap: [AppComponent], imports: [MatSlideToggleModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            // Register the ServiceWorker as soon as the application is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000',
+        }),
+        MatGridListModule,
+        MatCardModule,
+        MatMenuModule,
+        MatIconModule,
+        MatButtonModule,
+        LayoutModule,
+        MatInputModule,
+        MatSelectModule,
+        MatRadioModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatToolbarModule,
+        MatProgressSpinnerModule,
+        MatProgressBarModule,
+        NgChartsModule,
+        CommonModule], providers: [ApiService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}
